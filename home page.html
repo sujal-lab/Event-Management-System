@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 15px 30px;
+    color: white;
+}
+nav .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+nav ul li .btn {
+    background-color: #ff6f61;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+header {
+    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 80px 20px;
+}
+.hero-content h1 {
+    font-size: 2.5em;
+}
+.hero-content p {
+    font-size: 1.2em;
+}
+.cta-btn {
+    display: inline-block;
+    background-color: #ff6f61;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Events Section */
+.events {
+    padding: 40px 20px;
+    background-color: white;
+}
+.event-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.event-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+.event-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+.event-card h3 {
+    font-size: 1.3em;
+}
+.event-card p {
+    font-size: 0.9em;
+}
+.event-card a {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* About Section */
+.about {
+    padding: 30px;
+    background-color: #ff6f61;
+    color: white;
+}
+
+/* Contact Section */
+.contact {
+    padding: 30px;
+    background-color: #333;
+    color: white;
+}
+
+/* Footer */
+footer {
+    padding: 15px;
+    background-color: #222;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">EventMaster</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html" class="btn">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="hero-content">
+            <h1>Welcome to EventMaster</h1>
+            <p>Find, Register & Manage Events Seamlessly</p>
+            <a href="register.html" class="cta-btn">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Event Highlights Section -->
+    <section class="events">
+        <h2>Upcoming Events</h2>
+        <div class="event-container">
+            <div class="event-card">
+                <img src="images/event1.jpg" alt="Event 1">
+                <h3>Hackathon 2025</h3>
+                <p>Join the biggest coding event in college!</p>
+                <a href="events.html">View Details</a>
+            </div>
+            <div class="event-card">
+                <img src="images/event2.jpg" alt="Event 2">
+                <h3>Music Fest</h3>
+                <p>Experience the ultimate musical night.</p>
+                <a href="events.html">View Details</a>
+            </div>
+            <div class="event-card">
+                <img src="images/event3.jpg" alt="Event 3">
+                <h3>Tech Talk</h3>
+                <p>Learn from industry leaders in tech.</p>
+                <a href="events.html">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About EventMaster</h2>
+        <p>EventMaster is your one-stop solution for managing college events. Register for events, get notified, and have a seamless experience.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@eventmaster.com | Phone: +91 9876543210</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 EventMaster. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
