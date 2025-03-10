@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Notifications Bell -->
+     <!-- Search & Filter Events -->
+<section class="search">
+    <input type="text" id="searchEvents" placeholder="Search events...">
+</section>
+
+<!-- Search & Filter Users -->
+<section class="search">
+    <input type="text" id="searchUsers" placeholder="Search users...">
+</section>
+
+<div class="notifications">
+    <i class="fas fa-bell"></i>
+    <span class="badge" id="notificationCount">0</span>
+    <div class="notification-dropdown" id="notificationList">
+        <h4>Notifications</h4>
+        <ul id="notifications"></ul>
+    </div>
+</div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
