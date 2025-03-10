@@ -358,3 +358,16 @@ header {
 #eventTable tbody {
     display: table-row-group;
 }
+
+.toast {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+

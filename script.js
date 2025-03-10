@@ -5,30 +5,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const eventDateInput = document.getElementById("eventDate");
     const eventStatusInput = document.getElementById("eventStatus");
     const notificationBanner = document.getElementById("notificationBanner");
+    const notificationCountBadge = document.getElementById("notification-count"); // Badge for notifications
     let notificationCount = 0;
 
     const userRole = "admin"; // Change this dynamically in real use cases
 
-    /** 🔔 Show Pop-up Notification */
-function addNotification(message, type = "success") {
-    const notificationBanner = document.getElementById("notificationBanner");
-
-    notificationBanner.innerText = message;
-    notificationBanner.className = `notification-banner ${type}`;
+    document.addEventListener("DOMContentLoaded", function () {
+        let notificationCount = 0;
+        const notificationBadge = document.getElementById("notification-count");
+        const addEventBtn = document.getElementById("addEventBtn");
     
-    // Show the banner
-    notificationBanner.style.display = "block";
-    notificationBanner.style.animation = "slide-down 0.5s ease-out";
+        function updateNotificationCount() {
+            notificationCount++; // Increase count
+            notificationBadge.innerText = notificationCount;
+            notificationBadge.style.display = "inline-block";
+        }
+    
+        addEventBtn.addEventListener("click", function () {
+            updateNotificationCount();
+        });
+    });
+    
+    /** 🔔 Show Pop-up Notification */
+    function addNotification(message, type = "success") {
+        notificationCount++; // Increase count
+        updateNotificationCount(notificationCount); // Update badge
+        
+        notificationBanner.innerText = message;
+        notificationBanner.className = `notification-banner ${type}`;
+        
+        // Show the banner
+        notificationBanner.style.display = "block";
+        notificationBanner.style.animation = "slide-down 0.5s ease-out";
 
-    // Hide after 3 seconds
-    setTimeout(() => {
-        notificationBanner.style.opacity = "0";
+        // Hide after 3 seconds
         setTimeout(() => {
-            notificationBanner.style.display = "none";
-            notificationBanner.style.opacity = "1"; // Reset opacity for next use
-        }, 500);
-    }, 3000);
-}
+            notificationBanner.style.opacity = "0";
+            setTimeout(() => {
+                notificationBanner.style.display = "none";
+                notificationBanner.style.opacity = "1"; // Reset opacity for next use
+            }, 500);
+        }, 3000);
+    }
 
     /** ❌ Delete Event */
     function attachDeleteEvent(button) {
@@ -82,4 +100,43 @@ function addNotification(message, type = "success") {
 
     /** 🚀 Initialize */
     document.querySelectorAll(".delete-btn").forEach(attachDeleteEvent);
+
+    /** 🏷️ Update Notification Count Badge */
+    function updateNotificationCount(count) {
+        if (notificationCountBadge) {
+            console.log("Updating notification count to:", count); // ✅ Debugging
+            if (count > 0) {
+                notificationCountBadge.innerText = count;
+                notificationCountBadge.style.display = "inline-block";
+            } else {
+                notificationCountBadge.style.display = "none";
+            }
+        }
+    }
+
+    /** 🔄 Fetch Unread Notifications from Backend */
+    function fetchNotifications() {
+        fetch("/get-notifications")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched notifications:", data); // ✅ Debugging
+
+                // Check if `unreadCount` exists in response
+                if (data && typeof data.unreadCount !== "undefined") {
+                    notificationCount = data.unreadCount;
+                    updateNotificationCount(notificationCount);
+                } else {
+                    console.error("Invalid data format:", data);
+                }
+            })
+            .catch(error => console.error("Error fetching notifications:", error));
+    }
+
+    // Call fetchNotifications on load
+    fetchNotifications();
 });
