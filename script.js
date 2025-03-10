@@ -4,34 +4,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const eventNameInput = document.getElementById("eventName");
     const eventDateInput = document.getElementById("eventDate");
     const eventStatusInput = document.getElementById("eventStatus");
-    const notificationList = document.getElementById("notifications");
-    const notificationBadge = document.getElementById("notificationCount");
+    const notificationBanner = document.getElementById("notificationBanner");
+    const notificationCountBadge = document.getElementById("notification-count"); // Badge for notifications
     let notificationCount = 0;
 
     const userRole = "admin"; // Change this dynamically in real use cases
 
-    /** 🔔 Update Notification Badge */
-    function updateNotificationBadge() {
-        notificationBadge.innerText = notificationCount;
-        notificationBadge.style.display = notificationCount > 0 ? "inline-block" : "none";
-    }
-
-    /** 📢 Add Notification */
-    function addNotification(message) {
-        notificationCount++;
-        updateNotificationBadge();
-
-        const newNotification = document.createElement("li");
-        newNotification.innerText = message;
-        notificationList.appendChild(newNotification);
-    }
-
-    /** 🛑 Role-Based Access Control */
-    function checkPermissions() {
-        if (userRole !== "admin") {
-            addEventBtn.disabled = true;
-            document.querySelectorAll(".delete-btn").forEach(btn => btn.disabled = true);
+    document.addEventListener("DOMContentLoaded", function () {
+        let notificationCount = 0;
+        const notificationBadge = document.getElementById("notification-count");
+        const addEventBtn = document.getElementById("addEventBtn");
+    
+        function updateNotificationCount() {
+            notificationCount++; // Increase count
+            notificationBadge.innerText = notificationCount;
+            notificationBadge.style.display = "inline-block";
         }
+    
+        addEventBtn.addEventListener("click", function () {
+            updateNotificationCount();
+        });
+    });
+    
+    /** 🔔 Show Pop-up Notification */
+    function addNotification(message, type = "success") {
+        notificationCount++; // Increase count
+        updateNotificationCount(notificationCount); // Update badge
+        
+        notificationBanner.innerText = message;
+        notificationBanner.className = `notification-banner ${type}`;
+        
+        // Show the banner
+        notificationBanner.style.display = "block";
+        notificationBanner.style.animation = "slide-down 0.5s ease-out";
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+            notificationBanner.style.opacity = "0";
+            setTimeout(() => {
+                notificationBanner.style.display = "none";
+                notificationBanner.style.opacity = "1"; // Reset opacity for next use
+            }, 500);
+        }, 3000);
     }
 
     /** ❌ Delete Event */
@@ -42,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             row.classList.add("fade-out");
             setTimeout(() => {
                 row.remove();
-                addNotification("❌ Event removed!");
+                addNotification("❌ Event removed!", "error");
             }, 500);
         });
     }
@@ -56,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const eventStatus = eventStatusInput.value;
 
         if (!eventName || !eventDate) {
-            alert("Please fill in all fields!");
+            addNotification("⚠️ Please fill in all fields!", "error");
             return;
         }
 
@@ -82,32 +96,47 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear inputs
         eventNameInput.value = "";
         eventDateInput.value = "";
-
-        // Reapply role-based access
-        checkPermissions();
-    });
-
-    /** 🔍 Search Events */
-    document.getElementById("searchEvents").addEventListener("input", function () {
-        const searchValue = this.value.toLowerCase();
-        let found = false;
-
-        document.querySelectorAll("#eventTable tbody tr").forEach(row => {
-            const eventName = row.cells[0].innerText.toLowerCase();
-            if (eventName.includes(searchValue)) {
-                row.style.display = "";
-                found = true;
-            } else {
-                row.style.display = "none";
-            }
-        });
-
-        if (searchValue.length > 0) {
-            addNotification(found ? "🔍 Matching event found!" : "❌ No matching event found.");
-        }
     });
 
     /** 🚀 Initialize */
     document.querySelectorAll(".delete-btn").forEach(attachDeleteEvent);
-    checkPermissions();
+
+    /** 🏷️ Update Notification Count Badge */
+    function updateNotificationCount(count) {
+        if (notificationCountBadge) {
+            console.log("Updating notification count to:", count); // ✅ Debugging
+            if (count > 0) {
+                notificationCountBadge.innerText = count;
+                notificationCountBadge.style.display = "inline-block";
+            } else {
+                notificationCountBadge.style.display = "none";
+            }
+        }
+    }
+
+    /** 🔄 Fetch Unread Notifications from Backend */
+    function fetchNotifications() {
+        fetch("/get-notifications")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Fetched notifications:", data); // ✅ Debugging
+
+                // Check if `unreadCount` exists in response
+                if (data && typeof data.unreadCount !== "undefined") {
+                    notificationCount = data.unreadCount;
+                    updateNotificationCount(notificationCount);
+                } else {
+                    console.error("Invalid data format:", data);
+                }
+            })
+            .catch(error => console.error("Error fetching notifications:", error));
+    }
+
+    // Call fetchNotifications on load
+    fetchNotifications();
 });
