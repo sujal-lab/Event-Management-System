@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendee Dashboard</title>
+    <link rel="stylesheet" href="attendee.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Attendee Dashboard</h2>
+            <ul>
+                <li class="active"><a href="#">📊 Dashboard</a></li>
+                <li><a href="#">📅 My Events</a></li>
+                <li><a href="#">🔔 Notifications</a></li>
+                <li><a href="#">👤 Profile</a></li>
+                <li><a href="#" id="logout">🚪 Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>Welcome, <span id="saksham">Saksham Deep</span> 👋</h1>
+            <p>Here’s a quick overview of your events.</p>
+
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Upcoming Events</h3>
+                    <p><span id="upcoming-count">0</span></p>
+                </div>
+                <div class="card">
+                    <h3>Past Events</h3>
+                    <p><span id="past-count">0</span></p>
+                </div>
+                <div class="card">
+                    <h3>Notifications</h3>
+                    <p><span id="notifications-count">2</span></p>
+                </div>
+            </div>
+
+            <!-- Event List -->
+            <section class="events-section">
+                <h2>Your Events</h2>
+                <ul id="event-list">
+                    <li>No events registered yet.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="attendee.js"></script>
+</body>
+</html>
