@@ -10,6 +10,7 @@
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
+            <button class="toggle-sidebar">☰</button>
             <h2>Attendee Dashboard</h2>
             <ul>
                 <li class="active"><a href="#">📊 Dashboard</a></li>
@@ -22,7 +23,10 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <h1>Welcome, <span id="saksham">Saksham Deep</span> 👋</h1>
+            <div class="header">
+                <h1>Welcome, <span id="saksham">Saksham Deep</span> 👋</h1>
+                <button class="dark-mode-toggle">🌙</button>
+            </div>
             <p>Here’s a quick overview of your events.</p>
 
             <div class="dashboard-cards">
@@ -40,9 +44,15 @@
                 </div>
             </div>
 
-            <!-- Event List -->
+            <!-- Event List with Search & Filter -->
             <section class="events-section">
                 <h2>Your Events</h2>
+                <input type="text" id="search" placeholder="Search events...">
+                <select id="filter">
+                    <option value="all">All Events</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="past">Past</option>
+                </select>
                 <ul id="event-list">
                     <li>No events registered yet.</li>
                 </ul>
