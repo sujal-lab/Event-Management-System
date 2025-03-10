@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteButtons.forEach(button => {
         button.addEventListener("click", function () {
             const row = this.closest("tr");
-            row.remove();
+            row.classList.add("fade-out");
+            setTimeout(() => row.remove(), 500);
         });
     });
 });

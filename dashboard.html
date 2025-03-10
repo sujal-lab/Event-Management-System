@@ -5,34 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <div class="dashboard">
+        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <h2>Admin Panel</h2>
             <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Manage Events</a></li>
-                <li><a href="#">Manage Users</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-calendar"></i> Manage Events</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Manage Users</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
         </aside>
 
+        <!-- Main Content -->
         <main class="content">
-            <h1>Welcome, Admin</h1>
+            <header>
+                <h1>Welcome, Admin</h1>
+                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </header>
+
+            <!-- Dashboard Overview Cards -->
             <section class="cards">
-                <div class="card">
+                <div class="card card-blue">
                     <h3>Total Events</h3>
                     <p>10</p>
                 </div>
-                <div class="card">
+                <div class="card card-green">
                     <h3>Total Users</h3>
                     <p>25</p>
                 </div>
+                <div class="card card-red">
+                    <h3>Pending Requests</h3>
+                    <p>5</p>
+                </div>
             </section>
 
+            <!-- Event Management Table -->
             <section class="tables">
-                <h2>Event Management</h2>
+                <h2>Manage Events</h2>
                 <table id="eventTable">
                     <thead>
                         <tr>
@@ -44,11 +58,13 @@
                     <tbody>
                         <tr>
                             <td>Tech Conference</td>
-                            <td>2025-03-21</td>
-                            <td>Science Exhibition</td>
-                            
-
-                            <td><button class="delete-btn">Delete</button></td>
+                            <td>2024-05-10</td>
+                            <td><button class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>AI Workshop</td>
+                            <td>2024-06-15</td>
+                            <td><button class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
