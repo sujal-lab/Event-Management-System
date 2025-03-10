@@ -8,30 +8,10 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <body>
-        <!-- Notification Banner (Top of the Page) -->
-        <div class="notification-banner" id="notificationBanner"></div>
-    
-        <!-- Event Form -->
-        <div class="add-event">
-            <h2>Add New Event</h2>
-            <input type="text" id="eventName" placeholder="Event Name">
-            <input type="date" id="eventDate">
-            <select id="eventStatus">
-                <option value="Upcoming">Upcoming</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Completed">Completed</option>
-            </select>
-            <button id="addEventBtn" class="admin-only">Add Event</button>
-        </div>
-    
-        
-    
-        <!-- Notification Section -->
-        <ul id="notifications"></ul>
-        <span id="notificationCount" class="notification-badge">0</span>
-    </body>
-    
+
+    <!-- Notification Banner (Top of the Page) -->
+    <div class="notification-banner" id="notificationBanner"></div>
+
     <div class="dashboard">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
@@ -46,42 +26,43 @@
 
         <!-- Main Content -->
         <main class="content">
-            <!-- Add Event Form -->
-<section class="add-event">
-    <h2>Add New Event</h2>
-    <input type="text" id="eventName" placeholder="Event Name">
-    <input type="date" id="eventDate">
-    <button id="addEventBtn">Add Event</button>
-</section>
-
             <header>
-                
                 <h1>Welcome, Admin</h1>
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </header>
-            <!-- Notification Banner -->
-<div id="notificationBanner" class="notification-banner"></div>
 
+            <!-- Add Event Form (Only One) -->
+            <section class="add-event">
+                <h2>Add New Event</h2>
+                <input type="text" id="eventName" placeholder="Event Name">
+                <input type="date" id="eventDate">
+                <select id="eventStatus">
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <button id="addEventBtn" class="admin-only">Add Event</button>
+            </section>
 
-                <!-- Notifications Bell -->
-     <!-- Search & Filter Events -->
-<section class="search">
-    <input type="text" id="searchEvents" placeholder="Search events...">
-</section>
+            <!-- Search & Filter Sections -->
+            <section class="search">
+                <input type="text" id="searchEvents" placeholder="Search events...">
+            </section>
 
-<!-- Search & Filter Users -->
-<section class="search">
-    <input type="text" id="searchUsers" placeholder="Search users...">
-</section>
+            <section class="search">
+                <input type="text" id="searchUsers" placeholder="Search users...">
+            </section>
 
-<div class="notifications">
-    <i class="fas fa-bell"></i>
-    <span class="badge" id="notificationCount">0</span>
-    <div class="notification-dropdown" id="notificationList">
-        <h4>Notifications</h4>
-        <ul id="notifications"></ul>
-    </div>
-</div>
+            <!-- Notifications Bell -->
+            <div class="notifications">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="notificationCount">0</span>
+                <div class="notification-dropdown" id="notificationList">
+                    <h4>Notifications</h4>
+                    <ul id="notifications"></ul>
+                </div>
+            </div>
+
             <!-- User Management Table -->
             <section class="tables">
                 <h2>Manage Users</h2>
@@ -95,14 +76,14 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Sherani goyal</td>
+                            <td>Sherani Goyal</td>
                             <td>sheranigoyal@.com</td>
                             <td><button class="delete-user"><i class="fas fa-trash"></i> Delete</button></td>
                         </tr>
                     </tbody>
                 </table>
             </section>
-            
+
             <!-- Dashboard Overview Cards -->
             <section class="cards">
                 <div class="card card-blue">

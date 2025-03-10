@@ -4,35 +4,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const eventNameInput = document.getElementById("eventName");
     const eventDateInput = document.getElementById("eventDate");
     const eventStatusInput = document.getElementById("eventStatus");
-    const notificationList = document.getElementById("notifications");
-    const notificationBadge = document.getElementById("notificationCount");
+    const notificationBanner = document.getElementById("notificationBanner");
     let notificationCount = 0;
 
     const userRole = "admin"; // Change this dynamically in real use cases
 
-    /** 🔔 Update Notification Badge */
-    function updateNotificationBadge() {
-        notificationBadge.innerText = notificationCount;
-        notificationBadge.style.display = notificationCount > 0 ? "inline-block" : "none";
-    }
+    /** 🔔 Show Pop-up Notification */
+function addNotification(message, type = "success") {
+    const notificationBanner = document.getElementById("notificationBanner");
 
-    /** 📢 Add Notification */
-    function addNotification(message) {
-        notificationCount++;
-        updateNotificationBadge();
+    notificationBanner.innerText = message;
+    notificationBanner.className = `notification-banner ${type}`;
+    
+    // Show the banner
+    notificationBanner.style.display = "block";
+    notificationBanner.style.animation = "slide-down 0.5s ease-out";
 
-        const newNotification = document.createElement("li");
-        newNotification.innerText = message;
-        notificationList.appendChild(newNotification);
-    }
-
-    /** 🛑 Role-Based Access Control */
-    function checkPermissions() {
-        if (userRole !== "admin") {
-            addEventBtn.disabled = true;
-            document.querySelectorAll(".delete-btn").forEach(btn => btn.disabled = true);
-        }
-    }
+    // Hide after 3 seconds
+    setTimeout(() => {
+        notificationBanner.style.opacity = "0";
+        setTimeout(() => {
+            notificationBanner.style.display = "none";
+            notificationBanner.style.opacity = "1"; // Reset opacity for next use
+        }, 500);
+    }, 3000);
+}
 
     /** ❌ Delete Event */
     function attachDeleteEvent(button) {
@@ -42,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             row.classList.add("fade-out");
             setTimeout(() => {
                 row.remove();
-                addNotification("❌ Event removed!");
+                addNotification("❌ Event removed!", "error");
             }, 500);
         });
     }
@@ -56,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const eventStatus = eventStatusInput.value;
 
         if (!eventName || !eventDate) {
-            alert("Please fill in all fields!");
+            addNotification("⚠️ Please fill in all fields!", "error");
             return;
         }
 
@@ -82,32 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Clear inputs
         eventNameInput.value = "";
         eventDateInput.value = "";
-
-        // Reapply role-based access
-        checkPermissions();
-    });
-
-    /** 🔍 Search Events */
-    document.getElementById("searchEvents").addEventListener("input", function () {
-        const searchValue = this.value.toLowerCase();
-        let found = false;
-
-        document.querySelectorAll("#eventTable tbody tr").forEach(row => {
-            const eventName = row.cells[0].innerText.toLowerCase();
-            if (eventName.includes(searchValue)) {
-                row.style.display = "";
-                found = true;
-            } else {
-                row.style.display = "none";
-            }
-        });
-
-        if (searchValue.length > 0) {
-            addNotification(found ? "🔍 Matching event found!" : "❌ No matching event found.");
-        }
     });
 
     /** 🚀 Initialize */
     document.querySelectorAll(".delete-btn").forEach(attachDeleteEvent);
-    checkPermissions();
 });
