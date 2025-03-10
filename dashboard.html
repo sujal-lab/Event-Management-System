@@ -8,7 +8,30 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
+    <body>
+        <!-- Notification Banner (Top of the Page) -->
+        <div class="notification-banner" id="notificationBanner"></div>
+    
+        <!-- Event Form -->
+        <div class="add-event">
+            <h2>Add New Event</h2>
+            <input type="text" id="eventName" placeholder="Event Name">
+            <input type="date" id="eventDate">
+            <select id="eventStatus">
+                <option value="Upcoming">Upcoming</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <button id="addEventBtn" class="admin-only">Add Event</button>
+        </div>
+    
+        
+    
+        <!-- Notification Section -->
+        <ul id="notifications"></ul>
+        <span id="notificationCount" class="notification-badge">0</span>
+    </body>
+    
     <div class="dashboard">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
@@ -73,7 +96,7 @@
                     <tbody>
                         <tr>
                             <td>Sherani goyal</td>
-                            <td>sheranigoyal@gmail.com</td>
+                            <td>sheranigoyal@.com</td>
                             <td><button class="delete-user"><i class="fas fa-trash"></i> Delete</button></td>
                         </tr>
                     </tbody>

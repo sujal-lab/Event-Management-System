@@ -1,87 +1,93 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const deleteButtons = document.querySelectorAll(".delete-btn");
+    const eventTable = document.querySelector("#eventTable tbody");
+    const addEventBtn = document.getElementById("addEventBtn");
+    const eventNameInput = document.getElementById("eventName");
+    const eventDateInput = document.getElementById("eventDate");
+    const eventStatusInput = document.getElementById("eventStatus");
     const notificationList = document.getElementById("notifications");
     const notificationBadge = document.getElementById("notificationCount");
-    const notificationBanner = document.getElementById("notificationBanner");
     let notificationCount = 0;
 
+    const userRole = "admin"; // Change this dynamically in real use cases
+
+    /** 🔔 Update Notification Badge */
     function updateNotificationBadge() {
         notificationBadge.innerText = notificationCount;
         notificationBadge.style.display = notificationCount > 0 ? "inline-block" : "none";
     }
 
-    function showNotification(message) {
+    /** 📢 Add Notification */
+    function addNotification(message) {
         notificationCount++;
         updateNotificationBadge();
-        
+
         const newNotification = document.createElement("li");
         newNotification.innerText = message;
         notificationList.appendChild(newNotification);
-        
-        notificationBanner.innerText = message;
-        notificationBanner.style.display = "block";
-        
-        setTimeout(() => {
-            notificationBanner.style.display = "none";
-        }, 3000);
     }
 
-    deleteButtons.forEach(button => {
+    /** 🛑 Role-Based Access Control */
+    function checkPermissions() {
+        if (userRole !== "admin") {
+            addEventBtn.disabled = true;
+            document.querySelectorAll(".delete-btn").forEach(btn => btn.disabled = true);
+        }
+    }
+
+    /** ❌ Delete Event */
+    function attachDeleteEvent(button) {
         button.addEventListener("click", function () {
+            if (userRole !== "admin") return;
             const row = this.closest("tr");
             row.classList.add("fade-out");
             setTimeout(() => {
                 row.remove();
-                showNotification("❌ Event removed!");
+                addNotification("❌ Event removed!");
             }, 500);
         });
-    });
+    }
 
-    document.querySelectorAll(".delete-user").forEach(button => {
-        button.addEventListener("click", function () {
-            const row = this.closest("tr");
-            row.classList.add("fade-out");
-            setTimeout(() => {
-                row.remove();
-                showNotification("⚠️ User deleted!");
-            }, 500);
-        });
-    });
+    /** ➕ Add New Event */
+    addEventBtn.addEventListener("click", function () {
+        if (userRole !== "admin") return;
 
-    document.getElementById("addEventBtn").addEventListener("click", function () {
-        const eventName = document.getElementById("eventName").value;
-        const eventDate = document.getElementById("eventDate").value;
+        const eventName = eventNameInput.value.trim();
+        const eventDate = eventDateInput.value.trim();
+        const eventStatus = eventStatusInput.value;
 
-        if (eventName === "" || eventDate === "") {
+        if (!eventName || !eventDate) {
             alert("Please fill in all fields!");
             return;
         }
 
-        const eventTable = document.getElementById("eventTable").getElementsByTagName("tbody")[0];
-        const newRow = eventTable.insertRow();
+        // Create new row
+        const newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${eventName}</td>
             <td>${eventDate}</td>
+            <td>${eventStatus}</td>
             <td><button class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
         `;
 
-        newRow.querySelector(".delete-btn").addEventListener("click", function () {
-            newRow.classList.add("fade-out");
-            setTimeout(() => {
-                newRow.remove();
-                showNotification("❌ Event removed!");
-            }, 500);
-        });
+        // Attach delete functionality
+        const deleteBtn = newRow.querySelector(".delete-btn");
+        attachDeleteEvent(deleteBtn);
 
-        showNotification(`✅ Event "${eventName}" added successfully!`);
-        document.getElementById("eventName").value = "";
-        document.getElementById("eventDate").value = "";
+        // Append to table
+        eventTable.appendChild(newRow);
+
+        // Show notification
+        addNotification(`✅ Event "${eventName}" added successfully!`);
+
+        // Clear inputs
+        eventNameInput.value = "";
+        eventDateInput.value = "";
+
+        // Reapply role-based access
+        checkPermissions();
     });
 
-    document.querySelector(".notifications").addEventListener("click", function () {
-        document.getElementById("notificationList").classList.toggle("show");
-    });
-
+    /** 🔍 Search Events */
     document.getElementById("searchEvents").addEventListener("input", function () {
         const searchValue = this.value.toLowerCase();
         let found = false;
@@ -90,38 +96,18 @@ document.addEventListener("DOMContentLoaded", function () {
             const eventName = row.cells[0].innerText.toLowerCase();
             if (eventName.includes(searchValue)) {
                 row.style.display = "";
-                row.scrollIntoView({ behavior: "smooth", block: "center" });
                 found = true;
             } else {
                 row.style.display = "none";
             }
         });
 
-        showNotification(found ? "🔍 Found matching event!" : "❌ No matching event found.");
+        if (searchValue.length > 0) {
+            addNotification(found ? "🔍 Matching event found!" : "❌ No matching event found.");
+        }
     });
 
-    document.getElementById("searchUsers").addEventListener("input", function () {
-        const searchValue = this.value.toLowerCase();
-        let found = false;
-
-        document.querySelectorAll("#userTable tbody tr").forEach(row => {
-            const userName = row.cells[0].innerText.toLowerCase();
-            if (userName.includes(searchValue)) {
-                row.style.display = "";
-                row.scrollIntoView({ behavior: "smooth", block: "center" });
-                found = true;
-            } else {
-                row.style.display = "none";
-            }
-        });
-
-        showNotification(found ? "🔍 Found matching user!" : "❌ No matching user found.");
-    });
-
-    document.getElementById("themeToggle").addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-        this.innerHTML = document.body.classList.contains("dark-mode") 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-moon"></i>';
-    });
+    /** 🚀 Initialize */
+    document.querySelectorAll(".delete-btn").forEach(attachDeleteEvent);
+    checkPermissions();
 });
