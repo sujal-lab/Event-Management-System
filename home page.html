@@ -203,22 +203,78 @@
     </div>
 </div>
 
+<head>
+    <!-- Include Slick CSS & jQuery -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     
-    <section id="events" class="events">
-        <h2>Upcoming Events</h2>
-        <div class="event-grid">
-            <div class="event-card">
-                <h3>Tech Conference 2025</h3>
-                <p>Join the biggest tech innovators and industry leaders.</p>
-                <a href="#" class="event-btn">Register Now</a>
-            </div>
-            <div class="event-card">
-                <h3>Music Fest</h3>
-                <p>Experience live music with top artists in the industry.</p>
-                <a href="#" class="event-btn">Book Tickets</a>
-            </div>
+    <style>
+        .event-slider {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .event-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<section id="events" class="events">
+    <h2>Upcoming Events</h2>
+    <div class="event-slider">
+        <div class="event-card">
+            <h3>Tech Conference 2025</h3>
+            <p>Join the biggest tech innovators .</p>
+            <a href="#" class="event-btn">Register Now</a>
         </div>
-    </section>
+        <div class="event-card">
+            <h3>Music Fest</h3>
+            <p>Experience music with top artists in the industry.</p>
+            <a href="#" class="event-btn">Book Tickets</a>
+        </div>
+        <div class="event-card">
+            <h3>Startup Summit</h3>
+            <p>Meet successful entrepreneurs and investors.</p>
+            <a href="#" class="event-btn">Join Now</a>
+        </div>
+        <div class="event-card">
+            <h3>Art Exhibition</h3>
+            <p>Explore stunning artworks from top artists.</p>
+            <a href="#" class="event-btn">View More</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function(){
+        $('.event-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            arrows: true,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+</body>
 
     <!-- LOGIN POPUP MODAL -->
     <div id="loginModal" class="modal">
@@ -234,6 +290,7 @@
     <footer>
         <p>&copy; 2025 Eventify. All rights reserved.</p>
     </footer>
+    
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
