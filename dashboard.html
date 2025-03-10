@@ -23,6 +23,34 @@
 
         <!-- Main Content -->
         <main class="content">
+            <!-- Add Event Form -->
+<section class="add-event">
+    <h2>Add New Event</h2>
+    <input type="text" id="eventName" placeholder="Event Name">
+    <input type="date" id="eventDate">
+    <button id="addEventBtn">Add Event</button>
+</section>
+            <!-- User Management Table -->
+<section class="tables">
+    <h2>Manage Users</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td><button class="delete-user"><i class="fas fa-trash"></i> Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
             <header>
                 <h1>Welcome, Admin</h1>
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
