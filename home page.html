@@ -79,21 +79,70 @@
             color: white;
         }
         .events {
-            text-align: center;
-            padding: 50px;
-        }
-        .event-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .event-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
+    text-align: center;
+    padding: 50px 0;
+}
+
+.event-slider {
+    display: flex;
+    flex-direction: column; /* Keeps cards stacked vertically */
+    align-items: center; /* Centers cards horizontally */
+    justify-content: center; /* Centers cards vertically */
+    height: 100vh; /* Full viewport height to center vertically */
+}
+body, html {
+    height: 100%; /* Full height for parent containers */
+    margin: 0;
+}
+
+/* Event Card Styling */
+.event-card {
+    background: white;
+    width: 400px !important; /* Adjust width to be horizontally shorter */
+    height: 200px !important; /* Force the height */
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: center;
+    margin: 10px 0;
+}
+
+
+/* Hover Effect - Pop Up */
+.event-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Prevent shifting on hover */
+.event-slider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.event-card {
+    overflow: hidden; /* Remove overflow from the cards as well */
+}
+.event-slider .event-card {
+    margin: 0 12px; /* Adds space between event cards */
+}
+
+
+@media (max-width: 768px) {
+    .event-card {
+        margin: auto;
+    }
+}
+
+
+
+
+
+
         .event-btn {
             display: inline-block;
             margin-top: 10px;
@@ -210,20 +259,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     
-    <style>
-        .event-slider {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .event-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 <body>
 
@@ -237,7 +273,7 @@
         </div>
         <div class="event-card">
             <h3>Music Fest</h3>
-            <p>Experience music with top artists in the industry.</p>
+            <p>Experience music with top artists.</p>
             <a href="#" class="event-btn">Book Tickets</a>
         </div>
         <div class="event-card">
@@ -254,42 +290,37 @@
 </section>
 
 <script>
-    $(document).ready(function(){
-        $('.event-slider').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            dots: true,
-            arrows: true,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
+$(document).ready(function(){
+    $('.event-slider').slick({
+        slidesToShow: 3, // Number of slides visible at once
+        slidesToScroll: 1, // Move one slide at a time
+        autoplay: true,
+        autoplaySpeed: 2000, // Time before sliding to next event (2 sec)
+        speed: 700, // Speed of transition (adjust as needed)
+        infinite: true, // Keeps looping
+        cssEase: 'ease', // Smooth sliding effect
+        dots: false, // Hide dots
+        arrows: false, // Hide navigation arrows
+        centerMode: true, // Ensures slides are centered
     });
+});
+
+
 </script>
 
 </body>
 
-    <!-- LOGIN POPUP MODAL -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span> <!-- Close Button -->
-            <h2>Login</h2>
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <button class="login-btn">Login</button>
-        </div>
+    <!-- Remove this duplicate modal code -->
+<!-- LOGIN POPUP MODAL -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span> <!-- Close Button -->
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button class="login-btn">Login</button>
     </div>
-    
-    <footer>
-        <p>&copy; 2025 Eventify. All rights reserved.</p>
-    </footer>
+</div>
     
 
     <script>
@@ -297,23 +328,24 @@
             const loginBtn = document.querySelector(".btn"); // Login button in navbar
             const modal = document.getElementById("loginModal");
             const closeBtn = document.querySelector(".close");
-
+    
             // Open Modal
             loginBtn.addEventListener("click", (e) => {
                 e.preventDefault();
                 modal.style.display = "flex";
             });
+    
+            // Redirect to Sign-up page or open Sign-up modal
             document.getElementById("signupLink").addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Redirect to Sign-up page or open Sign-up modal.");
-});
-
-
+                e.preventDefault();
+                alert("Redirect to Sign-up page or open Sign-up modal.");
+            });
+    
             // Close Modal
             closeBtn.addEventListener("click", () => {
                 modal.style.display = "none";
             });
-
+    
             // Close modal if clicked outside content
             window.addEventListener("click", (e) => {
                 if (e.target === modal) {
