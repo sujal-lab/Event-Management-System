@@ -5,50 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const eventDateInput = document.getElementById("eventDate");
     const eventStatusInput = document.getElementById("eventStatus");
     const notificationBanner = document.getElementById("notificationBanner");
-    const notificationCountBadge = document.getElementById("notification-count"); // Badge for notifications
+    const notificationCountBadge = document.getElementById("notificationCount");
     let notificationCount = 0;
+    const userRole = "admin";
 
-    const userRole = "admin"; // Change this dynamically in real use cases
+    function updateNotificationCount() {
+        notificationCount++;
+        notificationCountBadge.innerText = notificationCount;
+        notificationCountBadge.style.display = "inline-block";
+    }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        let notificationCount = 0;
-        const notificationBadge = document.getElementById("notification-count");
-        const addEventBtn = document.getElementById("addEventBtn");
-    
-        function updateNotificationCount() {
-            notificationCount++; // Increase count
-            notificationBadge.innerText = notificationCount;
-            notificationBadge.style.display = "inline-block";
-        }
-    
-        addEventBtn.addEventListener("click", function () {
-            updateNotificationCount();
-        });
-    });
-    
-    /** 🔔 Show Pop-up Notification */
     function addNotification(message, type = "success") {
-        notificationCount++; // Increase count
-        updateNotificationCount(notificationCount); // Update badge
-        
+        console.log("Notification Triggered:", message, type); // Debugging log
         notificationBanner.innerText = message;
         notificationBanner.className = `notification-banner ${type}`;
-        
-        // Show the banner
         notificationBanner.style.display = "block";
-        notificationBanner.style.animation = "slide-down 0.5s ease-out";
 
-        // Hide after 3 seconds
         setTimeout(() => {
             notificationBanner.style.opacity = "0";
             setTimeout(() => {
                 notificationBanner.style.display = "none";
-                notificationBanner.style.opacity = "1"; // Reset opacity for next use
+                notificationBanner.style.opacity = "1";
             }, 500);
         }, 3000);
     }
 
-    /** ❌ Delete Event */
     function attachDeleteEvent(button) {
         button.addEventListener("click", function () {
             if (userRole !== "admin") return;
@@ -61,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /** ➕ Add New Event */
     addEventBtn.addEventListener("click", function () {
         if (userRole !== "admin") return;
 
@@ -74,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Create new row
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${eventName}</td>
@@ -83,60 +62,131 @@ document.addEventListener("DOMContentLoaded", function () {
             <td><button class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
         `;
 
-        // Attach delete functionality
         const deleteBtn = newRow.querySelector(".delete-btn");
         attachDeleteEvent(deleteBtn);
-
-        // Append to table
         eventTable.appendChild(newRow);
-
-        // Show notification
         addNotification(`✅ Event "${eventName}" added successfully!`);
 
-        // Clear inputs
         eventNameInput.value = "";
         eventDateInput.value = "";
     });
 
-    /** 🚀 Initialize */
     document.querySelectorAll(".delete-btn").forEach(attachDeleteEvent);
 
-    /** 🏷️ Update Notification Count Badge */
-    function updateNotificationCount(count) {
-        if (notificationCountBadge) {
-            console.log("Updating notification count to:", count); // ✅ Debugging
-            if (count > 0) {
-                notificationCountBadge.innerText = count;
-                notificationCountBadge.style.display = "inline-block";
-            } else {
-                notificationCountBadge.style.display = "none";
-            }
-        }
-    }
-
-    /** 🔄 Fetch Unread Notifications from Backend */
     function fetchNotifications() {
         fetch("/get-notifications")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log("Fetched notifications:", data); // ✅ Debugging
-
-                // Check if `unreadCount` exists in response
                 if (data && typeof data.unreadCount !== "undefined") {
                     notificationCount = data.unreadCount;
-                    updateNotificationCount(notificationCount);
-                } else {
-                    console.error("Invalid data format:", data);
+                    updateNotificationCount();
                 }
             })
             .catch(error => console.error("Error fetching notifications:", error));
     }
 
-    // Call fetchNotifications on load
     fetchNotifications();
+
+    const searchEventInput = document.querySelector("#searchEvents");
+    const eventTableBody = document.querySelector("#eventTable tbody");
+
+    searchEventInput.addEventListener("input", function () {
+        const searchText = searchEventInput.value.toLowerCase().trim();
+        let found = false;
+        const matchingRows = [];
+
+        document.querySelectorAll("#eventTable tbody tr").forEach(row => {
+            const eventName = row.querySelector("td:first-child").textContent.toLowerCase();
+            if (eventName.includes(searchText)) {
+                found = true;
+                matchingRows.push(row);
+            }
+            row.style.display = eventName.includes(searchText) ? "" : "none";
+        });
+
+        if (found) {
+            addNotification("✅ Event found and relocated!", "success");
+            matchingRows.forEach(row => eventTableBody.prepend(row));
+        } else if (searchText.length > 0) {
+            addNotification("⚠️ No matching event found!", "error");
+        }
+    });
+
+    const searchUserInput = document.querySelector("#searchUsers");
+
+    searchUserInput.addEventListener("input", function () {
+        const searchText = searchUserInput.value.toLowerCase().trim();
+        let found = false;
+
+        document.querySelectorAll("#userTable tbody tr").forEach(row => {
+            const userName = row.querySelector("td:first-child").textContent.toLowerCase();
+            row.style.display = userName.includes(searchText) ? "" : "none";
+            row.classList.toggle("highlight", userName.includes(searchText));
+            if (userName.includes(searchText)) found = true;
+        });
+
+        if (!found && searchText.length > 0) {
+            addNotification("⚠️ No matching user found!", "error");
+        }
+    });
+
+    const userTable = document.querySelector("#userTable tbody");
+    const addUserBtn = document.getElementById("addUserBtn");
+    const userNameInput = document.getElementById("userName");
+    const userEmailInput = document.getElementById("userEmail");
+
+    addUserBtn.addEventListener("click", function () {
+        const userName = userNameInput.value.trim();
+        const userEmail = userEmailInput.value.trim();
+
+        if (!userName || !userEmail) {
+            addNotification("⚠️ Please fill in all fields!", "error");
+            return;
+        }
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${userName}</td>
+            <td>${userEmail}</td>
+            <td><button class="delete-user"><i class="fas fa-trash"></i> Delete</button></td>
+        `;
+
+        const deleteBtn = newRow.querySelector(".delete-user");
+        deleteBtn.addEventListener("click", function () {
+            const row = this.closest("tr");
+            row.classList.add("fade-out");
+            setTimeout(() => {
+                row.remove();
+                addNotification("❌ User removed!", "error");
+            }, 500);
+        });
+
+        userTable.appendChild(newRow);
+        addNotification(`✅ User "${userName}" added successfully!`);
+
+        userNameInput.value = "";
+        userEmailInput.value = "";
+    });
 });
+function showNotification(message, type = "success") {
+    let banner = document.querySelector(".notification-banner");
+
+    if (!banner) {
+        console.error("Notification banner not found in DOM.");
+        return;
+    }
+
+    banner.textContent = message;  // Set the message dynamically
+    banner.className = "notification-banner"; // Reset classes
+    banner.classList.add(type); // Add error or success class
+    banner.style.display = "block";
+
+    // Fade out after 3 seconds
+    setTimeout(() => {
+        banner.classList.add("fade-out");
+        setTimeout(() => {
+            banner.style.display = "none";
+            banner.classList.remove("fade-out"); // Reset for future use
+        }, 500);
+    }, 3000);
+}

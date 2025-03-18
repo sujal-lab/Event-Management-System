@@ -65,7 +65,6 @@
 
             <!-- User Management Table -->
             <section class="tables">
-                <h2>Manage Users</h2>
                 <table id="userTable">
                     <thead>
                         <tr>
@@ -79,6 +78,25 @@
                             <td>Sherani Goyal</td>
                             <td>sheranigoyal@.com</td>
                             <td><button class="delete-user"><i class="fas fa-trash"></i> Delete</button></td>
+                            <section class="add-user">
+    <h2>Add New User</h2>
+    <input type="text" id="userName" placeholder="User Name">
+    <input type="email" id="userEmail" placeholder="User Email">
+    <button id="addUserBtn">Add User</button>
+</section>
+
+            <!-- Manage Users Section -->
+            <section class="tables">
+                <h2>Manage Users</h2>
+                <div id="userList">
+                    <!-- User cards will be added dynamically here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+
                         </tr>
                     </tbody>
                 </table>
@@ -99,6 +117,8 @@
                     <p>5</p>
                 </div>
             </section>
+            
+
 
             <!-- Event Management Table -->
             <section class="tables">
