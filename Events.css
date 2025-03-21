@@ -3,15 +3,14 @@ body {
     font-size: 18px;
     margin: 0;
     padding: 0;
-    /* background: linear-gradient(to bottom right, #fdeedc, #fcd5b5);
-    color: #5a5a5a; */
+    
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background: #ffcc99; */
+    background: black;
     padding: 15px;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -31,48 +30,34 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: black;
+    color: #fff;
     font-size: 18px;
     padding: 8px 15px;
-    /* background: #ff9966; */
+    background: #ca9faa;
     border-radius: 5px;
-    /* transition: background 0.3s, transform 0.2s; */
 }
-
-/* .nav-links a:hover {
-    background: #ff784f;
-    transform: scale(1.1);
-} */
 
 .search-bar {
     width: 40%;
     padding: 8px;
     font-size: 18px;
-    /* border: 2px solid #ffcc99; */
+    border: 2px solid #ca9faa;
     border-radius: 5px;
 }
 .logo{
-    color: black;
+    color: #ca9faa;
 }
 
 .login-btn {
-    background: #ff9966;
+    background: #ca9faa;
     color: white;
     padding: 8px 15px;
     border: none;
     cursor: pointer;
     font-size: 18px;
     border-radius: 5px;
-    /* transition: background 0.3s, transform 0.2s; */
+    
 }
-
-/* .login-btn:hover {
-    background: #ff784f;
-    transform: scale(1.1);
-} */
-
-
-
 .container {
     display: flex;
     margin: 20px;
