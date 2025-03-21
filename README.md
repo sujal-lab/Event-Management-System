@@ -1,6 +1,3 @@
-
-```html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,15 +18,19 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            overflow-y: auto; /* Prevent content cutoff */
         }
 
         .container {
             background: white;
+            color: #1a1a1a;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             width: 60%;
             max-width: 800px;
+            max-height: 90vh; /* Prevents it from being too large */
+            overflow: auto; /* Enables scrolling if needed */
         }
 
         h1 {
@@ -95,7 +96,8 @@
 <body>
 
     <div class="container">
-        <h1>Welcome to Eventify</h1>
+        
+        <h1>Welcome To Eventify!</h1>  <!-- It should now appear properly -->
         <p>Eventify is an innovative event management system designed to simplify planning, organizing, and executing events seamlessly.</p>
 
         <div class="team-section">
