@@ -119,7 +119,7 @@
             </div>
             <div class="team-member">
                 <h3>Sidhant</h3>
-                <p>Managed UI/UX Wireframe Blueprints for Seamless Work</p>
+                <p>Manages Graphic Designing for Webpages</p>
             </div>
         </div>
 
