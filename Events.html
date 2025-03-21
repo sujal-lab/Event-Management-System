@@ -3,182 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventufy Header</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .header {
-            background-color: black;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-right: 0px;
-        }
-        .search-bar {
-            flex-grow: 0.5;
-            margin-right: 20px;
-        }
-        .search-bar input {
-            width: 100%;
-            padding: 6px;
-            font-size: 14px;
-            border: none;
-            border-radius: 4px;
-        }
-        .university {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .sub-header {
-            background-color: lightgray;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-        .sub-header .left {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .sub-header .right {
-            display: flex;
-            gap: 15px;
-            font-size: 16px;
-        }
-        .sub-header a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-        .date-container {
-            margin: 20px;
-        }
-        .date-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .date-box {
-            width: 300px;
-            padding: 25px;
-            background: white;
-            box-shadow: 2px 2px 10px gray;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .date-box input {
-            width: 100%;
-            padding: 5px;
-            font-size: 16px;
-            border: 1px solid gray;
-            border-radius: 4px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .quick-dates {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        .quick-dates button {
-            padding: 10px 15px;
-            font-size: 16px;
-            border: none;
-            background-color: lightgray;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .quick-dates button:hover {
-            background-color: gray;
-            color: white;
-        }
-        .events-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .events-box {
-            width: 300px;
-            padding: 20px;
-            background: white;
-            box-shadow: 2px 2px 10px gray;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .events-box ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .events-box ul li {
-            margin: 10px 0;
-        }
-        .events-box ul li a {
-            text-decoration: none;
-            color: black;
-            font-size: 16px;
-            font-weight: normal;
-        }
-        .events-box ul li a:hover {
-            color: blue;
-        }
-        .events-info {
-        
-            text-align: right;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="Events.css">
+    <title>Eventify</title>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">EVENTIFY</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search events, concerts, clubs, etc">
-        </div>
-        <div class="university">Chitkara University</div>
-        
-    </div>
-    <div class="sub-header">
-        <div class="left"><a href="#">CLUBS</a></div>
-        <div class="right">
-            <a href="#">Events</a>
-            <a href="#">Contacts</a>
-            <a href="#">Home</a>
-        </div>
-    </div>
-    <div class="date-container">
-        <div class="date-title">Choose a Date</div>
-        <div class="date-box">
-            <input type="date">
-            <div class="quick-dates">
-                <button>Yesterday</button>
-                <button>Today</button>
-                <button>Tomorrow</button>
-            </div>
-        </div>
-    </div>
-    <div class="events-title">Events of Clubs</div>
-    <div class="events-box">
-        <ul>
-            <li><a href="#">C2S2</a></li>
-            <li><a href="#">Music</a></li>
-            <li><a href="#">Dance</a></li>
-        </ul>
-    </div>
-</div>
-<div class="events-info">Events in Chitkara University</div>
-    </div>
-</body>
-</html>
+    <header class="header">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <h1 class="logo">EVENTIFY</h1>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <input type="text" placeholder="Search..." class="search-bar">
+        <button class="login-btn">Login</button>
+    </header>
+    </body>
+    </html>
