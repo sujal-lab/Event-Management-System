@@ -103,7 +103,7 @@
             
             <div class="team-member">
                 <h3>Saksham Deep</h3>
-                <p>Manages Attendee Dashboard/p>
+                <p>Manages Attendee Dashboard</p>
             </div>
             <div class="team-member">
                 <h3>Sujal</h3>
