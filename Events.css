@@ -70,3 +70,48 @@ body {
     background: #ff784f;
     transform: scale(1.1);
 } */
+
+
+
+.container {
+    display: flex;
+    margin: 20px;
+}
+
+.left-section {
+    width: 30%;
+}
+
+.right-section {
+    width: 70%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box {
+    background: #fff;
+    padding: 40px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.date-links a, .club-links a {
+    display: block;
+    background-color: #ff9966;
+    padding: 8px;
+    margin-top: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    border-radius: 5px;
+
+}
+
