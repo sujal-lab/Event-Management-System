@@ -14,9 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Sample Event Data
     const events = [
-        { name: "Tech Conference 2025", type: "upcoming" },
-        { name: "Web Dev Workshop", type: "past" },
-        { name: "AI Summit", type: "upcoming" }
+        { name: "Freshers", type: "upcoming" },
+        { name: "Stand-Up Comedy Night", type: "upcoming" },
+        { name: "Rangrezz 2024", type: "past" },
+        { name: "Vibinz", type: "past" },
+        { name: "Dgit Squad E-Sport Trophy", type: "past" },
+        { name: "Pitara Nights", type: "upcoming" }
     ];
 
     // Display Events
