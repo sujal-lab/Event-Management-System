@@ -33,7 +33,7 @@ body {
     color: #fff;
     font-size: 18px;
     padding: 8px 15px;
-    background: #ca9faa;
+    background: #E50914;
     border-radius: 5px;
 }
 
@@ -41,15 +41,15 @@ body {
     width: 40%;
     padding: 8px;
     font-size: 18px;
-    border: 2px solid #ca9faa;
+    border: 2px solid #E50914;
     border-radius: 5px;
 }
 .logo{
-    color: #ca9faa;
+    color: #E50914;
 }
 
 .login-btn {
-    background: #ca9faa;
+    background: #E50914;
     color: white;
     padding: 8px 15px;
     border: none;
@@ -81,7 +81,7 @@ body {
     margin-bottom: 10px;
     font-size: 18px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px #ca9faa;
+    box-shadow: 0 4px 8px #E50914;
 
 }
 
@@ -89,7 +89,7 @@ body {
 
 .date-links a, .club-links a {
     display: block;
-    background-color: #ca9faa;
+    background-color: #E50914;
     padding: 10px;
     margin-top: 8px;
     text-align: center;
