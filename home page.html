@@ -124,6 +124,14 @@
             <h3>Stand-Up Comedy Night</h3>
             <p>Laugh out loud with the best comedians.</p>
         </div>
+        <div class="event-card">
+            <h3>Tech Fest</h3>
+            <p>Showcase your technical skills and win exciting prizes.</p>
+        </div>
+        <div class="event-card">
+            <h3>Cultural Night</h3>
+            <p>Celebrate diversity through dance, music, and art.</p>
+        </div>
     </section>
     <footer>
         <p>&copy; 2025 Eventify. All Rights Reserved.</p>
@@ -134,12 +142,21 @@
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 2000,
-                speed: 700,
+                autoplaySpeed: 3000,
+                speed: 800,
                 infinite: true,
                 dots: true,
                 arrows: true,
                 centerMode: true,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            centerMode: false
+                        }
+                    }
+                ]
             });
         });
     </script>
