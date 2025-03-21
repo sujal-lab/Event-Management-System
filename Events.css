@@ -115,3 +115,21 @@ body {
 
 }
 
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.event-box {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 200px;
+    font-size: 18px;
+    border-radius: 10px;
+
+}
+
