@@ -13,14 +13,13 @@ body {
     background: black;
     padding: 15px;
     color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px #ca9faa;
 }
 
 .menu-icon {
     font-size: 24px;
     cursor: pointer;
-    color: black;
-    display: none;
+    color: white;
 }
 
 .nav-links {
@@ -31,15 +30,13 @@ body {
 .nav-links a {
     text-decoration: none;
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     padding: 8px 15px;
-    background: #ca9faa;
-    border-radius: 5px;
 }
 
 .search-bar {
     width: 40%;
-    padding: 8px;
+    padding: 8.5px;
     font-size: 18px;
     border: 2px solid #ca9faa;
     border-radius: 5px;
@@ -54,8 +51,9 @@ body {
     padding: 8px 15px;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 25px;
     border-radius: 5px;
+    margin-right: 2%;
     
 }
 .container {
@@ -112,7 +110,7 @@ body {
     padding: 25px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 200px;
+    height: 500px;
     font-size: 18px;
     border-radius: 10px;
 
