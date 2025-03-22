@@ -74,9 +74,9 @@ body {
 }
 
 .box {
-    background: white;
-    padding: 40px;
-    margin-bottom: 10px;
+    background: black;
+    padding: 50px;
+    margin-bottom: 8px;
     font-size: 18px;
     border-radius: 10px;
     box-shadow: 0 4px 8px #ca9faa;
@@ -88,13 +88,16 @@ body {
 .date-links a, .club-links a {
     display: block;
     background-color: #ca9faa;
-    padding: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
     margin-top: 8px;
     text-align: center;
     text-decoration: none;
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     border-radius: 5px;
+    box-shadow: 0 4px 8px #ca9faa;
+    margin: 5%;
 
 }
 
