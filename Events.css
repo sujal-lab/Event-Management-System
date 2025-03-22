@@ -88,8 +88,7 @@ body {
 .date-links a, .club-links a {
     display: block;
     background-color: #ca9faa;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding: 10px;
     margin-top: 8px;
     text-align: center;
     text-decoration: none;
@@ -109,13 +108,15 @@ body {
 }
 
 .event-box {
-    background: white;
+    background: black;
     padding: 25px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 500px;
+    box-shadow: 0 4px 8px #ca9faa;
+    height: 400px;
+    width: 200;
     font-size: 18px;
     border-radius: 10px;
+    margin: 3%;
 
 }
 
