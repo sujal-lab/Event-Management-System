@@ -3,12 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Events.css">
     <title>Eventify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            padding: 15px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 11px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, black, black);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a:hover:before {
+            width: 100%;
+        }
+        .search-bar {
+            width: 40%;
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid #DC143C;
+            border-radius: 5px;
+            background: black;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 15px #DC143C;
+            outline: none;
+        }
+
+        .login-btn {
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: white;
+            color: #DC143C;
+            box-shadow: 0 0 15px #DC143C;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        .left-section {
+            width: 30%;
+        }
+
+        .right-section {
+            width: 70%;
+            padding: 15px;
+            background: black;
+            border-radius: 10px;
+        }
+
+        .box {
+            background: black;
+            padding: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px #DC143C;
+        }
+
+        .date-links a, .club-links a {
+            display: block;
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            padding: 12px;
+            margin-top: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px #DC143C;
+            width: 250px;
+            margin-left: 10%;
+            transition: 0.3s;
+        }
+
+        .date-links a:hover, .club-links a:hover {
+            background: white;
+            color: #DC143C;
+            box-shadow: 0 0 15px #DC143C;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .event-box {
+            background: black;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 10px #DC143C;
+            height: 400px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .event-box:hover {
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            color: white;
+            box-shadow: 0 0 15px #DC143C;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
-        <scan class="menu-icon">☰</scan>
+        <span class="menu-icon">☰</span>
         <h1 class="logo">EVENTIFY</h1>
         <input type="text" placeholder="Search..." class="search-bar">
         <nav class="nav-links">
@@ -22,21 +186,17 @@
 
     <div class="container">
         <div class="left-section">
-            <h2 style="color: white;">Select Date</h2>
+            <h2>Select Date</h2>
             <div class="box">
-                
-                <input type="date"  style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #ca9faa; border-radius: 5px;">
-                >
+                <input type="date" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #DC143C; border-radius: 5px; background: black; color: white;">
                 <div class="date-links">
                     <a href="#yesterday">Yesterday</a>
                     <a href="#today">Today</a>
                     <a href="#tomorrow">Tomorrow</a>
                 </div>
             </div>
-
-            <h2 style="color: white;">Clubs & Events</h2>
+            <h2>Clubs & Events</h2>
             <div class="box">
-                
                 <div class="club-links">
                     <a href="#c2s2">C2S2</a>
                     <a href="#dwani">Dwani</a>
@@ -45,9 +205,8 @@
                 </div>
             </div>
         </div>
-
         <div class="right-section">
-            <h2 style="color: white;">EVENTS</h2>
+            <h2>EVENTS</h2>
             <div class="events-grid">
                 <div class="event-box">Event 1</div>
                 <div class="event-box">Event 2</div>
@@ -61,5 +220,5 @@
             </div>
         </div>
     </div>
-    </body>
-    </html>
+</body>
+</html>
