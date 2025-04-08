@@ -7,99 +7,62 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #1e0a0c; /* Deep Dark Maroon */
+    background: #000; /* Netflix Black */
     transition: background 0.3s ease, color 0.3s ease;
     text-align: center;
-    color: white;
+    color: #e5e5e5; /* Netflix Light Grey */
 }
 
 /* Dark Mode */
 .dark-mode {
-    background: #140507; /* Even Darker Maroon */
-    color: white;
-}
-
-/* Main Container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    max-width: 1200px;
+    background: #111;
+    color: #e5e5e5;
 }
 
 /* Sidebar */
 .sidebar {
     width: 220px;
-    background: #600b0e; /* Muted Dark Crimson */
-    color: white;
+    background: #141414; /* Netflix Dark Grey */
+    color: #b3b3b3; /* Netflix-style grey for sidebar text */
     padding: 20px;
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
     transition: transform 0.3s ease-in-out;
-    box-shadow: 2px 0 10px rgba(96, 11, 14, 0.5);
+    box-shadow: 2px 0 10px rgba(229, 9, 20, 0.3);
 }
 
-.dark-mode .sidebar {
-    background: #40090b; /* Even Darker Crimson */
-    color: white;
-}
-
-.sidebar h2 {
-    font-size: 22px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-}
-
+/* Sidebar list items */
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    padding: 15px;
-    transition: background 0.3s ease;
-    border-radius: 5px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+    color: #b3b3b3;
+    padding: 10px 0;
+    transition: 0.2s ease;
 }
 
+/* Active or hover state */
 .sidebar ul li.active,
 .sidebar ul li:hover {
-    background: #852626; /* Darker Crimson */
+    background: #e50914; /* Netflix Red */
     color: white;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
 }
 
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    font-weight: 600;
-}
-
-/* Main Content */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-    margin-left: 240px;
+/* Dark mode sidebar */
+.dark-mode .sidebar {
+    background: #181818;
 }
 
 /* Header */
 .header {
-    background: #852626; /* Deep Muted Crimson */
+    background: #e50914;
     padding: 15px;
     border-radius: 10px;
     color: white;
@@ -110,38 +73,30 @@ body {
 }
 
 /* Dashboard Cards */
-.dashboard-cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
 .card {
-    background: #3a0e11; /* Very Dark Maroon */
+    background: #1c1c1c;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 5px 10px rgba(96, 11, 14, 0.5);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
     width: 280px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: white;
-    border-bottom: 5px solid #852626;
+    border-bottom: 5px solid #e50914;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(133, 38, 38, 0.7);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.6);
 }
 
 /* Events Section */
 .events-section {
     margin-top: 40px;
     padding: 20px;
-    background: #3a0e11; /* Dark Muted Maroon */
+    background: #1c1c1c;
     border-radius: 12px;
-    box-shadow: 0 5px 10px rgba(96, 11, 14, 0.5);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
     color: white;
     text-align: center;
     width: 80%;
@@ -154,20 +109,20 @@ body {
     width: 220px;
     border-radius: 6px;
     border: none;
-    background: #852626;
+    background: #e50914;
     color: white;
     font-size: 16px;
     transition: box-shadow 0.2s ease;
 }
 
 #search:focus, #filter:focus {
-    box-shadow: 0 0 10px rgba(133, 38, 38, 0.8);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
     outline: none;
 }
 
 /* Dark Mode Toggle */
 .dark-mode-toggle {
-    background: #852626;
+    background: #e50914;
     border: none;
     font-size: 20px;
     cursor: pointer;
@@ -178,7 +133,7 @@ body {
 }
 
 .dark-mode-toggle:hover {
-    background: #6a1f1f;
+    background: #b20710; /* Darker Netflix Red */
 }
 
 /* Responsive Design */
