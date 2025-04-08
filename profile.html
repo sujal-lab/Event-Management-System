@@ -34,7 +34,7 @@
       gap: 40px;
     }
 
-    .section {
+    section {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
@@ -43,7 +43,7 @@
       box-shadow: 0 0 30px rgba(255, 60, 65, 0.2);
     }
 
-    .section h2 {
+    section h2 {
       color: #ff3c41;
       margin-bottom: 24px;
       font-size: 1.8rem;
@@ -89,6 +89,9 @@
       cursor: pointer;
       box-shadow: 0 0 15px #ff3c4177;
       transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
 
     .btn:hover {
@@ -145,10 +148,6 @@
       box-shadow: 0 0 10px #ff3c41;
     }
 
-    .hidden {
-      display: none;
-    }
-
     @media (max-width: 600px) {
       .summary {
         flex-direction: column;
@@ -161,43 +160,45 @@
   </style>
 </head>
 <body>
-    <div style="text-align: right: ; margin-bottom: 20px;">
-        <a href="attendee.html" class="btn" style="text-decoration: none;">🔙 Back to Attendee Dashboard</a>
-      </div>
-      
+
+  <div style="text-align: left; margin-bottom: 20px;">
+    <a href="attendee.html" class="btn">🔙 Back to Attendee Dashboard</a>
+  </div>
+
   <h1>✨ Welcome User ! ✨</h1>
+
   <div class="container">
 
     <!-- Section: User Info -->
-    <div class="section">
+    <section>
       <h2>👤 User Info</h2>
       <div class="info-grid">
         <div class="info-item">
-          <label>Full Name</label>
-          <input type="text" value="Saksham Deep" disabled />
+          <label for="name">Full Name</label>
+          <input id="name" type="text" value="Saksham Deep" disabled />
         </div>
         <div class="info-item">
-          <label>Email</label>
-          <input type="email" value="saksham@example.com" disabled />
+          <label for="email">Email</label>
+          <input id="email" type="email" value="saksham@example.com" disabled />
         </div>
         <div class="info-item">
-          <label>Phone</label>
-          <input type="text" value="9876543210" disabled />
+          <label for="phone">Phone</label>
+          <input id="phone" type="text" value="9876543210" disabled />
         </div>
         <div class="info-item">
-          <label>Institution</label>
-          <input type="text" value="Chitkara University" disabled />
+          <label for="institution">Institution</label>
+          <input id="institution" type="text" value="Chitkara University" disabled />
         </div>
         <div class="info-item">
-          <label>Roll Number</label>
-          <input type="text" value="CSE2025001" disabled />
+          <label for="roll">Roll Number</label>
+          <input id="roll" type="text" value="CSE2025001" disabled />
         </div>
       </div>
       <button class="btn" id="editBtn">Edit Profile</button>
-    </div>
+    </section>
 
     <!-- Section: Event Summary -->
-    <div class="section">
+    <section>
       <h2>📊 Event Summary</h2>
       <div class="summary">
         <div class="summary-card">
@@ -213,18 +214,38 @@
           <p>Attended</p>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Section: Actions -->
-    <div class="section">
+    <section>
       <h2>🧰 More Actions</h2>
       <div class="actions">
         <button onclick="downloadData()">📄 Download My Data</button>
         <button onclick="deleteAccount()">🗑️ Delete Account</button>
       </div>
-    </div>
+    </section>
+
   </div>
 
-  <script src="profile.js"></script>
+  <script>
+    document.getElementById('editBtn').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('.info-item input');
+      const isDisabled = inputs[0].disabled;
+      inputs.forEach(input => input.disabled = !isDisabled);
+      document.getElementById('editBtn').textContent = isDisabled ? 'Save Changes' : 'Edit Profile';
+    });
+
+    function downloadData() {
+      alert("Downloading your data... (simulated)");
+      // You can generate a JSON blob and trigger download if needed
+    }
+
+    function deleteAccount() {
+      const confirmDelete = confirm("Are you sure you want to delete your account?");
+      if (confirmDelete) {
+        alert("Your account has been deleted. (simulated)");
+      }
+    }
+  </script>
 </body>
 </html>
