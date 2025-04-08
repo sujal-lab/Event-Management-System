@@ -75,7 +75,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, black, black);
+            background: white;
             transition: width 0.3s ease;
         }
         
@@ -97,7 +97,7 @@
             width: 50%;
            
     flex-direction: column;
-    justify-content: center; /* ✅ Vertically center the content */
+    justify-content: center; 
     margin-left: 50px;
             
         }
@@ -133,6 +133,43 @@
             transition: transform 0.3s;
         }
 
+        .form-group{
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-group h1{
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], textarea{
+            width: 75%;
+            padding:15px;
+            border: 2px solid #ff4d4d;
+            border-radius: 10px;
+            background: #1a1a1a;
+            color: white;
+            font-size: 20px;
+        }
+
+        textarea{
+            resize: vertical;
+            min-height: 100px;
+        }
+        .left-section p {
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        .form-group h1{
+            font-size: 30px;
+
+        }
+
+        
+       
+
 
     </style>
 </head>
@@ -151,12 +188,13 @@
 
     <div class="container">
         <div class="left-section">
-          <h1 style="font-size: 5rem; color: #ff4d4d;">Contact Us</h1>  
+          <h1 style="font-size: 8rem; color: #ff4d4d;">Contact Us</h1>  
           <p>We’re always here to help. Reach out with any questions or feedback!</p>
-        <h2><strong>📞 Phone:</strong> +91 58345 87549</h2>
-        <h2><strong>📧 Email:</strong> simon@gmail.com</h2>
-        <h2><strong>📍 Address:</strong> #723c, Central Plaza, Sector 9, Urban Estate</h2>
-        </div>
+        <h2><strong>📞</strong> +91 58345 87549</h2>
+        <h2><strong>📧</strong> simon@gmail.com</h2>
+        <h2><strong>📍</strong> #723c, Central Plaza, Sector 9, Urban Estate</h2>
+    </div>
+        
 
         <div class="right-section">
             <form>
@@ -176,7 +214,7 @@
                     <h1>Message</h1>
                     <textarea id="message" placeholder="Enter your message"></textarea>
                   </div>
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="rounded-btn">Send Message</button>
                 </form>
         </div>
    
