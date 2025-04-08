@@ -37,7 +37,7 @@ html, body {
     margin-bottom: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #dc143c; /* Crimson */
+    color: #8b0000; /* Crimson */
 }
 
 .sidebar ul {
@@ -108,7 +108,7 @@ html, body {
     box-shadow: 0 5px 10px rgba(255, 0, 0, 0.3);
     width: 260px;
     color: white;
-    border-bottom: 5px solid #dc143c;
+    border-bottom: 5px solid #8b0000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -137,7 +137,7 @@ html, body {
     width: 220px;
     border-radius: 6px;
     border: none;
-    background: #dc143c;
+    background: #8b0000;
     color: white;
     font-size: 16px;
     transition: box-shadow 0.2s ease;
@@ -150,7 +150,7 @@ html, body {
 
 /* Dark Mode Toggle */
 .dark-mode-toggle {
-    background: #dc143c;
+    background: #8b0000;
     border: none;
     font-size: 20px;
     cursor: pointer;
