@@ -10,26 +10,25 @@
             background: linear-gradient(135deg, #0f0f0f, #550000);
             color: white;
             font-family: Arial, sans-serif;
-            text-align: center;
+        
         }
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            padding: 15px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+       
         h1 {
-            color: #ff4d4d;
+            color: white;
         }
-        input, textarea {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
+       
         button {
             background: #ff4d4d;
             color: white;
@@ -42,20 +41,97 @@
         button:hover {
             background: #cc0000;
         }
+
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 11px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, black, black);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a:hover:before {
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        .left-section {
+            width: 50%;
+        }
+
+        .right-section {
+            width: 70%;
+            padding: 15px;
+            border-radius: 10px;
+            margin-left: 50px;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Contact Us</h1>
-        <p>Have questions? Get in touch with us.</p>
+    <header class="header">
+        <div class="logo"><img src="Site images/frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#about">About</a>
+            <a href="#contact">Dashboard</a>
+        </nav>
     </header>
+
     <div class="container">
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required><br>
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
-            <button type="submit">Send Message</button>
-        </form>
+        <div class="left-section">
+          <h1 style="font-size: 2rem;">Contact Us</h1>  
+          <p>fell free to contact us at any time</p>
+          <h2>phone</h2>
+          <h2>mail</h2>
+          <h2>address</h2>
+        </div>
+
+        <div class="right-section">
+            <form>
+                <div class="form-group">
+                  <h1>Name</h1>
+                  <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <h1>Email</h1>
+                    <input type="text" id="name" placeholder="Enter your name">
+                  </div>
+                  <div class="form-group">
+                    <h1>Phone</h1>
+                    <input type="text" id="name" placeholder="Enter your name">
+                  </div>
+                  <div class="form-group">
+                    <h1>Message</h1>
+                    <input type="text" id="name" placeholder="Enter your name">
+                  </div>
+
+        </div>
     </div>
+   
 </body>
 </html>
