@@ -1,59 +1,66 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Dark Mode Toggle
-    const darkModeToggle = document.querySelector(".dark-mode-toggle");
-    darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-    });
-
-    // Sidebar Toggle
-    const sidebar = document.querySelector(".sidebar");
-    const toggleSidebar = document.querySelector(".toggle-sidebar");
-    toggleSidebar.addEventListener("click", function () {
-        sidebar.style.transform = sidebar.style.transform === "translateX(-100%)" ? "translateX(0)" : "translateX(-100%)";
-    });
-
-    // Sample Event Data
-    const events = [
-        { name: "Freshers", type: "upcoming" },
-        { name: "Stand-Up Comedy Night", type: "upcoming" },
-        { name: "Rangrezz 2024", type: "past" },
-        { name: "Vibinz", type: "past" },
-        { name: "Dgit Squad E-Sport Trophy", type: "past" },
-        { name: "Pitara Nights", type: "upcoming" }
-    ];
-
-    // Display Events
-    function renderEvents(filter = "all") {
-        const eventList = document.getElementById("event-list");
-        eventList.innerHTML = "";
-        const filteredEvents = events.filter(event => filter === "all" || event.type === filter);
-        
-        if (filteredEvents.length === 0) {
-            eventList.innerHTML = "<li>No events found.</li>";
-        } else {
-            filteredEvents.forEach(event => {
-                let li = document.createElement("li");
-                li.textContent = event.name;
-                eventList.appendChild(li);
-            });
-        }
+// Sample event data
+const events = [
+    {
+      name: "Freshers Party",
+      date: "2025-25-03"
+    },
+    {
+      name: "Pitaara Nights",
+      date: "2025-01-04"
+    },
+    {
+      name: "Sports Tournament",
+      date: "2024-04-20"
     }
-
-    // Search & Filter
-    document.getElementById("search").addEventListener("input", function (e) {
-        const searchText = e.target.value.toLowerCase();
-        renderEvents();
-        const listItems = document.querySelectorAll("#event-list li");
-        listItems.forEach(item => {
-            if (!item.textContent.toLowerCase().includes(searchText)) {
-                item.style.display = "none";
-            }
-        });
+  ];
+  
+  const eventList = document.getElementById("event-list");
+  const today = new Date();
+  
+  // Split events
+  const upcoming = events.filter(e => new Date(e.date) >= today);
+  const past = events.filter(e => new Date(e.date) < today);
+  
+  // Update counters
+  document.getElementById("upcoming-count").textContent = upcoming.length;
+  document.getElementById("past-count").textContent = past.length;
+  
+  // Function to display events
+  function displayEvents(eventArray) {
+    eventList.innerHTML = "";
+  
+    if (eventArray.length === 0) {
+      eventList.innerHTML = "<li>No events to display.</li>";
+      return;
+    }
+  
+    eventArray.forEach(event => {
+      const li = document.createElement("li");
+      li.textContent = `${event.name} - ${event.date}`;
+      li.classList.add(new Date(event.date) >= today ? "upcoming" : "past");
+      eventList.appendChild(li);
     });
-
-    document.getElementById("filter").addEventListener("change", function (e) {
-        renderEvents(e.target.value);
-    });
-
-    renderEvents();
-});
+  }
+  
+  // Initially show all events
+  displayEvents(events);
+  
+  // Filter by type
+  document.getElementById("filter").addEventListener("change", function () {
+    const value = this.value;
+    if (value === "upcoming") {
+      displayEvents(upcoming);
+    } else if (value === "past") {
+      displayEvents(past);
+    } else {
+      displayEvents(events);
+    }
+  });
+  
+  // Search logic
+  document.getElementById("search").addEventListener("input", function () {
+    const keyword = this.value.toLowerCase();
+    const filtered = events.filter(e => e.name.toLowerCase().includes(keyword));
+    displayEvents(filtered);
+  });
+  

@@ -60,64 +60,108 @@
         }
 
         .input-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 2.75rem; /* left for lock icon, right for eye icon */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #E50914;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+
+.toggle-password:hover {
+    color: white;
+}
+
+.input-group label {
+    position: absolute;
+    left: 2.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.form-input:focus + label,
+.form-input:valid + label {
+    top: -0.6rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0 0.4rem;
+    border-radius: 4px;
+}
 
         .form-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: #E50914;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
-        }
+    padding: 1rem 1rem 1rem 3rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-        .input-group label {
-            position: absolute;
-            left: 3rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
+/* Add extra space for eye icon in password field only */
+#password.form-input {
+    padding-right: 3.5rem;
+}
 
-        .form-input:focus + label,
-        .form-input:valid + label {
-            top: 0;
-            left: 1rem;
-            font-size: 0.8rem;
-            padding: 0 0.5rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 5px;
-        }
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+}
 
-        .input-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
 
         .toggle-password:hover {
             color: white;
@@ -398,11 +442,11 @@
             display: none;
         }
         .search-bar {
-            padding: 12px 20px;
+            padding: 12px 10px;
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
-            width: 500px;
+             width: 500px !important;
             height: 30px;
             color: white;
             font-family: 'Poppins', sans-serif;
@@ -1152,9 +1196,8 @@ button.login-btn:hover {
 <body>
     <header>
         <div class="logo"><img src="Site images/frontend images/eventify logo.png" alt="Logo"></div>
-        <input type="text" class="search-bar" placeholder="Search events or movies...">
+        <input type="text" class="search-bar" placeholder="Search events...">
         <ul class="nav-links">
-            <li><a href="#movies">Movies</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="contactpage.html">Contact</a></li>
             <li><a href="#" class="login-btn">Login</a></li>
@@ -1230,6 +1273,23 @@ button.login-btn:hover {
         </div>
     </section>
     <footer>
+        <!-- FAQ Section -->
+<div class="faq-section" style="padding: 2rem; background-color: #1a1a1a; color: #fff;">
+    <h2 style="margin-bottom: 1rem;">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>How can I book an event?</h4>
+      <p>You can book an event by clicking the "Book Now" button under your preferred event.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I cancel or reschedule my booking?</h4>
+      <p>Yes, you can manage your bookings through your account dashboard after logging in.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I need to create an account?</h4>
+      <p>Yes, logging in helps us manage your bookings and provide better service.</p>
+    </div>
+  </div>
+  
         <p>&copy; 2025 Eventify. All Rights Reserved.</p>
     </footer>
     
@@ -1248,7 +1308,7 @@ button.login-btn:hover {
                         <div class="form-group mb-4">
                             <div class="input-group">
                                 <i class="fas fa-envelope input-icon"></i>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-input" id="email" required>
                                 <label for="email">Email address</label>
                             </div>
                         </div>
@@ -1256,9 +1316,9 @@ button.login-btn:hover {
                         <div class="form-group mb-4">
                             <div class="input-group">
                                 <i class="fas fa-lock input-icon"></i>
-                                <input type="password" class="form-control" id="password" required>
-                                <i class="fas fa-eye-slash toggle-password"></i>
+                                <input type="password" class="form-input" id="password" required>
                                 <label for="password">Password</label>
+                                <i class="fas fa-eye-slash toggle-password"></i>
                             </div>
                         </div>
                         
@@ -1273,20 +1333,6 @@ button.login-btn:hover {
                         <button type="submit" class="submit-btn w-100">Sign In</button>
                     </form>
                     
-                    <div class="divider my-4">
-                        <span>or continue with</span>
-                    </div>
-                    
-                    <div class="social-buttons">
-                        <button class="social-btn google-btn">
-                            <i class="fab fa-google"></i>
-                            <span>Google</span>
-                        </button>
-                        <button class="social-btn facebook-btn">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
-                        </button>
-                    </div>
                     
                     <p class="signup-text mt-4">
                         Don't have an account? <a href="#" class="signup-link">Sign up</a>
