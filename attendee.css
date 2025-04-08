@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: scroll; /* Prevent scrollbars */
     font-family: 'Poppins', sans-serif;
     background: black; /* Full black background */
     color: white;
@@ -21,14 +21,13 @@ html, body {
 /* Sidebar */
 .sidebar {
     width: 220px;
-    background: #8b0000; /* Maroon */
+    background: #1e1e1e; /* Maroon */
     color: white;
     padding: 20px;
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    box-shadow: 2px 0 10px rgba(255, 0, 0, 0.3);
     overflow-y: auto;
 }
 
@@ -59,7 +58,7 @@ html, body {
 
 .sidebar ul li:hover,
 .sidebar ul li.active {
-    background: #dc143c;
+    background: #8b0000;
     cursor: pointer;
 }
 
@@ -83,7 +82,7 @@ html, body {
 
 /* Header */
 .header {
-    background: #dc143c;
+    background: #8b0000; /* Changed from #dc143c to match sidebar */
     padding: 15px;
     border-radius: 10px;
     color: white;
@@ -127,6 +126,7 @@ html, body {
     box-shadow: 0 5px 10px rgba(255, 0, 0, 0.2);
     color: white;
     text-align: center;
+    font-size: 20px;
     width: 80%;
 }
 
@@ -186,3 +186,57 @@ html, body {
         flex-direction: column;
     }
 }
+/* Sidebar Toggle Buttons */
+.sidebar-toggle {
+    background: #dc143c;
+    color: white;
+    font-size: 22px;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  /* Open Button: top left of screen */
+  .sidebar-toggle.open {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    display: none;
+  }
+  
+  /* Close Button: inside sidebar */
+  .sidebar-toggle.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  /* Sidebar Behavior */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+  
+    .sidebar.show {
+      transform: translateX(0);
+    }
+  
+    .sidebar-toggle.open {
+      display: block;
+    }
+  
+    .main-content {
+      margin-left: 0;
+    }
+  }
+/* Hide close button on larger screens */
+@media (min-width: 769px) {
+    .sidebar-toggle.close {
+      display: none;
+    }
+  }
+    
