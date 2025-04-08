@@ -17,12 +17,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, #8B0000, #DC143C);
             padding: 15px;
             color: white;
             position: sticky;
             top: 0;
             z-index: 1000;
+            
+    
         }
        
         h1 {
@@ -41,6 +42,14 @@
         button:hover {
             background: #cc0000;
         }
+
+        .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+}
 
 
         .nav-links a {
@@ -88,6 +97,19 @@
             border-radius: 10px;
             margin-left: 50px;
         }
+        .logo{
+            flex:1;
+        }
+        .rounded-btn {
+  background-color: #ff4d4d;  
+  color: white;               
+  padding: 15px 50px;         
+  border: none;               
+  border-radius: 30px;        
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 30px;
+}
 
     </style>
 </head>
@@ -100,6 +122,7 @@
             <a href="#about">About</a>
             <a href="#contact">Dashboard</a>
         </nav>
+        <button class="rounded-btn">Need Help?</button>
     </header>
 
     <div class="container">
