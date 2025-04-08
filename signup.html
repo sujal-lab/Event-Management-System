@@ -12,7 +12,6 @@
         <div class="signup-card">
             <div class="card-header">
                 <h1><i class="fas fa-user-graduate"></i> Student Registration</h1>
-                <p>Semester 2 Enrollment</p>
             </div>
             
             <form id="signupForm" novalidate>
@@ -50,9 +49,6 @@
                     <div class="password-strength">
                         <div class="strength-meter">
                             <div class="strength-meter-fill" data-strength="0"></div>
-                        </div>
-                        <span class="strength-text">Password strength</span>
-                    </div>
                     <span class="error-message"></span>
                 </div>
 
@@ -65,22 +61,7 @@
                     <span class="error-message"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="department">Department/Stream</label>
-                    <select id="department" name="department" required>
-                        <option value="" disabled selected>Select your department</option>
-                        <option value="cse">Computer Science & Engineering</option>
-                        <option value="ece">Electronics & Communication Engineering</option>
-                        <option value="me">Mechanical Engineering</option>
-                        <option value="ce">Civil Engineering</option>
-                        <option value="eee">Electrical & Electronics Engineering</option>
-                        <option value="it">Information Technology</option>
-                        <option value="bt">Biotechnology</option>
-                    </select>
-                    <span class="error-message"></span>
-                </div>
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary">Cancel</button>
                     <button type="submit" class="btn btn-primary">Register</button>
                 </div>
             </form>
@@ -106,51 +87,7 @@
                 });
             });
 
-            // Toggle hostel switch
-            const hostelCheckbox = document.getElementById('hostel');
-            const toggleText = hostelCheckbox.parentElement.querySelector('.toggle-text');
             
-            hostelCheckbox.addEventListener('change', function() {
-                toggleText.textContent = this.checked ? 'Yes' : 'No';
-            });
-
-            // Password strength meter
-            const passwordInput = document.getElementById('password');
-            const strengthMeter = document.querySelector('.strength-meter-fill');
-            const strengthText = document.querySelector('.strength-text');
-
-            passwordInput.addEventListener('input', function() {
-                const val = passwordInput.value;
-                let strength = 0;
-                let message = '';
-
-                if (val.length >= 8) strength += 1;
-                if (val.match(/[a-z]/) && val.match(/[A-Z]/)) strength += 1;
-                if (val.match(/\d/)) strength += 1;
-                if (val.match(/[^a-zA-Z\d]/)) strength += 1;
-
-                switch (strength) {
-                    case 0:
-                        message = "Password strength";
-                        break;
-                    case 1:
-                        message = "Weak";
-                        break;
-                    case 2:
-                        message = "Fair";
-                        break;
-                    case 3:
-                        message = "Good";
-                        break;
-                    case 4:
-                        message = "Strong";
-                        break;
-                }
-
-                strengthMeter.setAttribute('data-strength', strength);
-                strengthText.textContent = message;
-            });
-
             // Form validation
             const form = document.getElementById('signupForm');
             const inputs = form.querySelectorAll('input, select');
@@ -190,13 +127,6 @@
                     isValid = false;
                 }
                 
-                // Check courses (at least 3)
-                const selectedCourses = document.querySelectorAll('input[name="courses"]:checked');
-                if(selectedCourses.length < 3) {
-                    const coursesError = document.querySelector('.courses-container').nextElementSibling;
-                    coursesError.textContent = 'Please select at least 3 courses';
-                    isValid = false;
-                }
                 
                 // Submit the form if valid
                 if(isValid) {
