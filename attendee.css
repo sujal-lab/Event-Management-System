@@ -1,102 +1,130 @@
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
+/* General Reset */
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #000; /* Netflix Black */
-    transition: background 0.3s ease, color 0.3s ease;
+    overflow: hidden; /* Prevent scrollbars */
+    font-family: 'Poppins', sans-serif;
+    background: black; /* Full black background */
+    color: white;
     text-align: center;
-    color: #e5e5e5; /* Netflix Light Grey */
 }
 
-/* Dark Mode */
-.dark-mode {
-    background: #111;
-    color: #e5e5e5;
+/* Container */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 /* Sidebar */
 .sidebar {
     width: 220px;
-    background: #141414; /* Netflix Dark Grey */
-    color: #b3b3b3; /* Netflix-style grey for sidebar text */
+    background: #8b0000; /* Maroon */
+    color: white;
     padding: 20px;
     height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 2px 0 10px rgba(229, 9, 20, 0.3);
+    box-shadow: 2px 0 10px rgba(255, 0, 0, 0.3);
+    overflow-y: auto;
 }
 
-/* Sidebar list items */
+.sidebar h2 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #dc143c; /* Crimson */
+}
+
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .sidebar ul li {
-    color: #b3b3b3;
-    padding: 10px 0;
-    transition: 0.2s ease;
-}
-
-/* Active or hover state */
-.sidebar ul li.active,
-.sidebar ul li:hover {
-    background: #e50914; /* Netflix Red */
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
     color: white;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
 }
 
-/* Dark mode sidebar */
-.dark-mode .sidebar {
-    background: #181818;
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background: #dc143c;
+    cursor: pointer;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 220px;
+    padding: 40px;
+    height: 100vh;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Header */
 .header {
-    background: #e50914;
+    background: #dc143c;
     padding: 15px;
     border-radius: 10px;
     color: white;
     font-size: 22px;
     font-weight: bold;
-    text-align: center;
     width: 100%;
+    text-align: center;
 }
 
 /* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
 .card {
-    background: #1c1c1c;
+    background: #1e1e1e;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
-    width: 280px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 10px rgba(255, 0, 0, 0.3);
+    width: 260px;
     color: white;
-    border-bottom: 5px solid #e50914;
+    border-bottom: 5px solid #dc143c;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.6);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
 }
 
 /* Events Section */
 .events-section {
     margin-top: 40px;
     padding: 20px;
-    background: #1c1c1c;
+    background: #1e1e1e;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+    box-shadow: 0 5px 10px rgba(255, 0, 0, 0.2);
     color: white;
     text-align: center;
     width: 80%;
@@ -109,20 +137,20 @@ body {
     width: 220px;
     border-radius: 6px;
     border: none;
-    background: #e50914;
+    background: #dc143c;
     color: white;
     font-size: 16px;
     transition: box-shadow 0.2s ease;
 }
 
 #search:focus, #filter:focus {
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
     outline: none;
 }
 
 /* Dark Mode Toggle */
 .dark-mode-toggle {
-    background: #e50914;
+    background: #dc143c;
     border: none;
     font-size: 20px;
     cursor: pointer;
@@ -133,18 +161,14 @@ body {
 }
 
 .dark-mode-toggle:hover {
-    background: #b20710; /* Darker Netflix Red */
+    background: #b2002d;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
-        width: 220px;
-        height: 100%;
         position: fixed;
-        left: 0;
-        top: 0;
         z-index: 1000;
         transition: transform 0.3s ease-in-out;
     }
@@ -155,6 +179,7 @@ body {
 
     .main-content {
         margin-left: 0;
+        padding: 20px;
     }
 
     .dashboard-cards {
