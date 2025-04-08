@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #f4f6f9;
+    background-color:crimson; /* Dark background for contrast */
 }
 
 /* Dashboard Layout */
@@ -16,11 +16,11 @@ body {
 /* Sidebar Styling */
 .sidebar {
     width: 250px;
-    background: #2c3e50;
+    background: black;
     color: white;
     padding: 25px;
     min-height: 100vh;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar h2 {
@@ -41,8 +41,9 @@ body {
     border-radius: 5px;
 }
 
-.sidebar ul li:hover {
-    background: #34495e;
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background: crimson;
 }
 
 .sidebar ul li a {
@@ -69,6 +70,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 15px;
+    position: relative;
+    z-index: 500;
 }
 
 /* Logout Button */
@@ -84,7 +87,7 @@ header {
 }
 
 .logout-btn:hover {
-    background: darkred;
+    background: maroon;
 }
 
 /* Dashboard Cards */
@@ -100,20 +103,20 @@ header {
     border-radius: 10px;
     color: white;
     text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     min-width: 150px;
 }
 
 .card-blue {
-    background: linear-gradient(45deg, #3498db, #2980b9);
+    background: black;
 }
 
 .card-green {
-    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    background: black;
 }
 
 .card-red {
-    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    background: black;
 }
 
 /* Table Styling */
@@ -124,27 +127,29 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: #1e1e1e;
+    color: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 th, td {
     padding: 18px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #333;
 }
 
 th {
-    background: #34495e;
-    color: white;
+    background: black;
+    color: crimson;
 }
 
 tr:hover {
-    background: #f8f9fa;
+    background: #2b2b2b;
 }
 
+/* Delete Button */
 .delete-btn {
     background: crimson;
     color: white;
@@ -156,15 +161,16 @@ tr:hover {
 }
 
 .delete-btn:hover {
-    background: darkred;
+    background: maroon;
 }
 
 /* Add Event Section */
 .add-event {
     margin-top: 20px;
     padding: 25px;
-    background: white;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
 }
 
@@ -172,20 +178,22 @@ tr:hover {
     width: calc(50% - 10px);
     padding: 12px;
     margin: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     border-radius: 6px;
     font-size: 14px;
+    background-color: #2a2a2a;
+    color: white;
 }
 
 .add-event input:focus {
-    border-color: #2ecc71;
-    box-shadow: 0px 0px 5px rgba(46, 204, 113, 0.5);
+    border-color: crimson;
+    box-shadow: 0px 0px 5px rgba(220, 20, 60, 0.5);
 }
 
 /* Add Event Button */
 #addEventBtn {
     padding: 12px 18px;
-    background: #2ecc71;
+    background: crimson;
     color: white;
     border: none;
     cursor: pointer;
@@ -197,7 +205,7 @@ tr:hover {
 }
 
 #addEventBtn:hover {
-    background: #27ae60;
+    background: maroon;
 }
 
 /* Notifications Bell */
@@ -208,10 +216,11 @@ tr:hover {
 
 .notifications i {
     font-size: 22px;
+    color: crimson;
 }
 
 .badge {
-    background: red;
+    background: crimson;
     color: white;
     font-size: 12px;
     padding: 3px 7px;
@@ -227,7 +236,7 @@ tr:hover {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: #4CAF50; /* Default success color */
+    background: crimson;
     color: white;
     padding: 12px 20px;
     border-radius: 6px;
@@ -238,21 +247,14 @@ tr:hover {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* Error Notification */
 .notification-banner.error {
-    background: #e74c3c !important;
+    background: maroon !important;
 }
 
 /* Disabled Buttons for Non-Admins */
 .admin-only:disabled {
     background-color: gray;
     cursor: not-allowed;
-}
-
-/* Prevent header overlap */
-header {
-    position: relative;
-    z-index: 500;
 }
 
 /* Smooth Fade-Out Effect */
@@ -278,11 +280,12 @@ header {
     display: table-row-group;
 }
 
+/* Toast */
 .toast {
     position: fixed;
     top: 10px;
     right: 20px;
-    background: #4CAF50;
+    background: crimson;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -292,13 +295,8 @@ header {
 
 /* Search Highlight */
 .highlight {
-    background-color: yellow !important;
+    background-color: crimson !important;
     transition: background-color 0.3s ease-in-out;
-}
-
-/* Active Sidebar Item */
-.sidebar ul li.active {
-    background: #1abc9c; 
 }
 
 /* Dashboard Cards */
@@ -317,13 +315,13 @@ header {
 }
 
 .blue {
-    background: linear-gradient(to right, #3498db, #2980b9);
+    background: linear-gradient(to right, black, crimson);
 }
 
 .green {
-    background: linear-gradient(to right, #2ecc71, #27ae60);
+    background: linear-gradient(to right, crimson, maroon);
 }
 
 .red {
-    background: linear-gradient(to right, #e74c3c, #c0392b);
+    background: linear-gradient(to right, maroon, black);
 }
