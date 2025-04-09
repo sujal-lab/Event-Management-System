@@ -1,34 +1,49 @@
 const upcomingEvents = [
     {
       id: "event1",
-      title: "Tech Conference 2025",
+      title: "Freshers Party",
       date: "April 20, 2025",
-      location: "Virtual",
-      description: "Join global tech leaders to explore trends in software, AI, and cybersecurity."
+      location: "Alpha Zone",
+      description: "Join this memorable event."
     },
     {
       id: "event2",
-      title: "AI & Innovation Expo",
-      date: "May 10, 2025",
-      location: "Bangalore",
-      description: "A showcase of AI startups, innovations, and academic research pushing boundaries."
+      title: "Pitara Nights",
+      date: "May 5, 2025",
+      location: "Alpha Zone",
+      description: "Join this memorable night with Parmish Verma"
+    },
+    {
+      id: "event3",
+      title: "Sports Tournament",
+      date: "April 20, 2025",
+      location: "Sportorium", 
+      description: "Sports Tournament for National Selection",
+      
     }
   ];
   
   const pastEvents = [
     {
-      id: "event3",
-      title: "Creative Hackathon 2024",
+      id: "event4",
+      title: "Stand-Up Comedy Night",
       date: "Dec 5, 2024",
-      location: "Delhi",
-      description: "Collaborated on a 24-hour challenge building innovative tech products."
+      location: "Exploratorium",
+      description: "Enjoy the night with drinks and jokes at comedy club auditorium."
     },
     {
-      id: "event4",
-      title: "Cybersecurity Summit 2024",
+      id: "event5",
+      title: "Tech Fest",
       date: "Nov 15, 2024",
-      location: "Online",
-      description: "Attended expert sessions on digital security, data privacy, and threat prevention."
+      location: "Carneggie Hall",
+      description: "Attend Tech Fest with IIT Bombay Professors and chance to win excited prizes"
+    },
+    {
+      id: "event6",
+      title: "Cultural Nights",
+      date: "Dec 31, 2025",
+      location: "Alpha Zone",
+      description: "Enjoy the Memorable Night with famous Singers and Performances.",
     }
   ];
   
