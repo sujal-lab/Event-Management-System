@@ -106,7 +106,15 @@
         }
 
         .left-section {
+            width: 0;
+            overflow: hidden;
+            transform: all 0.4s ease;
+            background:black ;
+            padding: 0;
+        }
+        .left-section.open{
             width: 30%;
+            padding: 20px;
         }
 
         .right-section {
@@ -223,7 +231,7 @@
 </head>
 <body>
     <header class="header">
-        <span class="menu-icon">☰</span>
+        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
         <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
         <input type="text" placeholder="Search..." class="search-bar">
         <nav class="nav-links">
@@ -236,7 +244,7 @@
     </header>
 
     <div class="container">
-        <div class="left-section">
+        <div class="left-section" id="sidebar">
             <h2>Select Date</h2>
             <div class="box1">
                 <input type="date" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #DC143C; border-radius: 5px; background: black; color: white;">
@@ -359,5 +367,12 @@
             </div>
         </div>
     </div>
+    <script>
+         function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("open");
+        }
+
+    </script>
 </body>
 </html>
