@@ -7,31 +7,45 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .glass {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(14px) saturate(180%);
       -webkit-backdrop-filter: blur(14px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     }
     .bg-dark-maroon {
-      background-color: #2b0017;
+      background-color: #170003;
     }
     .text-crimson {
-      color: #DC143C;
+      color: #FF4D4D;
     }
     .bg-crimson {
-      background-color: #DC143C;
+      background-color: #FF4D4D;
     }
     .from-crimson {
-      --tw-gradient-from: #DC143C;
-      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(220 20 60 / 0));
+      --tw-gradient-from: #FF4D4D;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
     }
     .to-crimson {
-      --tw-gradient-to: #B22222;
+      --tw-gradient-to: #8B0000;
     }
   </style>
 </head>
-<body class="bg-dark-maroon text-white font-sans">
+<body class="bg-[#2a0000] text-white font-sans">
+
+  <!-- Navbar -->
+  <nav class="w-full flex items-center justify-between px-6 py-4 glass fixed top-0 left-0 z-50">
+    <div class="text-2xl font-bold text-crimson">Eventify</div>
+    <ul class="flex items-center gap-6 text-white text-sm font-medium">
+      <li><a href="index.html" class="hover:text-crimson transition-all">Home</a></li>
+      <li><a href="about.html" class="hover:text-crimson transition-all">About</a></li>
+      <li><a href="events.html" class="hover:text-crimson transition-all">Events</a></li>
+      <li><a href="contact.html" class="hover:text-crimson transition-all">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Spacer for fixed navbar -->
+  <div class="h-20"></div>
 
   <!-- Hero -->
   <section class="w-full h-[50vh] flex items-center justify-center text-center px-6">
@@ -42,16 +56,14 @@
   </section>
 
   <!-- Mission & Vision Section -->
-  <section class="py-20 px-6 bg-[#1a0012]">
+  <section class="py-20 px-6 bg-[#220000]">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-      
       <div class="glass p-8 rounded-2xl">
         <h2 class="text-3xl font-semibold text-crimson mb-4">Our Mission</h2>
         <p class="text-gray-200">
           Eventify aims to revolutionize how people organize and attend events — by making the process simple, secure, and exciting for everyone.
         </p>
       </div>
-
       <div class="glass p-8 rounded-2xl">
         <h2 class="text-3xl font-semibold text-crimson mb-4">Our Vision</h2>
         <p class="text-gray-200">
@@ -62,7 +74,7 @@
   </section>
 
   <!-- Our Story (Horizontal Cards) -->
-  <section class="py-20 px-6">
+  <section class="py-20 px-6 bg-[#2a0000]">
     <div class="max-w-5xl mx-auto text-center mb-10">
       <h2 class="text-3xl font-bold text-crimson">Our Story</h2>
       <p class="text-gray-300 mt-2">How it all started and where we’re going next.</p>
@@ -79,6 +91,41 @@
       <div class="glass p-6 rounded-xl flex-1 text-center">
         <h3 class="text-xl font-semibold text-crimson mb-2">Future</h3>
         <p class="text-gray-200">We’re building more features, smarter tools, and dreaming big. Our journey has just begun — and we want you with us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Team -->
+  <section class="py-20 px-6 bg-[#220000]">
+    <div class="max-w-5xl mx-auto text-center mb-10">
+      <h2 class="text-3xl font-bold text-crimson">Meet the Team</h2>
+      <p class="text-gray-300 mt-2">A team of passionate individuals making events unforgettable.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 max-w-6xl mx-auto">
+      <div class="glass p-6 rounded-2xl text-center">
+        <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
+        <h3 class="text-xl font-semibold text-crimson">Sujal</h3>
+        <p class="text-sm text-gray-300">Frontend Designer</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
+        <h3 class="text-xl font-semibold text-crimson">Aashvi</h3>
+        <p class="text-sm text-gray-300">Team Lead & Backend</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
+        <h3 class="text-xl font-semibold text-crimson">Vedant</h3>
+        <p class="text-sm text-gray-300">Database Admin</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
+        <h3 class="text-xl font-semibold text-crimson">Aryan</h3>
+        <p class="text-sm text-gray-300">Testing & Deployment</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center">
+        <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
+        <h3 class="text-xl font-semibold text-crimson">Shruti</h3>
+        <p class="text-sm text-gray-300">UI/UX & Content</p>
       </div>
     </div>
   </section>
