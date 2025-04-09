@@ -164,13 +164,15 @@
 
         .event-box {
             background: black;
-            padding: 30px;
+            padding: 0;
             text-align: center;
             box-shadow: 0 4px 10px #DC143C;
             height: 400px;
             width: 300px;
             font-size: 18px;
             border-radius: 10px;
+            overflow: hidden;
+            position: relative;
             transition: 0.3s;
         }
 
@@ -182,18 +184,17 @@
 
         .event-img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            display: block;
             border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px #DC143C;
         }
     </style>
 </head>
 <body>
     <header class="header">
         <span class="menu-icon">☰</span>
-        <div class="logo"><img src="Site images/frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
+        <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
         <input type="text" placeholder="Search..." class="search-bar">
         <nav class="nav-links">
             <a href="#home">Home</a>
@@ -229,23 +230,23 @@
             <h2>EVENTS</h2>
             <div class="events-grid">
                 <div class="event-box">
-                    <img src="Site images/events/event1.jpg" alt="Event 1" class="event-img">
+                    <img src="frontend images/comedy.jpg" alt="Event 1" class="event-img">
                     <p>Event 1</p>
                 </div>
                 <div class="event-box">
-                    <img src="Site images/events/event2.jpg" alt="Event 2" class="event-img">
+                    <img src="frontend images/comedy (1).jpg" alt="Event 2" class="event-img">
                     <p>Event 2</p>
                 </div>
                 <div class="event-box">
-                    <img src="Site images/events/event3.jpg" alt="Event 3" class="event-img">
+                    <img src="frontend images/comedy (2).jpg" alt="Event 3" class="event-img">
                     <p>Event 3</p>
                 </div>
                 <div class="event-box">
-                    <img src="Site images/events/event4.jpg" alt="Event 4" class="event-img">
+                    <img src="frontend images/comedy (3).jpg" alt="Event 4" class="event-img">
                     <p>Event 4</p>
                 </div>
                 <div class="event-box">
-                    <img src="Site images/events/event5.jpg" alt="Event 5" class="event-img">
+                    <img src="frontend images/comedy (4).jpg" alt="Event 5" class="event-img">
                     <p>Event 5</p>
                 </div>
                 <div class="event-box">
