@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Eventify</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f0f, #550000);
+            color: white;
+            font-family: Arial, sans-serif;
+        
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 15px black;
+            
+    
+        }
+        .container{
+            height: 100vh;
+            display: flex;
+        }
+       
+        
+        h1 {
+            color: white;
+        }
+       
+        button {
+            background: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+
+        .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+}
+
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 11px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a:hover:before {
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            margin: 20px;
+        }
+
+        .left-section {
+            width: 50%;
+           
+    flex-direction: column;
+    justify-content: center; 
+    margin-left: 50px;
+            
+        }
+
+        .right-section {
+            width: 70%;
+            padding: 15px;
+            border-radius: 10px;
+            margin-left: 50px;
+            text-align: center;
+    
+        }
+        .logo{
+            flex:1;
+            margin-left: 50px;
+            
+        }
+        .rounded-btn {
+  background-color: #ff4d4d;  
+  color: white;               
+  padding: 15px 50px;         
+  border: none;               
+  border-radius: 30px;        
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .form-group{
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-group h1{
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], textarea{
+            width: 75%;
+            padding:15px;
+            border: 2px solid #ff4d4d;
+            border-radius: 10px;
+            background: #1a1a1a;
+            color: white;
+            font-size: 20px;
+        }
+
+        textarea{
+            resize: vertical;
+            min-height: 100px;
+        }
+        .left-section p {
+            font-size: 23px;
+            font-style: italic;
+        }
+
+        .form-group h1{
+            font-size: 30px;
+
+        }
+
+        .btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            float: left;
+        }
+
+        
+       
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <span class="menu-icon">☰</span>
+        <div class="logo"><img src="Site images/frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
+        <nav class="nav-links">
+            <a href="home page.html">Home</a>
+            <a href="Events.html">Events</a>
+            <a href="#about">About</a>
+            <a href="#contact">Dashboard</a>
+        </nav>
+        <button class="rounded-btn">Need Help?</button>
+    </header>
+
+    <div class="container">
+        <div class="left-section">
+          <h1 style="font-size: 8rem; color: #ff4d4d;">Contact Us</h1>  
+          <p>We’re always here to help. Reach out with any questions or feedback!</p>
+        <h2><strong>📞</strong> +91 58345 87549</h2>
+        <h2><strong>📧</strong> simon@gmail.com</h2>
+        <h2><strong>📍</strong> #723c, Central Plaza, Sector 9, Urban Estate</h2>
+    </div>
+        
+
+        <div class="right-section">
+            <form>
+                <div class="form-group">
+                  <h1>Name</h1>
+                  <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <h1>Email</h1>
+                    <input type="text" id="name" placeholder="Enter your name">
+                  </div>
+                  <div class="form-group">
+                    <h1>Phone</h1>
+                    <input type="text" id="name" placeholder="Enter your name">
+                  </div>
+                  <div class="form-group">
+                    <h1>Message</h1>
+                    <textarea id="message" placeholder="Enter your message"></textarea>
+                  </div>
+                  <button type="submit" class="btn">Send Message</button>
+                </form>
+        </div>
+   
+    </div>
+   
+</body>
+</html>

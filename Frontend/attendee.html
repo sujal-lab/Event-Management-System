@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendee Dashboard</title>
+  <link rel="stylesheet" href="attendee.css"/>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Attendee Dashboard</h2>
+      <ul>
+        <li class="active"><a href="#">📊 Dashboard</a></li>
+        <li><a href="myevent.html">📅 My Events</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+        <li><a href="logout.html" id="logout">🚪 Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h1>Welcome<span id="saksham"></span> 👋</h1>
+        <button class="dark-mode-toggle">🌙</button>
+      </div>
+
+      <p>Here’s a quick overview of your events.</p>
+
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Upcoming Events</h3>
+          <p><span id="upcoming-count">0</span></p>
+        </div>
+        <div class="card">
+          <h3>Past Events</h3>
+          <p><span id="past-count">0</span></p>
+        </div>
+        <div class="card">
+          <h3>Notifications</h3>
+          <p><span id="notifications-count">2</span></p>
+        </div>
+      </div>
+
+      <!-- Event List with Search & Filter -->
+      <section class="events-section">
+        <h2>Your Events</h2>
+        <input type="text" id="search" placeholder="Search events...">
+        <select id="filter">
+          <option value="all">All Events</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="past">Past</option>
+        </select>
+        <ul id="event-list">
+          <li>Loading events...</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="attendee.js"></script>
+</body>
+</html>
