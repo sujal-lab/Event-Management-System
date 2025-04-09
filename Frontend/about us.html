@@ -6,41 +6,53 @@
   <title>About Us | Eventify</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    }
-    .bg-dark-maroon {
-      background-color: #170003;
-    }
-    .text-crimson {
-      color: #FF4D4D;
-    }
-    .bg-crimson {
-      background-color: #FF4D4D;
-    }
-    .from-crimson {
-      --tw-gradient-from: #FF4D4D;
-      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
-    }
-    .to-crimson {
-      --tw-gradient-to: #8B0000;
-    }
+   .glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.bg-dark-maroon {
+  background-color: #900000; /* updated from #170003 */
+}
+
+.text-crimson {
+  color: #FF4D4D;
+}
+
+.bg-crimson {
+  background-color: #FF4D4D;
+}
+
+.from-crimson {
+  --tw-gradient-from: #800000;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
+}
+
+.to-crimson {
+  --tw-gradient-to: #800000;
+}
+
   </style>
 </head>
 <body class="bg-[#2a0000] text-white font-sans">
-
   <!-- Navbar -->
   <nav class="w-full flex items-center justify-between px-6 py-4 glass fixed top-0 left-0 z-50">
-    <div class="text-2xl font-bold text-crimson">Eventify</div>
-    <ul class="flex items-center gap-6 text-white text-sm font-medium">
-      <li><a href="index.html" class="hover:text-crimson transition-all">Home</a></li>
-      <li><a href="about.html" class="hover:text-crimson transition-all">About</a></li>
+    <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo" height="30px" width="100px"></div>
+
+    <div class="md:hidden">
+      <button id="menu-toggle" class="focus:outline-none">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <ul id="nav-menu" class="hidden md:flex items-center gap-6 text-white text-sm font-medium">
+      <li><a href="home page.html" class="hover:text-crimson transition-all">Home</a></li>
+      <li><a href="about us.html" class="hover:text-crimson transition-all">About</a></li>
       <li><a href="events.html" class="hover:text-crimson transition-all">Events</a></li>
-      <li><a href="contact.html" class="hover:text-crimson transition-all">Contact</a></li>
     </ul>
   </nav>
 
@@ -104,27 +116,27 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 max-w-6xl mx-auto">
       <div class="glass p-6 rounded-2xl text-center">
         <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
-        <h3 class="text-xl font-semibold text-crimson">Sujal</h3>
+        <h3 class="text-xl font-semibold text-crimson">Saksham</h3>
         <p class="text-sm text-gray-300">Frontend Designer</p>
       </div>
       <div class="glass p-6 rounded-2xl text-center">
         <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
-        <h3 class="text-xl font-semibold text-crimson">Aashvi</h3>
+        <h3 class="text-xl font-semibold text-crimson">Sidhant</h3>
         <p class="text-sm text-gray-300">Team Lead & Backend</p>
       </div>
       <div class="glass p-6 rounded-2xl text-center">
         <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
-        <h3 class="text-xl font-semibold text-crimson">Vedant</h3>
+        <h3 class="text-xl font-semibold text-crimson">Sujal</h3>
         <p class="text-sm text-gray-300">Database Admin</p>
       </div>
       <div class="glass p-6 rounded-2xl text-center">
         <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
-        <h3 class="text-xl font-semibold text-crimson">Aryan</h3>
+        <h3 class="text-xl font-semibold text-crimson">Simon</h3>
         <p class="text-sm text-gray-300">Testing & Deployment</p>
       </div>
       <div class="glass p-6 rounded-2xl text-center">
         <div class="w-20 h-20 mx-auto bg-crimson rounded-full mb-4"></div>
-        <h3 class="text-xl font-semibold text-crimson">Shruti</h3>
+        <h3 class="text-xl font-semibold text-crimson">Sherani</h3>
         <p class="text-sm text-gray-300">UI/UX & Content</p>
       </div>
     </div>
@@ -135,11 +147,26 @@
     <div class="glass rounded-xl p-10 max-w-3xl mx-auto">
       <h2 class="text-2xl font-semibold mb-4">Want to collaborate or know more?</h2>
       <p class="mb-6 text-white">Get in touch with our team — let’s make your next event unforgettable.</p>
-      <a href="contact.html" class="bg-white text-crimson px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition-all">
+      <a href="contactpage.html" class="bg-white text-crimson px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition-all">
         Contact Us
       </a>
     </div>
   </section>
 
 </body>
+<script>
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("hidden");
+      menu.classList.toggle("flex");
+      menu.classList.toggle("flex-col");
+      menu.classList.toggle("absolute");
+      menu.classList.toggle("top-16");
+      menu.classList.toggle("left-0");
+      menu.classList.toggle("w-full");
+      menu.classList.toggle("bg-[#2a0000]");
+      menu.classList.toggle("p-4");
+      menu.classList.toggle("gap-4");
+    });
+  </script>
 </html>
