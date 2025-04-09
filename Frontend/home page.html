@@ -566,114 +566,122 @@
         }
         
         .event-slider {
-            padding: 60px 40px;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(circle at center, rgba(229, 9, 20, 0.15), transparent 70%);
-        }
-        
-        .event-slider::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(15, 15, 19, 0.8) 0%, rgba(15, 15, 19, 0) 15%, rgba(15, 15, 19, 0) 85%, rgba(15, 15, 19, 0.8) 100%);
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        .slider-container {
-            display: flex;
-            position: relative;
-            padding: 20px 0;
-            z-index: 1;
-        }
-        
-        .slider-container::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent 0%, rgba(229, 9, 20, 0.3) 50%, transparent 100%);
-            z-index: -1;
-            transform: translateY(-50%);
-            box-shadow: 0 0 25px 2px rgba(229, 9, 20, 0.3);
-        }
-        
-        .event-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            border-radius: 16px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            max-width: 300px;
-            margin: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform-origin: center bottom;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .event-card h3 {
-            margin-top: 5px;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-            color: #ffffff;
-            font-size: 22px;
-            transition: all 0.3s ease;
-        }
-        
-        .event-card p {
-            font-size: 14px;
-            margin-top: 10px;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s ease;
-        }
-        
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(229, 9, 20, 0.15), rgba(255, 184, 108, 0.15));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 9, 20, 0.3);
-            border-color: rgba(229, 9, 20, 0.3);
-        }
-        
-        .event-card:hover::before {
-            opacity: 1;
-        }
-        
-        .event-card:hover h3 {
-            transform: translateY(-3px);
-            color: #FFB86C;
-            text-shadow: 0 0 10px rgba(255, 184, 108, 0.5);
-        }
-        
-        .event-card:hover p {
-            transform: translateY(-2px);
-            opacity: 1;
-        }
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(229, 9, 20, 0.15), transparent 70%);
+}
+
+.event-slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(15, 15, 19, 0.8) 0%, rgba(15, 15, 19, 0) 15%, rgba(15, 15, 19, 0) 85%, rgba(15, 15, 19, 0.8) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.slider-container {
+    display: flex;
+    position: relative;
+    padding: 20px 0;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.slider-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, rgba(229, 9, 20, 0.3) 50%, transparent 100%);
+    z-index: -1;
+    transform: translateY(-50%);
+    box-shadow: 0 0 25px 2px rgba(229, 9, 20, 0.3);
+}
+
+.event-card {
+    width: 240px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 16px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-origin: center bottom;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.event-card h3 {
+    margin-top: 5px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.event-card p {
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.15), rgba(255, 184, 108, 0.15));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+.event-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 9, 20, 0.3);
+    border-color: rgba(229, 9, 20, 0.3);
+}
+
+.event-card:hover::before {
+    opacity: 1;
+}
+
+.event-card:hover h3 {
+    transform: translateY(-3px);
+    color: #FFB86C;
+    text-shadow: 0 0 10px rgba(255, 184, 108, 0.5);
+}
+
+.event-card:hover p {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
         
         footer {
             text-align: center;
@@ -1195,10 +1203,10 @@ button.login-btn:hover {
 </head>
 <body>
     <header>
-        <div class="logo"><img src="Site images/frontend images/eventify logo.png" alt="Logo"></div>
+        <div class="logo"><img src="Frontend/frontend images/eventify logo.png" alt="Logo"></div>
         <input type="text" class="search-bar" placeholder="Search events...">
         <ul class="nav-links">
-            <li><a href="#events">Events</a></li>
+            <li><a href="Events.html">Events</a></li>
             <li><a href="contactpage.html">Contact</a></li>
             <li><a href="#" class="login-btn">Login</a></li>
         </ul>
@@ -1212,7 +1220,7 @@ button.login-btn:hover {
         <h2 style="text-align: center; margin-bottom: 40px; font-size: 36px; font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 3;" data-aos="fade-up">Upcoming Events</h2>
         <div class="slider-container">
             <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-                <!-- <img src="Site images\frontend images\Fresher’s.jpg" alt="Freshers Party" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;"> -->
+                <img src="Site images\frontend images\Fresher’s.jpg" alt="Freshers Party" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
                 <div class="card-content">
                     <h3>Freshers Party</h3>
                     <p>Experience the greatest welcome party. Live performances, music, and more!</p>
