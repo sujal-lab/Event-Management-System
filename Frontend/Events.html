@@ -46,7 +46,7 @@
             position: relative;
             transition: all 0.3s ease;
         }
-        
+
         .nav-links a:before {
             content: '';
             position: absolute;
@@ -57,15 +57,16 @@
             background: linear-gradient(90deg, black, black);
             transition: width 0.3s ease;
         }
-        
+
         .nav-links a:hover {
             color: #ffffff;
             transform: translateY(-2px);
         }
-        
+
         .nav-links a:hover:before {
             width: 100%;
         }
+
         .search-bar {
             width: 40%;
             padding: 10px;
@@ -119,7 +120,6 @@
         .box1 {
             background: black;
             padding: 50px;
-            /* margin-bottom: 10px; */
             font-size: 18px;
             border-radius: 10px;
             box-shadow: 0 4px 10px #DC143C;
@@ -179,6 +179,15 @@
             color: white;
             box-shadow: 0 0 15px #DC143C;
         }
+
+        .event-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px #DC143C;
+        }
     </style>
 </head>
 <body>
@@ -219,15 +228,42 @@
         <div class="right-section">
             <h2>EVENTS</h2>
             <div class="events-grid">
-                <div class="event-box">Event 1</div>
-                <div class="event-box">Event 2</div>
-                <div class="event-box">Event 3</div>
-                <div class="event-box">Event 4</div>
-                <div class="event-box">Event 5</div>
-                <div class="event-box">Event 6</div>
-                <div class="event-box">Event 7</div>
-                <div class="event-box">Event 8</div>
-                <div class="event-box">Event 9</div>
+                <div class="event-box">
+                    <img src="Site images/events/event1.jpg" alt="Event 1" class="event-img">
+                    <p>Event 1</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event2.jpg" alt="Event 2" class="event-img">
+                    <p>Event 2</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event3.jpg" alt="Event 3" class="event-img">
+                    <p>Event 3</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event4.jpg" alt="Event 4" class="event-img">
+                    <p>Event 4</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event5.jpg" alt="Event 5" class="event-img">
+                    <p>Event 5</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event6.jpg" alt="Event 6" class="event-img">
+                    <p>Event 6</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event7.jpg" alt="Event 7" class="event-img">
+                    <p>Event 7</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event8.jpg" alt="Event 8" class="event-img">
+                    <p>Event 8</p>
+                </div>
+                <div class="event-box">
+                    <img src="Site images/events/event9.jpg" alt="Event 9" class="event-img">
+                    <p>Event 9</p>
+                </div>
             </div>
         </div>
     </div>
