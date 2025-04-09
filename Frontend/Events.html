@@ -118,12 +118,18 @@
         }
 
         .right-section {
-            width: 70%;
+            width: 100%;
             padding: 15px;
             background: black;
             border-radius: 10px;
-            margin-left: 50px;
+            /* margin-left: 50px; */
+            transition: width 0.4s ease;
         }
+
+        .left-section,.right-section {
+    transition: all 0.4s ease;
+}
+
 
         .box1 {
             background: black;
@@ -226,6 +232,19 @@
             background: white;
             color: #DC143C;
         }
+
+        .events-grid.four-columns {
+    grid-template-columns: repeat(4, 1fr);
+}
+.four-columns {
+    grid-template-columns: repeat(4, 1fr);
+}
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default is 4 columns */
+    gap: 30px;
+    transition: grid-template-columns 0.3s ease;
+}
 
     </style>
 </head>
@@ -372,6 +391,38 @@
             const sidebar = document.getElementById("sidebar");
             sidebar.classList.toggle("open");
         }
+
+        window.onload = function () {
+        const sidebar = document.getElementById("sidebar");
+        const eventGrid = document.querySelector(".events-grid");
+
+        // Sidebar should start as closed
+        sidebar.classList.remove("open");
+
+        // Grid should start with 4 columns
+        eventGrid.classList.add("four-columns");
+    };
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const eventGrid = document.querySelector(".events-grid");
+
+        sidebar.classList.toggle("open");
+
+        // Toggle grid layout
+        if (sidebar.classList.contains("open")) {
+            eventGrid.classList.remove("four-columns"); // now 3 columns (as per default)
+            eventGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
+        } else {
+            eventGrid.classList.add("four-columns"); // back to 4 columns
+            eventGrid.style.gridTemplateColumns = "repeat(4, 1fr)";
+        }
+    }
+
+
+
+
+
 
     </script>
 </body>
