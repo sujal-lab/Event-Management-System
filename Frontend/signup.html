@@ -128,11 +128,34 @@
                 }
                 
                 
-                // Submit the form if valid
                 if(isValid) {
-                    alert('Registration successful!');
-                    // form.submit(); // Uncomment this to actually submit the form
-                }
+    const formData = {
+        name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.message === 'User registered successfully') {
+            alert('✅ Registered successfully!');
+        } else {
+            alert('❌ Error: ' + data.message);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('⚠️ Something went wrong!');
+    });
+}
+
             });
             
             function isValidEmail(email) {
