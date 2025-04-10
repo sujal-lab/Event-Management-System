@@ -239,6 +239,19 @@
     transition: grid-template-columns 0.3s ease;
 }
 
+@media (max-width: 1024px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -373,13 +386,11 @@
             </div>
         </div>
     </div>
-    <script>
-         function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("open");
-        }
+    <div id="events-container" class="events-grid four-columns"></div>
 
-        window.onload = function () {
+    <script>
+        
+    window.onload = function () {
         const sidebar = document.getElementById("sidebar");
         const eventGrid = document.querySelector(".events-grid");
 
@@ -407,10 +418,23 @@
     }
 
 
+    document.addEventListener("DOMContentLoaded", async function () {
+    const response = await fetch("http://localhost:3000/api/events");
+    const events = await response.json();
+    renderEvents(events);
+});
+
+
+
+</script>
+
+
+
+   
 
 
 
 
-    </script>
+    
 </body>
 </html>
