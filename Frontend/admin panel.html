@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Event Management</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0f0f, #550000);
+      color: white;
+    }
+
+    aside {
+      width: 450px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    aside h2 {
+      margin-bottom: 30px;
+      font-size: 45px;
+      text-align: center;
+      border-bottom: 2px solid white;
+      padding-bottom: 10px;
+    }
+
+    aside a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-size: 30px;
+      padding: 8px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    aside a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h3 {
+      font-size: 30px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 15px;
+      width: 70%;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      flex: 1;
+    }
+
+    input, select, textarea, button {
+      padding: 15px;
+      border-radius: 5px;
+      border: none;
+      font-size: 20px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    button {
+      background-color: #aa0000;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+
+    .stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      color: white;
+      height: 150px;
+      font-size: 30px;
+    }
+
+    .stat-box:nth-child(1) {
+      background: #006600;
+    }
+
+    .stat-box:nth-child(2) {
+      background: #004d99;
+    }
+
+    .stat-box:nth-child(3) {
+      background: #993300;
+    }
+
+    .event-card {
+      background-color: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .event-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .event-details {
+      flex: 1;
+    }
+
+    .event-details h4 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .event-details p {
+      margin: 4px 0;
+      font-size: 18px;
+    }
+
+    .delete-btn {
+      background-color: #ff4444;
+      padding: 10px 15px;
+      font-size: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      aside {
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        justify-content: space-around;
+      }
+
+      main {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h2 style="color: #993300;">Admin Panel</h2>
+    <a href="#">Home</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Settings</a>
+    <a href="#">Manage Users</a>
+    <a href="#">Manage Events</a>
+    <a href="#">Logout</a>
+  </aside>
+  <main>
+    <section>
+      <h3>Add Event</h3>
+      <div class="form-group">
+        <input type="text" id="event-name" placeholder="Event Name">
+        <input type="date" id="event-date">
+        <input type="time" id="event-time">
+        <textarea id="event-description" placeholder="Event Description"></textarea>
+        <input type="file" id="event-poster" accept="image/*">
+        <button onclick="addEvent()">Add Event</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>Event Filter</h3>
+      <select onchange="filterEvents(this.value)">
+        <option value="all">All Events</option>
+        <option value="upcoming">Upcoming</option>
+        <option value="ongoing">Ongoing</option>
+        <option value="finished">Finished</option>
+      </select>
+    </section>
+
+    <section>
+      <h3>All Events</h3>
+      <div id="events-body"></div>
+    </section>
+
+    <section>
+      <h3>Manage Users</h3>
+      <div class="form-group">
+        <input type="text" id="user-name" placeholder="User Name">
+        <input type="text" id="user-role" placeholder="User Role">
+        <button onclick="addUser()">Add User</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="user-list"></tbody>
+      </table>
+    </section>
+
+    <section class="stats">
+      <div class="stat-box">
+        <h4>Total Events</h4>
+        <p id="total-events">0</p>
+      </div>
+      <div class="stat-box">
+        <h4>Total Users</h4>
+        <p id="total-users">0</p>
+      </div>
+      <div class="stat-box">
+        <h4>Pending Requests</h4>
+        <p id="pending-requests">3</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let events = [];
+    let users = [];
+
+    function addEvent() {
+      const name = document.getElementById('event-name').value;
+      const date = document.getElementById('event-date').value;
+      const time = document.getElementById('event-time').value;
+      const description = document.getElementById('event-description').value;
+      const posterInput = document.getElementById('event-poster');
+      const poster = posterInput.files[0];
+
+      if (name && date && time && description && poster) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          events.push({ name, date, time, description, poster: e.target.result });
+          updateEventTable();
+        };
+        reader.readAsDataURL(poster);
+
+        document.getElementById('event-name').value = '';
+        document.getElementById('event-date').value = '';
+        document.getElementById('event-time').value = '';
+        document.getElementById('event-description').value = '';
+        posterInput.value = '';
+      }
+    }
+
+    function deleteEvent(index) {
+      events.splice(index, 1);
+      updateEventTable();
+    }
+
+    function updateEventTable(filtered = 'all') {
+      const container = document.getElementById('events-body');
+      container.innerHTML = '';
+      const today = new Date().toISOString().split('T')[0];
+      let count = 0;
+
+      events.forEach((event, index) => {
+        let include = false;
+        if (filtered === 'all') include = true;
+        else if (filtered === 'upcoming' && event.date > today) include = true;
+        else if (filtered === 'ongoing' && event.date === today) include = true;
+        else if (filtered === 'finished' && event.date < today) include = true;
+
+        if (include) {
+          const card = document.createElement('div');
+          card.className = 'event-card';
+          card.innerHTML = `
+            <img src="${event.poster}" alt="Poster">
+            <div class="event-details">
+              <h4>${event.name}</h4>
+              <p>Date: ${event.date}</p>
+              <p>Time: ${event.time}</p>
+              <p>${event.description}</p>
+            </div>
+            <button class="delete-btn" onclick="deleteEvent(${index})">Delete</button>
+          `;
+          container.appendChild(card);
+          count++;
+        }
+      });
+      document.getElementById('total-events').textContent = count;
+    }
+
+    function filterEvents(value) {
+      updateEventTable(value);
+    }
+
+    function addUser() {
+      const name = document.getElementById('user-name').value;
+      const role = document.getElementById('user-role').value;
+      if (name && role) {
+        users.push({ name, role });
+        document.getElementById('user-name').value = '';
+        document.getElementById('user-role').value = '';
+        updateUserList();
+      }
+    }
+
+    function deleteUser(index) {
+      users.splice(index, 1);
+      updateUserList();
+    }
+
+    function updateUserList() {
+      const list = document.getElementById('user-list');
+      list.innerHTML = '';
+      users.forEach((user, index) => {
+        const row = `<tr>
+          <td>${user.name}</td>
+          <td>${user.role}</td>
+          <td><button class="delete-btn" onclick="deleteUser(${index})">Delete</button></td>
+        </tr>`;
+        list.innerHTML += row;
+      });
+      document.getElementById('total-users').textContent = users.length;
+    }
+  </script>
+</body>
+</html>
