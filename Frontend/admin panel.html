@@ -319,6 +319,11 @@ function deleteEvent(index) {
   updateEventTable(); // Refresh table
 }
 
+function filterEvents(value) {
+  updateEventTable(value);
+}
+
+
 function updateEventTable(filtered = 'all') {
   const container = document.getElementById('events-body');
   container.innerHTML = ''; // Clear previous content
@@ -328,6 +333,8 @@ function updateEventTable(filtered = 'all') {
   let count = 0;
 
   events.forEach((event, index) => {
+    const eventDate = new Date(event.date); // Convert event date to Date object
+    const currentDate = new Date(today);
     let include = false;
     if (filtered === 'all') include = true;
     else if (filtered === 'upcoming' && event.date > today) include = true;
