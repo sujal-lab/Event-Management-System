@@ -1328,6 +1328,58 @@ button.login-btn:hover {
 </div>
 </div>
 <script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST', // Ensure this is POST
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Login failed');
+                }
+
+                const data = await response.json();
+
+                // Store token and user data
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('userName', data.user.name);
+                localStorage.setItem('userRole', data.user.role);
+
+                // Redirect based on role
+                const userRole = data.user.role;
+                if (userRole === 'admin') {
+                    window.location.href = 'adminPanel.html'; // Redirect to Admin Panel
+                } else if (userRole === 'attendee') {
+                    window.location.href = 'attendeeDashboard.html'; // Redirect to Attendee Dashboard
+                } else {
+                    alert('Unknown role. Please contact support.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert(error.message || 'An error occurred during login.');
+            }
+        });
+    }
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // ===== PASSWORD TOGGLE =====
     const togglePassword = document.querySelector('.toggle-password');
@@ -1488,14 +1540,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function redirectBasedOnRole(role) {
         switch(role) {
             case 'admin':
-                window.location.href = 'adminDashboard.html';
-                break;
-            case 'organizer':
-                window.location.href = 'organizerDashboard.html';
+                window.location.href = 'admin panel.html';
                 break;
             case 'attendee':
             case 'user':
-                window.location.href = 'attendeeDashboard.html';
+                window.location.href = 'attendee.html';
                 break;
             default:
                 window.location.href = 'dashboard.html'; // Fallback
