@@ -263,7 +263,7 @@
   </main>
 
   <script>
-    let events = [];
+   let events = [];
     let users = [];
 
     function addEvent() {
@@ -361,6 +361,46 @@
       });
       document.getElementById('total-users').textContent = users.length;
     }
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById("event-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const title = document.getElementById("event-title").value;
+    const date = document.getElementById("event-date").value;
+    const time = document.getElementById("event-time").value;
+    const location = document.getElementById("event-location").value;
+    const imageInput = document.getElementById("event-image");
+
+    const reader = new FileReader();
+    reader.onload = async function () {
+        const base64Image = reader.result;
+
+        const newEvent = { title, date, time, location, image: base64Image };
+
+        const res = await fetch("http://localhost:3000/api/events", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newEvent),
+        });
+
+        const result = await res.json();
+        alert(result.message);
+    };
+
+    reader.readAsDataURL(imageInput.files[0]);
+});
+
+
   </script>
 </body>
 </html>

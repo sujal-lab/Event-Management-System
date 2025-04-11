@@ -1,34 +1,51 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors');
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const dotenv = require('dotenv');
+// const cors = require('cors');
 
-// Load environment variables
 dotenv.config();
-console.log('Port:', process.env.PORT); // Debugging: Logs PORT value from .env
-console.log('Mongo URI:', process.env.MONGO_URI); // Debugging: Logs MongoDB URI
-console.log('JWT Secret:', process.env.JWT_SECRET); // Debugging: Logs JWT secret key
 
 const app = express();
+const PORT = 3000;
+const EVENTS_FILE = path.join(__dirname, "data", "events.json");
 
-// Middleware
 app.use(cors());
-app.use(express.json()); // Parse JSON from frontend
+app.use(express.json({ limit: "10mb" })); // support base64 image
+app.use(express.static(path.join(__dirname, "../frontend"))); // serve frontend
 
-// ROUTES
-const authRoutes = require('./routes/auth'); // ✅ Your auth.js file
-app.use('/api/auth', authRoutes); // All auth routes will start with /api/auth
+// Load events from JSON
+const loadEvents = () => {
+    if (!fs.existsSync(EVENTS_FILE)) return [];
+    const data = fs.readFileSync(EVENTS_FILE);
+    return JSON.parse(data);
+};
 
-// DEFAULT ROUTE (just for testing)
-app.get('/', (req, res) => {
-  res.send('👋 Hello from Eventify backend!');
+// Save events to JSON
+const saveEvents = (events) => {
+    fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2));
+};
+
+// 🟢 GET /api/events – fetch events
+app.get("/api/events", (req, res) => {
+    const events = loadEvents();
+    res.json(events);
 });
 
-// CONNECT TO MONGODB AND START SERVER
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log("✅ Backend server running at http://localhost:" + process.env.PORT);
-    });
-  })
-  .catch(err => console.log("❌ MongoDB error:", err));
+// 🔴 POST /api/events – add a new event
+app.post("/api/events", (req, res) => {
+    const { title, date, time, location, image } = req.body;
+    if (!title || !date || !time || !location || !image) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    const events = loadEvents();
+    const newEvent = { title, date, time, location, image };
+    events.push(newEvent);
+    saveEvents(events);
+
+    res.status(201).json({ message: "Event added successfully." });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
