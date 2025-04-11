@@ -85,7 +85,7 @@ const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 
 menuToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("show");
+  sidebar.classList.toggle("open");
 });
 
 // Auto-close sidebar when a link is clicked (on small screens)
