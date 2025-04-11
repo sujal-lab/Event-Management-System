@@ -156,6 +156,23 @@
             transition: 0.3s;
             margin: 15px auto;
         }
+        .datee-links a{
+            display: block;
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            padding: 18px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px #DC143C;
+            width: 80%;
+            margin-left: 10%;
+            transition: 0.3s;
+            margin: 20px auto;
+            
+
+        }
 
         .date-links a:hover, .club-links a:hover {
             background: white;
@@ -174,19 +191,23 @@
             padding: 0;
             text-align: center;
             box-shadow: 0 4px 10px #DC143C;
-            height: 400px;
-            width: 300px;
+            height: 450px;
+            width: 350px;
             font-size: 18px;
             border-radius: 10px;
             overflow: hidden;
             position: relative;
             transition: 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .event-box:hover {
             background: linear-gradient(to right, #8B0000, #DC143C);
             color: white;
             box-shadow: 0 0 15px #DC143C;
+            transform: scale(1.05);
+    box-shadow: 0 0 20px #DC143C;
+    z-index: 1;
         }
 
         .event-img {
@@ -252,6 +273,8 @@
 }
 
 
+
+
     </style>
 </head>
 <body>
@@ -259,7 +282,7 @@
         <span class="menu-icon" onclick="toggleSidebar()">☰</span>
         <div class="logo">
             <a href="home page.html">
-                <img src="frontend images/eventify logo.png" alt="Logo" height="50px" width="150px" class="logo-glow">
+                <img src="frontend images/eventify logo.png" alt="Logo" height="80px" width="200px" class="logo-glow" style="margin-right: 90px;">
             </a>
         </div>
         
@@ -281,17 +304,18 @@
                     <a href="#yesterday">Yesterday</a>
                     <a href="#today">Today</a>
                     <a href="#tomorrow">Tomorrow</a>
+                   
                 </div>
             </div>
-            <div class="date-links">
-                <a href="#yesterday">Upcoming</a>
-                <a href="#today">Finished</a>
-                <a href="#tomorrow">Ongoing</a>
+            <div class="datee-links">
+                <a href="#" style="margin-top: 50px;">Upcoming</a>
+                <a href="#">Finished</a>
+                <a href="#">Ongoing</a>
             </div>
         
         </div>
         <div class="right-section">
-            <h2>EVENTS</h2>
+            <h2>EXPLORE EVENTS</h2>
             <div class="events-grid">
                 <div class="event-box">
                     <img src="frontend images/comedy (1).jpg" class="event-img">
@@ -423,11 +447,7 @@
     }
 
 
-    document.addEventListener("DOMContentLoaded", async function () {
-    const response = await fetch("http://localhost:3000/api/events");
-    const events = await response.json();
-    renderEvents(events);
-});
+    
 
 
 
