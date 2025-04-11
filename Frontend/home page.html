@@ -1328,21 +1328,23 @@ button.login-btn:hover {
 </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Password Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    // ===== PASSWORD TOGGLE =====
     const togglePassword = document.querySelector('.toggle-password');
     const passwordInput = document.getElementById('password');
 
-    togglePassword.addEventListener('click', function () {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
 
-    // Social Button Click Effect
+    // ===== SOCIAL BUTTON EFFECTS =====
     document.querySelectorAll('.social-btn').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function() {
             this.style.opacity = '0.7';
             setTimeout(() => {
                 this.style.opacity = '1';
@@ -1350,121 +1352,186 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Modal Handling
+    // ===== MODAL HANDLING =====
     const modal = document.getElementById("login-modal");
     const loginButton = document.querySelector(".login-btn");
     const closeButton = document.querySelector(".close-button");
 
-    loginButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        modal.style.display = "flex";
-        setTimeout(() => {
-            modal.classList.add('show');
-        }, 10);
-    });
+    // Create login error element if it doesn't exist
+    let loginError = document.getElementById('login-error');
+    if (!loginError && modal) {
+        loginError = document.createElement('div');
+        loginError.id = 'login-error';
+        loginError.className = 'alert alert-danger';
+        loginError.style.display = 'none';
+        loginError.style.marginBottom = '15px';
+        const modalBody = modal.querySelector('.modal-body');
+        if (modalBody) {
+            modalBody.insertBefore(loginError, modalBody.firstChild);
+        }
+    }
 
-    closeButton.addEventListener("click", function () {
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 300);
-    });
+    if (loginButton && modal) {
+        loginButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            modal.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        });
+    }
 
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
+    if (closeButton && modal) {
+        closeButton.addEventListener("click", function() {
+            closeModal();
+        });
+    }
+
+    if (modal) {
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+
+    function closeModal() {
+        if (modal) {
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = "none";
             }, 300);
         }
-    });
+    }
 
-    // Form Validation
+    // ===== LOGIN FORM SUBMISSION =====
     const loginForm = document.getElementById('loginForm');
-    const loginError = document.getElementById('login-error'); // Add this element in your HTML
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Hide previous error messages
+            if (loginError) {
+                loginError.style.display = 'none';
+            }
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if (!email || !password) {
+                showError("Please fill in all fields");
+                return;
+            }
+            
+            try {
+                // Show loading spinner
+                const submitBtn = document.querySelector('.submit-btn');
+                if (submitBtn) {
+                    submitBtn.classList.add('loading');
+                    submitBtn.disabled = true;
+                }
+                
+                // Send API request to backend
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Login failed');
+                }
+                
+                // Store token and user data
+                localStorage.setItem('authToken', data.token);
+                localStorage.setItem('userName', data.user.name);
+                localStorage.setItem('userEmail', data.user.email);
+                localStorage.setItem('userId', data.user.id);
+                localStorage.setItem('userRole', data.user.role);
+                
+                // ROLE-BASED REDIRECTION
+                redirectBasedOnRole(data.user.role);
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                showError(error.message || 'An error occurred during login');
+            } finally {
+                // Remove loading state
+                const submitBtn = document.querySelector('.submit-btn');
+                if (submitBtn) {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                }
+            }
+        });
+    }
 
-    async function handleLogin(e) {
-        e.preventDefault(); // Prevent default form submission
-
-        loginError.style.display = 'none'; // Hide previous error messages
-
-        const email = document.getElementById('email').value; // Get email input
-        const password = document.getElementById('password').value; // Get password input
-
-        if (!email || !password) {
-            showError(loginError, "Please fill in all fields");
-            return;
+    // ===== HELPER FUNCTIONS =====
+    function showError(message) {
+        if (loginError) {
+            loginError.textContent = message;
+            loginError.style.display = 'block';
+            setTimeout(() => {
+                loginError.style.display = 'none';
+            }, 5000);
+        } else {
+            alert(message); // Fallback if error element doesn't exist
         }
+    }
+    
+    function redirectBasedOnRole(role) {
+        switch(role) {
+            case 'admin':
+                window.location.href = 'adminDashboard.html';
+                break;
+            case 'organizer':
+                window.location.href = 'organizerDashboard.html';
+                break;
+            case 'attendee':
+            case 'user':
+                window.location.href = 'attendeeDashboard.html';
+                break;
+            default:
+                window.location.href = 'dashboard.html'; // Fallback
+                break;
+        }
+    }
 
-        try {
-            // Show loading spinner (optional)
-            const loginButton = document.querySelector('.submit-btn');
-            loginButton.classList.add('loading');
-
-            // Send data to backend API
-            const response = await fetch('http://localhost:3000/api/auth/login', { // Update URL based on your backend
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+    // ===== SLICK SLIDER INITIALIZATION =====
+    if (typeof $.fn.slick !== 'undefined') {
+        $('.slider-container').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 800,
+            infinite: true,
+            dots: true,
+            arrows: true,
+            cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
+            pauseOnHover: true,
+            centerMode: true,
+            variableWidth: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: { slidesToShow: 2, centerMode: false }
                 },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Login failed');
-            }
-
-            // Store token and redirect (assuming JWT response)
-            localStorage.setItem('authToken', data.token);
-            window.location.href = 'dashboard.html';
-
-        } catch (error) {
-            showError(loginError, error.message);
-        } finally {
-            const loginButton = document.querySelector('.submit-btn');
-            loginButton.classList.remove('loading');
-        }
+                {
+                    breakpoint: 768,
+                    settings: { slidesToShow: 1, centerMode: true }
+                }
+            ]
+        });
     }
 
-    loginForm.addEventListener('submit', handleLogin);
-
-    function showError(element, message) {
-        element.textContent = message;
-        element.style.display = 'block';
-        setTimeout(() => {
-            element.style.display = 'none';
-        }, 5000);
-    }
-
-    // Initialize Slick Slider
-    $('.slider-container').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        speed: 800,
-        infinite: true,
-        dots: true,
-        arrows: true,
-        cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
-        pauseOnHover: true,
-        centerMode: true,
-        variableWidth: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: { slidesToShow: 2, centerMode: false }
-            },
-            {
-                breakpoint: 768,
-                settings: { slidesToShow: 1, centerMode: true }
-            }
-        ]
-    });
-
-    // Initialize AOS Animation
+    // ===== AOS ANIMATION INITIALIZATION =====
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
@@ -1474,6 +1541,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
 </script>
 </body>
 </html>
