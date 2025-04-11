@@ -6,46 +6,52 @@
   <title>About Us | Eventify</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-   .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-}
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
 
-.bg-dark-maroon {
-  background-color: #900000; /* updated from #170003 */
-}
+    .bg-dark-maroon {
+      background-color: #900000;
+    }
 
-.text-crimson {
-  color: #FF4D4D;
-}
+    .text-crimson {
+      color: #FF4D4D;
+    }
 
-.bg-crimson {
-  background-color: #FF4D4D;
-}
+    .bg-crimson {
+      background-color: #FF4D4D;
+    }
 
-.from-crimson {
-  --tw-gradient-from: #800000;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
-}
+    .from-crimson {
+      --tw-gradient-from: #800000;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
+    }
 
-.to-crimson {
-  --tw-gradient-to: #800000;
-}
-
+    .to-crimson {
+      --tw-gradient-to: #800000;
+    }
   </style>
 </head>
-<body class="bg-[#2a0000] text-white font-sans">
+
+<body class="bg-gradient-to-b from-black via-[#1a1a1a] to-[#0d0d0d] text-white font-sans">
   <!-- Navbar -->
   <nav class="w-full flex items-center justify-between px-6 py-4 glass fixed top-0 left-0 z-50">
-    <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo" height="30px" width="100px"></div>
+    <div class="logo">
+      <a href="home page.html">
+        <img src="frontend images/eventify logo.png" alt="Logo" height="30px" width="100px">
+      </a>
+    </div>
 
     <div class="md:hidden">
       <button id="menu-toggle" class="focus:outline-none">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
@@ -56,7 +62,6 @@
     </ul>
   </nav>
 
-  <!-- Spacer for fixed navbar -->
   <div class="h-20"></div>
 
   <!-- Hero -->
@@ -67,26 +72,22 @@
     </div>
   </section>
 
-  <!-- Mission & Vision Section -->
-  <section class="py-20 px-6 bg-[#220000]">
+  <!-- Mission & Vision -->
+  <section class="py-20 px-6 bg-[#1a1a1a]">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
       <div class="glass p-8 rounded-2xl">
         <h2 class="text-3xl font-semibold text-crimson mb-4">Our Mission</h2>
-        <p class="text-gray-200">
-          Eventify aims to revolutionize how people organize and attend events — by making the process simple, secure, and exciting for everyone.
-        </p>
+        <p class="text-gray-200">Eventify aims to revolutionize how people organize and attend events — by making the process simple, secure, and exciting for everyone.</p>
       </div>
       <div class="glass p-8 rounded-2xl">
         <h2 class="text-3xl font-semibold text-crimson mb-4">Our Vision</h2>
-        <p class="text-gray-200">
-          We envision a world where every event, no matter how big or small, is powered by effortless technology and joyful participation.
-        </p>
+        <p class="text-gray-200">We envision a world where every event, no matter how big or small, is powered by effortless technology and joyful participation.</p>
       </div>
     </div>
   </section>
 
-  <!-- Our Story (Horizontal Cards) -->
-  <section class="py-20 px-6 bg-[#2a0000]">
+  <!-- Our Story -->
+  <section class="py-20 px-6 bg-[#0d0d0d]">
     <div class="max-w-5xl mx-auto text-center mb-10">
       <h2 class="text-3xl font-bold text-crimson">Our Story</h2>
       <p class="text-gray-300 mt-2">How it all started and where we’re going next.</p>
@@ -107,8 +108,8 @@
     </div>
   </section>
 
-  <!-- Meet the Team -->
-  <section class="py-20 px-6 bg-[#220000]">
+  <!-- Team -->
+  <section class="py-20 px-6 bg-[#1a1a1a]">
     <div class="max-w-5xl mx-auto text-center mb-10">
       <h2 class="text-3xl font-bold text-crimson">Meet the Team</h2>
       <p class="text-gray-300 mt-2">A team of passionate individuals making events unforgettable.</p>
@@ -142,7 +143,7 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
+  <!-- CTA -->
   <section class="py-20 px-6 bg-gradient-to-r from-crimson to-crimson text-center">
     <div class="glass rounded-xl p-10 max-w-3xl mx-auto">
       <h2 class="text-2xl font-semibold mb-4">Want to collaborate or know more?</h2>
@@ -153,20 +154,26 @@
     </div>
   </section>
 
-</body>
-<script>
-    document.getElementById("menu-toggle").addEventListener("click", function() {
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-black text-gray-500 text-sm">
+    © 2025 Eventify. All rights reserved.
+  </footer>
+
+  <!-- Mobile nav script -->
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", function () {
       const menu = document.getElementById("nav-menu");
       menu.classList.toggle("hidden");
       menu.classList.toggle("flex");
       menu.classList.toggle("flex-col");
       menu.classList.toggle("absolute");
+      menu.classList.toggle("bg-[#1a1a1a]");
       menu.classList.toggle("top-16");
       menu.classList.toggle("left-0");
       menu.classList.toggle("w-full");
-      menu.classList.toggle("bg-[#2a0000]");
       menu.classList.toggle("p-4");
-      menu.classList.toggle("gap-4");
+      menu.classList.toggle("z-40");
     });
   </script>
+</body>
 </html>
