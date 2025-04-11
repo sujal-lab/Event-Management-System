@@ -9,8 +9,7 @@
 <body>
   <div class="container">
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav class="sidebar" id="sidebar">
       <h2>Attendee Dashboard</h2>
       <ul>
         <li class="active"><a href="#">📊 Dashboard</a></li>
@@ -19,7 +18,7 @@
         <li><a href="profile.html">👤 Profile</a></li>
         <li><a href="logout.html" id="logout">🚪 Logout</a></li>
       </ul>
-    </aside>
+    </nav>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -61,6 +60,11 @@
     </main>
   </div>
 
-  <script src="attendee.js"></script>
+  <script src="attendee.js">
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
