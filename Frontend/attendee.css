@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: auto; /* Prevent scrollbars */
     font-family: 'Poppins', sans-serif;
     background: black; /* Full black background */
     color: white;
@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
     display: flex;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .menu-toggle {
@@ -93,7 +93,7 @@ body::-webkit-scrollbar {
     overflow-y: auto;
     flex: 1;
     padding: 2rem;
-    background-color: #fff;
+    background-color: #1e1e1e;
     overflow: auto;
   }
   
@@ -106,12 +106,16 @@ body::-webkit-scrollbar {
 /* Header */
 .header {
     background: #8b0000; /* Changed from #dc143c to match sidebar */
-    padding: 15px;
+    padding: 30px 20px;
     border-radius: 10px;
     color: white;
-    font-size: 22px;
+    font-size: 32px;
     font-weight: bold;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
     text-align: center;
 }
 
