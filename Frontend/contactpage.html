@@ -1,235 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Eventify</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f0f0f, #550000);
-            color: white;
-            font-family: Arial, sans-serif;
-        
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Eventify</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 0 15px black;
-            
-    
-        }
-        .container{
-            height: 100vh;
-            display: flex;
-        }
-       
-        
-        h1 {
-            color: white;
-        }
-       
-        button {
-            background: #ff4d4d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #cc0000;
-        }
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #550000);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
 
-        .nav-links {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 30px;
-}
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 0 15px black;
+      flex-wrap: wrap;
+      background-color: #0f0f0f;
+    }
 
+    .logo {
+      margin-left: 20px;
+    }
 
-        .nav-links a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-size: 25px;
-            font-weight: 500;
-            padding: 11px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-        
-        .nav-links a:hover:before {
-            width: 100%;
-        }
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      display: none;
+    }
 
-        .container {
-            display: flex;
-            margin: 20px;
-        }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      transition: max-height 0.3s ease;
+    }
 
-        .left-section {
-            width: 50%;
-           
-    flex-direction: column;
-    justify-content: center; 
-    margin-left: 50px;
-            
-        }
+    .nav-links a {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 10px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
 
-        .right-section {
-            width: 70%;
-            padding: 15px;
-            border-radius: 10px;
-            margin-left: 50px;
-            text-align: center;
-    
-        }
-        .logo{
-            flex:1;
-            margin-left: 50px;
-            
-        }
-        .rounded-btn {
-  background-color: #ff4d4d;  
-  color: white;               
-  padding: 15px 50px;         
-  border: none;               
-  border-radius: 30px;        
-  font-size: 20px;
-  cursor: pointer;
-  margin-right: 30px;
-}
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
 
-.menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-            transition: transform 0.3s;
-        }
+    .nav-links a:hover {
+      transform: translateY(-2px);
+    }
 
-        .form-group{
-            margin-bottom: 30px;
-            text-align: left;
-        }
+    .nav-links a:hover::before {
+      width: 100%;
+    }
 
-        .form-group h1{
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+    .rounded-btn {
+      background-color: #ff4d4d;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 20px;
+      margin-top: 10px;
+    }
 
-        input[type="text"], textarea{
-            width: 75%;
-            padding:15px;
-            border: 2px solid #ff4d4d;
-            border-radius: 10px;
-            background: #1a1a1a;
-            color: white;
-            font-size: 20px;
-        }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 20px;
+    }
 
-        textarea{
-            resize: vertical;
-            min-height: 100px;
-        }
-        .left-section p {
-            font-size: 23px;
-            font-style: italic;
-        }
+    .left-section {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+    }
 
-        .form-group h1{
-            font-size: 30px;
+    .left-section h1 {
+      font-size: 5rem;
+      color: #ff4d4d;
+    }
 
-        }
+    .left-section p {
+      font-size: 20px;
+      font-style: italic;
+      margin: 15px 0;
+    }
 
-        .btn {
-            background: #ff4d4d;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-            float: left;
-        }
+    .left-section h2 {
+      font-size: 18px;
+      margin-top: 10px;
+    }
 
-        
-       
+    .right-section {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
+    .form-group {
+      margin-bottom: 25px;
+      text-align: left;
+    }
 
-    </style>
+    .form-group h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #ff4d4d;
+      border-radius: 10px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn {
+      background: #ff4d4d;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #1a1a1a;
+        padding: 10px 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .container {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .left-section h1 {
+        font-size: 3.5rem;
+      }
+
+      .nav-links a {
+        font-size: 18px;
+      }
+
+      .rounded-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        margin-top: 5px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left-section h1 {
+        font-size: 3rem;
+      }
+
+      .form-group h1 {
+        font-size: 18px;
+      }
+
+      input[type="text"], textarea {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .btn {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <span class="menu-icon">☰</span>
-        <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo" height="70px" width="200px"></div>
-        <nav class="nav-links">
-            <a href="home page.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="#about">About</a>
-            <a href="attendee.html">Dashboard</a>
-        </nav>
-        <button class="rounded-btn">Need Help?</button>
-    </header>
-
-    <div class="container">
-        <div class="left-section">
-          <h1 style="font-size: 8rem; color: #ff4d4d;">Contact Us</h1>  
-          <p>We’re always here to help. Reach out with any questions or feedback!</p>
-        <h2><strong>📞</strong> +91 58345 87549</h2>
-        <h2><strong>📧</strong> simon@gmail.com</h2>
-        <h2><strong>📍</strong> #723c, Central Plaza, Sector 9, Urban Estate</h2>
+  <header class="header">
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+    <div class="logo">
+      <a href="home page.html">
+        <img src="frontend images/eventify logo.png" alt="Logo" height="70px" width="200px">
+      </a>
     </div>
-        
 
-        <div class="right-section">
-            <form>
-                <div class="form-group">
-                  <h1>Name</h1>
-                  <input type="text" id="name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <h1>Email</h1>
-                    <input type="text" id="name" placeholder="Enter your name">
-                  </div>
-                  <div class="form-group">
-                    <h1>Phone</h1>
-                    <input type="text" id="name" placeholder="Enter your name">
-                  </div>
-                  <div class="form-group">
-                    <h1>Message</h1>
-                    <textarea id="message" placeholder="Enter your message"></textarea>
-                  </div>
-                  <button type="submit" class="btn">Send Message</button>
-                </form>
+    <nav class="nav-links" id="navLinks">
+      <a href="home page.html">Home</a>
+      <a href="Events.html">Events</a>
+      <a href="#about">About</a>
+      <a href="attendee.html">Dashboard</a>
+    </nav>
+
+    <button class="rounded-btn">Need Help?</button>
+  </header>
+
+  <div class="container">
+    <div class="left-section">
+      <h1>Contact Us</h1>
+      <p>We’re always here to help. Reach out with any questions or feedback!</p>
+      <h2><strong>📞</strong> +91 9897645782</h2>
+      <h2><strong>📧</strong> eventifyhelpdesk@gmail.com</h2>
+      <h2><strong>📍</strong> #723c, Central Plaza, Sector 9, Urban Estate</h2>
+    </div>
+
+    <div class="right-section">
+      <form>
+        <div class="form-group">
+          <h1>Name</h1>
+          <input type="text" placeholder="Enter your name" />
         </div>
-   
+        <div class="form-group">
+          <h1>Email</h1>
+          <input type="text" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <h1>Phone</h1>
+          <input type="text" placeholder="Enter your phone number" />
+        </div>
+        <div class="form-group">
+          <h1>Message</h1>
+          <textarea placeholder="Enter your message"></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </div>
-   
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
