@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+// Load environment variables
 dotenv.config();
+console.log('Port:', process.env.PORT); // Debugging: Logs PORT value from .env
+console.log('Mongo URI:', process.env.MONGO_URI); // Debugging: Logs MongoDB URI
+console.log('JWT Secret:', process.env.JWT_SECRET); // Debugging: Logs JWT secret key
 
 const app = express();
 

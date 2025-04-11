@@ -1328,50 +1328,117 @@ button.login-btn:hover {
 </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-const togglePassword = document.querySelector('.toggle-password');
-const passwordInput = document.getElementById('password');
-
-togglePassword.addEventListener('click', function() {
-const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-passwordInput.setAttribute('type', type);
-this.classList.toggle('fa-eye');
-this.classList.toggle('fa-eye-slash');
-});
-
-document.querySelectorAll('.social-btn').forEach(button => {
-button.addEventListener('click', function() {
-    this.style.opacity = '0.7';
-    setTimeout(() => {
-        this.style.opacity = '1';
-    }, 200);
-});
-});
-});
-// Social login function
-function socialLogin(provider) {
-    const loginButton = document.getElementById('login-button');
-    loginButton.classList.add('loading');
-    
-    setTimeout(function() {
-        loginButton.classList.remove('loading');
-        window.location.href = "dashboard.html";
-    }, 2000);
-}
-
-// Password visibility toggle
-function togglePasswordVisibility() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Password Toggle
+    const togglePassword = document.querySelector('.toggle-password');
     const passwordInput = document.getElementById('password');
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-    } else {
-        passwordInput.type = 'password';
-    }
-}
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Slick slider
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    // Social Button Click Effect
+    document.querySelectorAll('.social-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            this.style.opacity = '0.7';
+            setTimeout(() => {
+                this.style.opacity = '1';
+            }, 200);
+        });
+    });
+
+    // Modal Handling
+    const modal = document.getElementById("login-modal");
+    const loginButton = document.querySelector(".login-btn");
+    const closeButton = document.querySelector(".close-button");
+
+    loginButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        modal.style.display = "flex";
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    });
+
+    closeButton.addEventListener("click", function () {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+    });
+
+    // Form Validation
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('login-error'); // Add this element in your HTML
+
+    async function handleLogin(e) {
+        e.preventDefault(); // Prevent default form submission
+
+        loginError.style.display = 'none'; // Hide previous error messages
+
+        const email = document.getElementById('email').value; // Get email input
+        const password = document.getElementById('password').value; // Get password input
+
+        if (!email || !password) {
+            showError(loginError, "Please fill in all fields");
+            return;
+        }
+
+        try {
+            // Show loading spinner (optional)
+            const loginButton = document.querySelector('.submit-btn');
+            loginButton.classList.add('loading');
+
+            // Send data to backend API
+            const response = await fetch('http://localhost:3000/api/auth/login', { // Update URL based on your backend
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+
+            // Store token and redirect (assuming JWT response)
+            localStorage.setItem('authToken', data.token);
+            window.location.href = 'dashboard.html';
+
+        } catch (error) {
+            showError(loginError, error.message);
+        } finally {
+            const loginButton = document.querySelector('.submit-btn');
+            loginButton.classList.remove('loading');
+        }
+    }
+
+    loginForm.addEventListener('submit', handleLogin);
+
+    function showError(element, message) {
+        element.textContent = message;
+        element.style.display = 'block';
+        setTimeout(() => {
+            element.style.display = 'none';
+        }, 5000);
+    }
+
+    // Initialize Slick Slider
     $('.slider-container').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -1383,125 +1450,31 @@ document.addEventListener('DOMContentLoaded', function() {
         arrows: true,
         cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
         pauseOnHover: true,
-                centerMode: true,
-                variableWidth: true,
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 2,
-                            centerMode: false
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            centerMode: true
-                        }
-                    }
-                ]
-            });
-                        
-            // Initialize AOS
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 800,
-                    easing: 'ease-in-out',
-                    once: true,
-                    offset: 100
-                });
+        centerMode: true,
+        variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 2, centerMode: false }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1, centerMode: true }
             }
+        ]
+    });
 
-            // Modal handling
-            const modal = document.getElementById("login-modal");
-            const loginButton = document.querySelector(".login-btn");
-            const closeButton = document.querySelector(".close-button");
-
-            loginButton.addEventListener("click", function(event) {
-                event.preventDefault();
-                modal.style.display = "flex";
-                // Add small delay to trigger animation
-                setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10);
-            });
-
-            closeButton.addEventListener("click", function() {
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = "none";
-                }, 300);
-            });
-
-            window.addEventListener("click", function(event) {
-                if (event.target === modal) {
-                    modal.classList.remove('show');
-                    setTimeout(() => {
-                        modal.style.display = "none";
-                    }, 300);
-                }
-            });
-
-            // Form validation
-            const loginForm = document.getElementById('login-form');
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const loginError = document.getElementById('login-error');
-
-            function validateField(inputElement, errorId, validationFunction) {
-                const errorElement = document.getElementById(errorId);
-                const isValid = validationFunction(inputElement.value);
-                
-                if (!isValid) {
-                    inputElement.parentElement.classList.add('error');
-                    errorElement.style.display = 'block';
-                } else {
-                    inputElement.parentElement.classList.remove('error');
-                    errorElement.style.display = 'none';
-                }
-                
-                return isValid;
-            }
-
-            function isValidUsername(username) {
-                return username.trim().length >= 3;
-            }
-
-            function isValidPassword(password) {
-                return password.length >= 6;
-            }
-
-            usernameInput.addEventListener('input', function() {
-                validateField(usernameInput, 'username-error', isValidUsername);
-            });
-
-            passwordInput.addEventListener('input', function() {
-                validateField(passwordInput, 'password-error', isValidPassword);
-            });
-
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                loginError.style.display = 'none';
-                
-                const isUsernameValid = validateField(usernameInput, 'username-error', isValidUsername);
-                const isPasswordValid = validateField(passwordInput, 'password-error', isValidPassword);
-                
-                if (isUsernameValid && isPasswordValid) {
-                    loginButton.classList.add('loading');
-                    
-                    setTimeout(function() {
-                        loginButton.classList.remove('loading');
-                        window.location.href = "dashboard.html";
-                    }, 2000);
-                } else {
-                    loginError.textContent = "Please correct the errors before logging in.";
-                    loginError.style.display = 'block';
-                }
-            });
+    // Initialize AOS Animation
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
         });
-    </script>
+    }
+});
+</script>
 </body>
 </html>
 
