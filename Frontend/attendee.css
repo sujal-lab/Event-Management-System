@@ -3,11 +3,16 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: scroll; /* Prevent scrollbars */
+    overflow: hidden; /* Prevent scrollbars */
     font-family: 'Poppins', sans-serif;
     background: black; /* Full black background */
     color: white;
     text-align: center;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* Container */
@@ -16,6 +21,17 @@ html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding: 10px;
 }
 
 /* Sidebar */
@@ -29,6 +45,7 @@ html, body {
     left: 0;
     top: 0;
     overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar h2 {
@@ -54,6 +71,7 @@ html, body {
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
+    margin: 1rem 0;
 }
 
 .sidebar ul li:hover,
@@ -119,13 +137,14 @@ html, body {
 
 /* Events Section */
 .events-section {
+    list-style: none;
     margin-top: 40px;
     padding: 20px;
     background: #1e1e1e;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(255, 0, 0, 0.2);
     color: white;
-    text-align: center;
+    text-align: left;
     font-size: 20px;
     width: 80%;
 }
@@ -176,6 +195,18 @@ html, body {
     .sidebar.show {
         transform: translateX(0);
     }
+ 
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
 
     .main-content {
         margin-left: 0;
@@ -212,6 +243,16 @@ html, body {
     top: 15px;
     right: 15px;
   }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
   
   /* Sidebar Behavior */
   @media (max-width: 768px) {
@@ -227,6 +268,10 @@ html, body {
   
     .sidebar-toggle.open {
       display: block;
+    }
+
+    .menu-toggle {
+        display: block;
     }
   
     .main-content {
