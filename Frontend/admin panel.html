@@ -206,6 +206,10 @@
       <div class="form-group">
         <input type="text" id="event-name" placeholder="Event Name">
         <input type="date" id="event-date">
+        <script>
+          const today = new Date().toISOString().split('T')[0];
+          document.getElementById('event-date').setAttribute('min', today);
+        </script>
         <input type="time" id="event-time">
         <input type="text" id="event-location" placeholder="Event Location">
 
@@ -265,111 +269,104 @@
     </section>
   </main>
 
-  <script>
-   let events = [];
-    let users = [];
 
-    function addEvent() {
-      const name = document.getElementById('event-name').value;
-      const date = document.getElementById('event-date').value;
-      const time = document.getElementById('event-time').value;
-      const location = document.getElementById('event-location').value;
-      const description = document.getElementById('event-description').value;
-      const posterInput = document.getElementById('event-poster');
-      const poster = posterInput.files[0];
+<script>
+function addEvent() {
+  const name = document.getElementById('event-name').value;
+  const date = document.getElementById('event-date').value;
+  const time = document.getElementById('event-time').value;
+  const location = document.getElementById('event-location').value;
+  const description = document.getElementById('event-description').value;
+  const posterInput = document.getElementById('event-poster');
+  const poster = posterInput.files[0];
 
-      if (name && date && time && location && description && poster) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          events.push({ name, date, time, location, description, poster: e.target.result });
-          updateEventTable();
-        };
-        reader.readAsDataURL(poster);
+  if (name && date && time && location && description && poster) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const newEvent = {
+        id: Date.now(),
+        name,
+        date,
+        time,
+        location,
+        description,
+        poster: e.target.result, // Convert image to Base64
+      };
 
-        document.getElementById('event-name').value = '';
-        document.getElementById('event-date').value = '';
-        document.getElementById('event-time').value = '';
-        document.getElementById('event-location').value = '';
-        document.getElementById('event-description').value = '';
-        posterInput.value = '';
-      }
+      // Save event to localStorage
+      const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
+      existingEvents.push(newEvent);
+      localStorage.setItem('events', JSON.stringify(existingEvents));
+
+      updateEventTable(); // Update event table dynamically
+    };
+    reader.readAsDataURL(poster);
+
+    // Clear form fields
+    document.getElementById('event-name').value = '';
+    document.getElementById('event-date').value = '';
+    document.getElementById('event-time').value = '';
+    document.getElementById('event-location').value = '';
+    document.getElementById('event-description').value = '';
+    posterInput.value = '';
+  }
+}
+
+function deleteEvent(index) {
+  const existingEvents = JSON.parse(localStorage.getItem('events')) || [];
+  existingEvents.splice(index, 1); // Remove event from array
+  localStorage.setItem('events', JSON.stringify(existingEvents)); // Update localStorage
+  updateEventTable(); // Refresh table
+}
+
+function updateEventTable(filtered = 'all') {
+  const container = document.getElementById('events-body');
+  container.innerHTML = ''; // Clear previous content
+
+  const today = new Date().toISOString().split('T')[0];
+  const events = JSON.parse(localStorage.getItem('events')) || [];
+  let count = 0;
+
+  events.forEach((event, index) => {
+    let include = false;
+    if (filtered === 'all') include = true;
+    else if (filtered === 'upcoming' && event.date > today) include = true;
+    else if (filtered === 'ongoing' && event.date === today) include = true;
+    else if (filtered === 'finished' && event.date < today) include = true;
+
+    if (include) {
+      const cardHTML = `
+        <div class="event-card">
+          <img src="${event.poster}" alt="Poster">
+          <div class="event-details">
+            <h4>${event.name}</h4>
+            <p>Date: ${event.date}</p>
+            <p>Time: ${event.time}</p>
+            <p>Location: ${event.location}</p>
+            <p>${event.description}</p>
+          </div>
+          <button class="delete-btn" onclick="deleteEvent(${index})">Delete</button>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', cardHTML);
+      count++;
     }
+  });
 
-    function deleteEvent(index) {
-      events.splice(index, 1);
-      updateEventTable();
-    }
+  document.getElementById('total-events').textContent = count; // Update stats
+}
 
-    function updateEventTable(filtered = 'all') {
-      const container = document.getElementById('events-body');
-      container.innerHTML = '';
-      const today = new Date().toISOString().split('T')[0];
-      let count = 0;
 
-      events.forEach((event, index) => {
-        let include = false;
-        if (filtered === 'all') include = true;
-        else if (filtered === 'upcoming' && event.date > today) include = true;
-        else if (filtered === 'ongoing' && event.date === today) include = true;
-        else if (filtered === 'finished' && event.date < today) include = true;
-
-        if (include) {
-          const card = document.createElement('div');
-          card.className = 'event-card';
-          card.innerHTML = `
-            <img src="${event.poster}" alt="Poster">
-            <div class="event-details">
-              <h4>${event.name}</h4>
-              <p>Date: ${event.date}</p>
-              <p>Time: ${event.time}</p>
-              <p>Location: ${event.location}</p>
-              <p>${event.description}</p>
-            </div>
-            <button class="delete-btn" onclick="deleteEvent(${index})">Delete</button>
-          `;
-          container.appendChild(card);
-          count++;
-        }
-      });
-      document.getElementById('total-events').textContent = count;
-    }
-
-    function filterEvents(value) {
-      updateEventTable(value);
-    }
-
-    function addUser() {
-      const name = document.getElementById('user-name').value;
-      const role = document.getElementById('user-role').value;
-      if (name && role) {
-        users.push({ name, role });
-        document.getElementById('user-name').value = '';
-        document.getElementById('user-role').value = '';
-        updateUserList();
-      }
-    }
-
-    function deleteUser(index) {
-      users.splice(index, 1);
-      updateUserList();
-    }
-
-    function updateUserList() {
-      const list = document.getElementById('user-list');
-      list.innerHTML = '';
-      users.forEach((user, index) => {
-        const row = `<tr>
-          <td>${user.name}</td>
-          <td>${user.role}</td>
-          <td><button class="delete-btn" onclick="deleteUser(${index})">Delete</button></td>
-        </tr>`;
-        list.innerHTML += row;
-      });
-      document.getElementById('total-users').textContent = users.length;
-    }
+    
+    
 
 
 
-  </script>
+ 
+
+</script>
+
+
+  
 </body>
 </html>
