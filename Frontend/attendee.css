@@ -1,12 +1,10 @@
-/* General Reset */
-html, body {
-    height: 100%;
+/* Reset & Base */
+body {
     margin: 0;
     padding: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden; /* Prevent scrollbars */
     font-family: 'Poppins', sans-serif;
-    background: black;
+    background: black; /* Full black background */
     color: white;
     text-align: center;
     scrollbar-width: none;
@@ -24,10 +22,21 @@ body::-webkit-scrollbar {
     overflow: hidden;
 }
 
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding: 10px;
+}
+
 /* Sidebar */
 .sidebar {
     width: 220px;
-    background: #1e1e1e;
+    background: #1e1e1e; /* Maroon */
     color: white;
     padding: 20px;
     height: 100vh;
@@ -35,133 +44,100 @@ body::-webkit-scrollbar {
     left: 0;
     top: 0;
     overflow-y: auto;
-    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar h2 {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
     text-transform: uppercase;
+    color: #8b0000; /* Crimson */
 }
 
 .sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .sidebar ul li {
-    margin: 12px 0;
-    padding: 12px;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: white;
     display: flex;
     align-items: center;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
+    justify-content: center;
     transition: background 0.3s ease;
-    cursor: pointer;
+    margin: 1rem 0;
 }
 
 .sidebar ul li:hover,
 .sidebar ul li.active {
     background: #8b0000;
-}
-
-.sidebar ul li i {
-    margin-right: 10px;
-    font-size: 18px;
+    cursor: pointer;
 }
 
 .sidebar ul li a {
     color: white;
     text-decoration: none;
-    flex: 1;
-}
-
-/* Sidebar Toggle (Mobile) */
-.sidebar-toggle.open {
-    background: #8b0000;
-    color: white;
-    font-size: 22px;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 5px;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    display: none;
-    z-index: 1001;
-}
-
-.sidebar-toggle.close {
-    background: transparent;
-    color: white;
-    border: none;
-    font-size: 22px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    display: none;
+    font-weight: 600;
 }
 
 /* Main Content */
 .main-content {
     margin-left: 220px;
-    padding: 40px 20px;
+    padding: 40px;
     height: 100vh;
     overflow-y: auto;
     flex: 1;
+    padding: 2rem;
+    background-color: #fff;
+    overflow: auto;
+  }
+  
+  .header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 
 /* Header */
 .header {
-    background: #8b0000;
-    padding: 20px;
-    border-radius: 12px;
+    background: #8b0000; /* Changed from #dc143c to match sidebar */
+    padding: 15px;
+    border-radius: 10px;
     color: white;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: bold;
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Quick Overview Text */
-.overview-text {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #ccc;
 }
 
 /* Dashboard Cards */
 .dashboard-cards {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .card {
     background: #1e1e1e;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 6px 0 #8b0000;
+    box-shadow: 0 5px 10px rgba(255, 0, 0, 0.3);
     width: 260px;
     color: white;
-    text-align: center;
-    font-weight: 600;
+    border-bottom: 5px solid #8b0000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
 }
 
 /* Events Section */
@@ -206,7 +182,6 @@ body::-webkit-scrollbar {
     color: white;
     border-radius: 6px;
     transition: 0.3s ease;
-    margin-top: 10px;
 }
 
 .dark-mode-toggle:hover {
@@ -218,19 +193,24 @@ body::-webkit-scrollbar {
     .sidebar {
         transform: translateX(-100%);
         position: fixed;
+        z-index: 1000;
         transition: transform 0.3s ease-in-out;
     }
 
     .sidebar.show {
         transform: translateX(0);
     }
+ 
+    .sidebar.active {
+        transform: translateX(0);
+    }
 
-    .sidebar-toggle.open {
+    .menu-toggle {
         display: block;
     }
 
-    .sidebar-toggle.close {
-        display: block;
+    .sidebar.show {
+        transform: translateX(0);
     }
 
     .main-content {
@@ -240,12 +220,73 @@ body::-webkit-scrollbar {
 
     .dashboard-cards {
         flex-direction: column;
-        align-items: center;
     }
 }
+/* Sidebar Toggle Buttons */
+.sidebar-toggle {
+    background: #dc143c;
+    color: white;
+    font-size: 22px;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  /* Open Button: top left of screen */
+  .sidebar-toggle.open {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    display: none;
+  }
+  
+  /* Close Button: inside sidebar */
+  .sidebar-toggle.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
 
+  .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  /* Sidebar Behavior */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+  
+    .sidebar.show {
+      transform: translateX(0);
+    }
+  
+    .sidebar-toggle.open {
+      display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+  
+    .main-content {
+      margin-left: 0;
+    }
+  }
+/* Hide close button on larger screens */
 @media (min-width: 769px) {
     .sidebar-toggle.close {
-        display: none;
+      display: none;
     }
-}
+  }
+    
