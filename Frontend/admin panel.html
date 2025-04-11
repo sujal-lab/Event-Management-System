@@ -187,6 +187,30 @@
         padding: 15px;
       }
     }
+
+    .file-upload {
+    position: relative;
+    display: inline-block;
+  }
+
+  .file-upload input[type="file"] {
+    display: none;
+  }
+
+  .file-upload-label {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .file-name {
+    margin-left: 10px;
+    color: white;
+    font-weight: 500;
+  }
+
   </style>
 </head>
 <body>
@@ -194,9 +218,8 @@
     <h2 style="color: #993300;">Admin Panel</h2>
     <a href="#">Home</a>
     <a href="#">Dashboard</a>
-    <a href="#">Settings</a>
     <a href="#">Manage Users</a>
-    <a href="#">Manage Events</a>
+    <a href="#">Events</a>
     <a href="#">Logout</a>
   </aside>
   <main>
@@ -206,8 +229,12 @@
         <input type="text" id="event-name" placeholder="Event Name">
         <input type="date" id="event-date">
         <input type="time" id="event-time">
+        <input type="text" id="event-location" placeholder="Event Location">
+
         <textarea id="event-description" placeholder="Event Description"></textarea>
+        <label for="event-poster" class="file-upload-label">Choose File</label>
         <input type="file" id="event-poster" accept="image/*">
+        <span id="fileName" class="file-name">No file chosen</span>
         <button onclick="addEvent()">Add Event</button>
       </div>
     </section>
@@ -270,14 +297,15 @@
       const name = document.getElementById('event-name').value;
       const date = document.getElementById('event-date').value;
       const time = document.getElementById('event-time').value;
+      const location = document.getElementById('event-location').value;
       const description = document.getElementById('event-description').value;
       const posterInput = document.getElementById('event-poster');
       const poster = posterInput.files[0];
 
-      if (name && date && time && description && poster) {
+      if (name && date && time && location && description && poster) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          events.push({ name, date, time, description, poster: e.target.result });
+          events.push({ name, date, time, location, description, poster: e.target.result });
           updateEventTable();
         };
         reader.readAsDataURL(poster);
@@ -285,6 +313,7 @@
         document.getElementById('event-name').value = '';
         document.getElementById('event-date').value = '';
         document.getElementById('event-time').value = '';
+        document.getElementById('event-location').value = '';
         document.getElementById('event-description').value = '';
         posterInput.value = '';
       }
@@ -317,6 +346,7 @@
               <h4>${event.name}</h4>
               <p>Date: ${event.date}</p>
               <p>Time: ${event.time}</p>
+              <p>Location: ${event.location}</p>
               <p>${event.description}</p>
             </div>
             <button class="delete-btn" onclick="deleteEvent(${index})">Delete</button>
@@ -362,43 +392,6 @@
       document.getElementById('total-users').textContent = users.length;
     }
 
-
-
-
-
-
-
-
-
-
-
-    document.getElementById("event-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const title = document.getElementById("event-title").value;
-    const date = document.getElementById("event-date").value;
-    const time = document.getElementById("event-time").value;
-    const location = document.getElementById("event-location").value;
-    const imageInput = document.getElementById("event-image");
-
-    const reader = new FileReader();
-    reader.onload = async function () {
-        const base64Image = reader.result;
-
-        const newEvent = { title, date, time, location, image: base64Image };
-
-        const res = await fetch("http://localhost:3000/api/events", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newEvent),
-        });
-
-        const result = await res.json();
-        alert(result.message);
-    };
-
-    reader.readAsDataURL(imageInput.files[0]);
-});
 
 
   </script>
