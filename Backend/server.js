@@ -39,8 +39,19 @@ app.use((req, res, next) => {
 });
 
 // Register auth routes
+// First, make sure your auth routes file exists
 const authRoutes = require('./routes/auth');
+
+// Update the auth routes registration with a specific base path
 app.use('/api/auth', authRoutes);
+
+// Remove or comment out the problematic test route
+// app.get('/api/auth/test/:route', (req, res) => {
+//   res.status(405).json({ 
+//     error: 'Method not allowed',
+//     message: `The test route /api/auth/test/${req.params.route} only supports POST method, not GET` 
+//   });
+// });
 
 // Database connection with improved options
 mongoose.connect(process.env.MONGO_URI, {
@@ -124,12 +135,13 @@ app.options('*', cors());
 
 // Ensure all auth routes support GET for debugging during development
 // Remove this in production!
-app.get('/api/auth/:route', (req, res) => {
-  res.status(405).json({ 
-    error: 'Method not allowed',
-    message: `The route /api/auth/${req.params.route} only supports POST method, not GET` 
-  });
-});
+// app.get('/api/auth/test/:route', (req, res) => {
+//   res.status(405).json({ 
+//     error: 'Method not allowed',
+//     message: `The test route /api/auth/test/${req.params.route} only supports POST method, not GET` 
+//   });
+// });
+
 
 // Catch all undefined routes - IMPORTANT: Always return JSON, never HTML
 app.use((req, res) => {
