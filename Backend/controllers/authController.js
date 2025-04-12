@@ -9,58 +9,103 @@ exports.login = async (req, res) => {
         
         // Validate input
         if (!email || !password) {
-            return res.status(400).json({ error: 'Please provide email and password' });
+            return res.status(400).json({ 
+                success: false,
+                message: 'Please provide email and password',
+                user: null
+            });
         }
         
-        // Find user by email
+        // DEVELOPMENT: Hardcoded test user
+        if (email === "sujal0795.becse24@chitkara.edu.in" && password === "test123") {
+            return res.status(200).json({
+                success: true,
+                message: 'Login successful',
+                user: {
+                    token: 'dummy-token-123',
+                    id: '1',
+                    email: email,
+                    username: 'Sujal',
+                    name: 'Sujal',
+                    role: 'user'
+                }
+            });
+        }
+
+        // PRODUCTION: Database authentication
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ 
+                success: false,
+                message: 'User not found',
+                user: null
+            });
         }
         
         // Compare passwords
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            return res.status(401).json({ 
+                success: false,
+                message: 'Invalid credentials',
+                user: null
+            });
         }
         
         // Generate JWT token
         const token = jwt.sign(
-            { id: user._id, email: user.email },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
+            { id: user._id },
+            process.env.JWT_SECRET || 'superSecretKey',
+            { expiresIn: '24h' }
         );
         
-        // Return success response
+        // Return standardized response
         res.status(200).json({
+            success: true,
             message: 'Login successful',
-            token,
             user: {
+                token: token,
                 id: user._id,
-                name: user.name,
-                email: user.email
+                email: user.email,
+                username: user.username,
+                name: user.name || user.username,
+                role: user.role || 'user'
             }
         });
+
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({
+            success: false,
+            message: 'Login failed',
+            user: null,
+            error: error.message
+        });
     }
 };
 
-// Registration controller (basic implementation)
+// Registration controller
 exports.register = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, username } = req.body;
         
         // Validate input
-        if (!name || !email || !password) {
-            return res.status(400).json({ error: 'Please provide all required fields' });
+        if (!name || !email || !password || !username) {
+            return res.status(400).json({ 
+                success: false,
+                message: 'Please provide all required fields',
+                user: null
+            });
         }
         
         // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ error: 'User already exists' });
+            return res.status(400).json({ 
+                success: false,
+                message: 'User already exists',
+                user: null
+            });
         }
         
         // Hash password
@@ -71,29 +116,40 @@ exports.register = async (req, res) => {
         const user = new User({
             name,
             email,
-            password: hashedPassword
+            username,
+            password: hashedPassword,
+            role: 'user' // Default role
         });
         
         await user.save();
         
         // Generate JWT token
         const token = jwt.sign(
-            { id: user._id, email: user.email },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
+            { id: user._id },
+            process.env.JWT_SECRET || 'superSecretKey',
+            { expiresIn: '24h' }
         );
         
+        // Return response matching login structure
         res.status(201).json({
-            message: 'User registered successfully',
-            token,
+            success: true,
+            message: 'Registration successful',
             user: {
+                token: token,
                 id: user._id,
+                email: user.email,
+                username: user.username,
                 name: user.name,
-                email: user.email
+                role: user.role
             }
         });
     } catch (error) {
         console.error('Registration error:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({
+            success: false,
+            message: 'Registration failed',
+            user: null,
+            error: error.message
+        });
     }
 };
