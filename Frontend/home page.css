@@ -1166,3 +1166,74 @@ display: flex;
 align-items: stretch;
 }
 
+
+  
+ 
+
+
+  .event-card {
+    position: relative;
+    width: 450px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 15px;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,15,19,0.85) 60%, rgba(15,15,19,0.1) 100%);
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding: 24px 20px 20px 20px;
+    width: 100%;
+  }
+  
+  .event-card h3, .event-card p, .event-card .event-date, .event-card .card-button {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  
+  .event-card .event-date {
+    color: #FFB86C;
+    font-weight: 500;
+    margin: 8px 0 0 0;
+  }
+  
+  .event-card .card-button {
+    margin-top: 12px;
+    background: #aa0000;
+    color: #fff;
+    padding: 10px 0;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+    display: block;
+  }
+  
+  .event-card .card-button:hover {
+    background: #cc0000;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  }
+  

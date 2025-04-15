@@ -206,10 +206,7 @@
       <div class="form-group">
         <input type="text" id="event-name" placeholder="Event Name">
         <input type="date" id="event-date">
-        <script>
-          const today = new Date().toISOString().split('T')[0];
-          document.getElementById('event-date').setAttribute('min', today);
-        </script>
+      
         <input type="time" id="event-time">
         <input type="text" id="event-location" placeholder="Event Location">
 
@@ -310,6 +307,10 @@ function addEvent() {
     document.getElementById('event-description').value = '';
     posterInput.value = '';
   }
+
+
+  localStorage.setItem('events', JSON.stringify(existingEvents));
+  window.dispatchEvent(new Event('storage')); 
 }
 
 function deleteEvent(index) {

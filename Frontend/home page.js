@@ -225,3 +225,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+
+
+
+// In home page.js
+function loadEvents() {
+    const events = JSON.parse(localStorage.getItem('events')) || [];
+    const container = document.getElementById('event-slider');
+
+    
+    container.innerHTML = events.map(event => `
+        <div class="event-card" style="background-image: url('${event.poster}');">
+          <div class="card-overlay">
+            <div class="card-content">
+              <h3>${event.name}</h3>
+              <p>${event.description}</p>
+              <p class="event-date">Date: ${event.date}</p>
+              <a href="#" class="card-button">Book Now</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+  
+    // Reinitialize Slick slider
+    $('.slider-container').slick('destroy').slick({
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 3,
+      responsive: [
+        { breakpoint: 768, settings: { slidesToShow: 1 } }
+      ]
+    });
+  }
+  
+  // Initial load
+  document.addEventListener('DOMContentLoaded', loadEvents);
+  
+  // Refresh when storage changes
+  window.addEventListener('storage', loadEvents);
+  
