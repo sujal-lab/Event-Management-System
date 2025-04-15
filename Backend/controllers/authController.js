@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -17,7 +17,7 @@ exports.login = async (req, res) => {
         }
         
         // DEVELOPMENT: Hardcoded test user
-        if (email === "sujal0795.becse24@chitkara.edu.in" && password === "test123") {
+        if (email === "simon0786.becse24@chitkara.edu.in" && password === "test123") {
             return res.status(200).json({
                 success: true,
                 message: 'Login successful',
