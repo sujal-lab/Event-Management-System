@@ -130,3 +130,58 @@ document.querySelectorAll(".sidebar ul li a").forEach(link => {
     }
   });
 });
+async function fetchDashboardData() {
+  try {
+    const response = await fetch('/api/dashboard-data'); // Your backend endpoint
+    const data = await response.json();
+
+    const today = new Date();
+    let upcoming = 0, past = 0;
+
+    data.events.forEach(event => {
+      const eventDate = new Date(event.date);
+      if (eventDate >= today) {
+        upcoming++;
+      } else {
+        past++;
+      }
+    });
+
+    // Update counts
+    document.getElementById("upcoming-count").textContent = upcoming;
+    document.getElementById("past-count").textContent = past;
+    document.getElementById("notifications-count").textContent = data.notifications.length;
+
+    // Optional: Render events to their respective sections
+    renderEvents(data.events);
+  } catch (err) {
+    console.error("Failed to fetch dashboard data:", err);
+  }
+}
+
+function renderEvents(events) {
+  const upcomingContainer = document.getElementById("upcoming-events");
+  const pastContainer = document.getElementById("past-events");
+  const today = new Date();
+
+  upcomingContainer.innerHTML = "";
+  pastContainer.innerHTML = "";
+
+  events.forEach(event => {
+    const eventDate = new Date(event.date);
+    const cardHTML = `
+      <div class="event-card">
+        <h4>${event.title}</h4>
+        <p>Date: ${event.date}</p>
+        <p>Location: ${event.location}</p>
+      </div>
+    `;
+    if (eventDate >= today) {
+      upcomingContainer.innerHTML += cardHTML;
+    } else {
+      pastContainer.innerHTML += cardHTML;
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", fetchDashboardData);
