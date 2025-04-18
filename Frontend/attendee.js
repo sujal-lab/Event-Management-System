@@ -61,17 +61,51 @@ function styleListItem(li) {
 // Initially show all events
 displayEvents(events);
 
-// Filter by type
-document.getElementById("filter").addEventListener("change", function () {
-  const value = this.value;
-  if (value === "upcoming") {
-    displayEvents(upcoming);
-  } else if (value === "past") {
-    displayEvents(past);
+const event = [
+  { name: "Freshers Party", date: "2025-03-25" },
+  { name: "Pitaara Nights", date: "2025-01-04" },
+  { name: "Sports Tournament", date: "2024-04-20" },
+];
+
+function renderEvents(filterText = '', filterType = 'all') {
+  const list = document.getElementById("event-list");
+  list.innerHTML = '';
+
+  const today = new Date();
+  let matchedEvents = events.filter(event => {
+    const matchesText = event.name.toLowerCase().includes(filterText.toLowerCase());
+    const eventDate = new Date(event.date);
+
+    if (filterType === 'upcoming' && eventDate < today) return false;
+    if (filterType === 'past' && eventDate >= today) return false;
+    return matchesText;
+  });
+
+  if (matchedEvents.length === 0) {
+    list.innerHTML = '<li>No matching events found.</li>';
   } else {
-    displayEvents(events);
+    matchedEvents.forEach(event => {
+      const li = document.createElement('li');
+      li.textContent = `${event.name} - ${event.date}`;
+      list.appendChild(li);
+    });
   }
+}
+
+document.getElementById("search").addEventListener("input", () => {
+  const search = document.getElementById("search").value;
+  const filter = document.getElementById("filter").value;
+  renderEvents(search, filter);
 });
+
+document.getElementById("filter").addEventListener("change", () => {
+  const search = document.getElementById("search").value;
+  const filter = document.getElementById("filter").value;
+  renderEvents(search, filter);
+});
+
+renderEvents(); // Initial render
+
 
 // Search logic
 document.getElementById("search").addEventListener("input", function () {
