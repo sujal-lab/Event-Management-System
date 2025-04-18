@@ -23,11 +23,11 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="header">
-        <h1>Welcome<span id="saksham"></span> 👋</h1>
+        <h1>Welcome to the attendee Dashboard<span id="saksham"></span></h1>
         <button class="dark-mode-toggle"></button>
       </div>
 
-      <p>Here’s a quick overview of your events.</p>
+      <p>Here’s a quick overview of events.</p>
 
       <div class="dashboard-cards">
         <div class="card">
@@ -44,27 +44,26 @@
         </div>
       </div>
 
-      <!-- Event List with Search & Filter -->
-      <section class="events-section">
-        <h2>Your Events</h2>
-        <input type="text" id="search" placeholder="Search events...">
-        <select id="filter">
-          <option value="all">All Events</option>
-          <option value="upcoming">Upcoming</option>
-          <option value="past">Past</option>
-        </select>
-        <ul id="event-list">
-          <li>Loading events...</li>
-        </ul>
-      </section>
-    </main>
+<!-- Event List with Search & Filter -->
+<section class="events-section">
+  <h2 class="section-title">🎟️ Your Events</h2>
+
+  <div class="event-controls">
+    <input type="text" id="search" placeholder="🔍 Search events...">
+    <select id="filter">
+      <option value="all">All Events</option>
+      <option value="upcoming">Upcoming</option>
+      <option value="past">Past</option>
+    </select>
   </div>
 
-  <script src="attendee.js">
-    function toggleMenu() {
-      const navLinks = document.getElementById('navLinks');
-      navLinks.classList.toggle('active');
-    }
-  </script>
+  <ul id="event-list" class="event-list">
+    <li>Loading events...</li>
+  </ul>
+</section>
+
+
+  <!-- External JS -->
+  <script src="attendee.js"></script>
 </body>
 </html>
