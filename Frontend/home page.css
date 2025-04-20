@@ -589,7 +589,8 @@ header.scrolled {
     border-radius: 16px;
     padding: 25px 20px;
     text-align: center;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    max-width: 300px;
     margin: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1114,7 +1115,7 @@ background: rgba(255, 255, 255, 0.1);
 backdrop-filter: blur(10px);
 border-radius: 12px;
 margin: 15px;
-/* width: 300px; */
+width: 300px;
 overflow: hidden;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1153,9 +1154,6 @@ box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 
 /* Slick slider custom styles */
 .slick-slide {
-    height: auto;
-    display: flex;
-    align-items: stretch;
 padding: 0 10px;
 }
 
@@ -1175,7 +1173,7 @@ align-items: stretch;
 
   .event-card {
     position: relative;
-    width: 350px;
+    width: 450px;
     height: 500px;
     background-size: cover;
     background-position: center;

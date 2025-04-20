@@ -249,25 +249,6 @@ function loadEvents() {
           </div>
         </div>
       `).join('');
-
-
-
-//       if ($('.slider-container').hasClass('slick-initialized')) {
-//         $('.slider-container').slick('unslick');
-//     }
-//     // Initialize Slick only if there are events
-//     if (events.length > 0) {
-//         $('.slider-container').slick({
-//             dots: true,
-//             infinite: true,
-//             speed: 300,
-//             slidesToShow: 3,
-//             responsive: [
-//                 { breakpoint: 768, settings: { slidesToShow: 1 } }
-//             ]
-//         });
-//     }
-// }
       
   
     // Reinitialize Slick slider
