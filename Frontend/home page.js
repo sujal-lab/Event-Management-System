@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             default:
                 window.location.href = 'dashboard.html';
-                console.warn(`Unknown role "${role}", redirecting to default dashboard`);
+                console.warn('Unknown role "${role}", redirecting to default dashboard');
                 break;
         }
     }
@@ -249,25 +249,6 @@ function loadEvents() {
           </div>
         </div>
       `).join('');
-
-
-
-//       if ($('.slider-container').hasClass('slick-initialized')) {
-//         $('.slider-container').slick('unslick');
-//     }
-//     // Initialize Slick only if there are events
-//     if (events.length > 0) {
-//         $('.slider-container').slick({
-//             dots: true,
-//             infinite: true,
-//             speed: 300,
-//             slidesToShow: 3,
-//             responsive: [
-//                 { breakpoint: 768, settings: { slidesToShow: 1 } }
-//             ]
-//         });
-//     }
-// }
       
   
     // Reinitialize Slick slider
@@ -287,4 +268,18 @@ function loadEvents() {
   
   // Refresh when storage changes
   window.addEventListener('storage', loadEvents);
-  
+
+  function searchEvents() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.event-card');
+
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        if (title.includes(query) || desc.includes(query)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}

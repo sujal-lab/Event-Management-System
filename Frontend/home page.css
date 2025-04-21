@@ -1,5 +1,5 @@
- /* Login Modal Glassmorphism Styling */
- .modal-content.glassmorphism {
+/* Login Modal Glassmorphism Styling */
+.modal-content.glassmorphism {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -589,7 +589,8 @@ header.scrolled {
     border-radius: 16px;
     padding: 25px 20px;
     text-align: center;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    max-width: 300px;
     margin: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1114,7 +1115,7 @@ background: rgba(255, 255, 255, 0.1);
 backdrop-filter: blur(10px);
 border-radius: 12px;
 margin: 15px;
-/* width: 300px; */
+width: 300px;
 overflow: hidden;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -1153,9 +1154,6 @@ box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 
 /* Slick slider custom styles */
 .slick-slide {
-    height: auto;
-    display: flex;
-    align-items: stretch;
 padding: 0 10px;
 }
 
@@ -1175,7 +1173,7 @@ align-items: stretch;
 
   .event-card {
     position: relative;
-    width: 350px;
+    width: 450px;
     height: 500px;
     background-size: cover;
     background-position: center;
@@ -1238,4 +1236,64 @@ align-items: stretch;
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
   }
+  .booking-form {
+    background-color: #111;
+    color: white;
+    padding: 60px 40px;
+  }
   
+  .booking-form h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px 30px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 12px;
+    background-color: #222;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  
+  .form-full {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-full button {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    background: linear-gradient(to right, #ff4d4d, #ff1a1a);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .form-full button:hover {
+    background: linear-gradient(to right, #ff1a1a, #cc0000);
+  }
