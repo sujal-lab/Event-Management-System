@@ -1258,7 +1258,7 @@ align-items: stretch;
   .booking-form-section {
     background: #121212;
     padding: 40px;
-    max-width: 600px;
+    max-width: 800px;
     margin: 50px auto;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
@@ -1270,8 +1270,16 @@ align-items: stretch;
     margin-bottom: 30px;
   }
   
-  .booking-form .form-group {
+  .booking-form .form-row {
+    display: flex;
+    gap: 20px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .booking-form .form-group {
+    flex: 1;
+    min-width: 200px;
   }
   
   .booking-form label {
@@ -1308,9 +1316,11 @@ align-items: stretch;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
+    margin-top: 10px;
   }
   
   .booking-form button:hover {
     background: linear-gradient(to right, #ff1a1a, #e60000);
   }
+  
   
