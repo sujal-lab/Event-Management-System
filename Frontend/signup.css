@@ -11,7 +11,7 @@ body {
   }
   
   .register-container {
-    background: linear-gradient(135deg, #8e0e0e, #1a0c0c);
+    background: linear-gradient(135deg, #cc0000, #1a0c0c);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
