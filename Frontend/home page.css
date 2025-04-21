@@ -1236,88 +1236,65 @@ align-items: stretch;
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
   }
-  .booking-form-section {
-    background: #121212;
-    padding: 40px;
-    max-width: 800px;
-    margin: 50px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  .booking-form {
+    background-color: #111;
+    color: white;
+    padding: 60px 40px;
   }
   
-  .booking-form-section h2 {
+  .booking-form h2 {
     text-align: center;
-    color: #fff;
-    margin-bottom: 30px;
+    font-size: 28px;
+    margin-bottom: 40px;
   }
   
-  .booking-form .form-row {
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px 30px;
+  }
+  
+  .form-group {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
   
-  .booking-form .form-group {
-    flex: 1;
-    min-width: 200px;
-  }
-  
-  .booking-form label {
-    color: #fff;
-    display: block;
+  .form-group label {
     margin-bottom: 8px;
+    font-weight: 500;
   }
   
-  .booking-form input,
-  .booking-form select {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #222;
-    color: #fff;
-    font-size: 1rem;
-  }
-  
-  .booking-form input:focus,
-  .booking-form select:focus {
-    outline: none;
-    border: 1px solid #ff4d4d;
-  }
-  
-  .booking-form button {
-    width: 100%;
+  .form-group input,
+  .form-group select {
     padding: 12px;
-    background: linear-gradient(to right, #ff4d4d, #ff1a1a);
-    border: none;
+    background-color: #222;
+    color: white;
+    border: 1px solid #333;
     border-radius: 8px;
+    font-size: 15px;
+  }
+  
+  .form-full {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-full button {
+    width: 100%;
+    max-width: 600px;
+    padding: 15px;
+    background: linear-gradient(to right, #ff4d4d, #ff1a1a);
     color: white;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 10px;
+    transition: 0.3s ease;
   }
   
-  .booking-form button:hover {
-    background: linear-gradient(to right, #ff1a1a, #e60000);
-  }
-  .nav-button {
-    background: #ff1a1a;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease;
-    margin-left: 12px;
-  }
-  
-  .nav-button:hover {
-    background: #e60000;
-  }
-  html {
-    scroll-behavior: smooth;
+  .form-full button:hover {
+    background: linear-gradient(to right, #ff1a1a, #cc0000);
   }
   
