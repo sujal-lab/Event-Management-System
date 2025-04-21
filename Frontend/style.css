@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color:crimson; /* Dark background for contrast */
+    background-color: red; /* Dark background for contrast */
 }   
 
 /* Dashboard Layout */
@@ -43,7 +43,7 @@ body {
 
 .sidebar ul li:hover,
 .sidebar ul li.active {
-    background: crimson;
+    background: black;
 }
 
 .sidebar ul li a {
@@ -236,7 +236,7 @@ tr:hover {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: crimson;
+    background: #cc0000;
     color: white;
     padding: 12px 20px;
     border-radius: 6px;

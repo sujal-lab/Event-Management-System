@@ -251,6 +251,8 @@ function loadEvents() {
       `).join('');
       
   
+      
+  
     // Reinitialize Slick slider
     $('.slider-container').slick('destroy').slick({
       dots: true,
