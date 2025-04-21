@@ -1303,4 +1303,21 @@ align-items: stretch;
   .booking-form button:hover {
     background: linear-gradient(to right, #ff1a1a, #e60000);
   }
+  .nav-button {
+    background: #ff1a1a;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-left: 12px;
+  }
+  
+  .nav-button:hover {
+    background: #e60000;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   
