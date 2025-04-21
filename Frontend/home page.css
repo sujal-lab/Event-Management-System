@@ -1236,25 +1236,6 @@ align-items: stretch;
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
   }
-  .search-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .search-bar {
-    padding: 8px;
-    font-size: 16px;
-  }
-  
-  .search-button {
-    padding: 8px 12px;
-    background-color: #ff3c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
   .booking-form-section {
     background: #121212;
     padding: 40px;
@@ -1322,5 +1303,4 @@ align-items: stretch;
   .booking-form button:hover {
     background: linear-gradient(to right, #ff1a1a, #e60000);
   }
-  
   
