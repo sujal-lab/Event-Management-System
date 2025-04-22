@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Events.css"/>
+    <title>Eventify</title>
+</head>
+<body>
+    <header class="header">
+        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <div class="logo">
+            <a href="home page.html">
+                <img src="frontend images/eventify logo.png" alt="Logo" height="80px" width="200px" class="logo-glow" style="margin-right: 90px;">
+            </a>
+        </div>
+        
+        <input type="text" placeholder="Search..." class="search-bar">
+        <nav class="nav-links">
+            <a href="home page.html">Home</a>
+            <a href="Events.html">Events</a>
+            <a href="about us.html">About</a>
+            <a href="contactpage.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="left-section" id="sidebar">
+            <h2>Select Date</h2>
+            <div class="box1">
+                <input type="date" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #DC143C; border-radius: 5px; background: black; color: white;">
+                <div class="date-links">
+                    <a href="#yesterday">Yesterday</a>
+                    <a href="#today">Today</a>
+                    <a href="#tomorrow">Tomorrow</a>
+                   
+                </div>
+            </div>
+            <div class="datee-links">
+                <a href="#" style="margin-top: 50px;">Upcoming</a>
+                <a href="#">Finished</a>
+                <a href="#">Ongoing</a>
+                <a href="#">All events</a>
+            </div>
+        
+        </div>
+        <div class="right-section">
+            <h2>EXPLORE EVENTS</h2>
+            <div class="events-grid">
+                <div class="event-box">
+                    <img src="frontend images/comedy (1).jpg" class="event-img">
+                    <div class="event-details">
+                        <p><strong>Date:</strong> April 10</p>
+                        <p><strong>Time:</strong> 7 PM</p>
+                        <p><strong>Location:</strong> Auditorium</p>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="event-box">
+                        <img src="frontend images/comedy (2).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                
+                <div class="event-box">
+                        <img src="frontend images/comedy (3).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                
+                <div class="event-box">
+                    
+                        <img src="frontend images/comedy (4).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                
+                </div>
+                <div class="event-box">
+    
+                        <img src="frontend images/comedy (5).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                
+                <div class="event-box">
+            
+                        <img src="frontend images/comedy (6).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                
+                </div>
+                <div class="event-box">
+                    
+                        <img src="frontend images/comedy (7).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                
+                </div>
+                <div class="event-box">
+            
+                        <img src="frontend images/comedy (8).jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+    
+                <div class="event-box">
+                    
+                        <img src="frontend images/comedy.jpg" class="event-img">
+                        <div class="event-details">
+                            <p><strong>Date:</strong> April 10</p>
+                            <p><strong>Time:</strong> 7 PM</p>
+                            <p><strong>Location:</strong> Auditorium</p>
+                            <button class="book-btn">Book Now</button>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="events-container" class="events-grid four-columns"></div>
+
+    <script src="Events.js"></script>
+        
+
+
+
+      
+
+    
+</body>
+</html>

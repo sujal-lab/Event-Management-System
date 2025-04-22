@@ -20,44 +20,30 @@ const upcomingEvents = [
       location: "Sportorium", 
       description: "Sports Tournament for National Selection",
       
-    },
-    {
-      id: "event4",
-      title: "Hack5ive",
-      date: "March 25, 2025",
-      location: "Chitkara University",
-      description: "Great puzzles to be solved and win amazing prizes."
     }
   ];
   
   const pastEvents = [
     {
-      id: "event5",
+      id: "event4",
       title: "Stand-Up Comedy Night",
       date: "Dec 5, 2024",
       location: "Exploratorium",
       description: "Enjoy the night with drinks and jokes at comedy club auditorium."
     },
     {
-      id: "event6",
+      id: "event5",
       title: "Tech Fest",
       date: "Nov 15, 2024",
       location: "Carneggie Hall",
       description: "Attend Tech Fest with IIT Bombay Professors and chance to win excited prizes"
     },
     {
-      id: "event7",
+      id: "event6",
       title: "Cultural Nights",
       date: "Dec 31, 2025",
       location: "Alpha Zone",
       description: "Enjoy the Memorable Night with famous Singers and Performances.",
-    },
-    {
-      id: "event8",
-      title: "HackFest",
-      date: "May 2, 2025",
-      location: "Edison Block",
-      description: "Make a Amazing website and win exciting prizes and cash prize upto 100000"
     }
   ];
   
