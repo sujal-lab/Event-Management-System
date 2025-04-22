@@ -509,6 +509,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('book-btn')) {
+    const eventBox = e.target.closest('.event-box');
+    const eventName = eventBox.querySelector('.event-img').alt || "Event";
+    window.location.href = `booknow.html?event=${encodeURIComponent(eventName)}`;
+  }
+});
+
 
 // Sidebar toggle function
 function toggleSidebar() {

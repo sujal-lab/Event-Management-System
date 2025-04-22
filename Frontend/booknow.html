@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventify - Book Now</title>
+  <link rel="stylesheet" href="booknow.css">
+</head>
+<body>
+
+  <a href="events.html" class="back-link">← Back to Events</a>
+  <h1>Book Your Event</h1>
+
+  <div class="form-container">
+    <form id="booking-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="event">Select Event</label>
+        <select id="event" name="event" required>
+          <option value="" disabled selected>Choose an event</option>
+          <option value="techfest">Tech Fest 2025</option>
+          <option value="seminar">AI Seminar</option>
+          <option value="workshop">Web Development Workshop</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Additional Notes</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+      </div>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </div>
+
+  <script src="booknow.js"></script>
+</body>
+</html>
