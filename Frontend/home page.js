@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             default:
                 window.location.href = 'dashboard.html';
-                console.warn(`Unknown role "${role}", redirecting to default dashboard`);
+                console.warn('Unknown role "${role}", redirecting to default dashboard');
                 break;
         }
     }
@@ -251,6 +251,8 @@ function loadEvents() {
       `).join('');
       
   
+      
+  
     // Reinitialize Slick slider
     $('.slider-container').slick('destroy').slick({
       dots: true,
@@ -283,5 +285,3 @@ function loadEvents() {
         }
     });
 }
-
-  
