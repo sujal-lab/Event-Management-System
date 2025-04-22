@@ -139,3 +139,18 @@ Streamlined Entry: Event organizers can quickly scan tickets and manage guest en
    ```
 5. **Open the application:**
    Navigate to `http://localhost:3000` in your browser (or the specified port).
+
+## 🤝 Contributing
+We welcome contributions! To contribute:
+1. **Fork the repository**
+2. **Create a feature branch** (`feature-branch`)
+3. **Commit your changes** (`git commit -m "Add new feature"`)
+4. **Push the branch** (`git push origin feature-branch`)
+5. **Open a pull request**
+
+## 👥 Contributors
+- [Sujal Kandari](https://github.com/sujal-lab)
+- [Simon](https://github.com/Simon-796)
+- [Sherani[](https://github.com/sheranii)
+- [Sidhant](https://github.com/007Sidhant)
+- [Saksham Deep](https://github.com/SakshamDeep0915)
