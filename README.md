@@ -1,122 +1,45 @@
-```
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eventify - Team & Project</title>
-  <style>
-    /* Base Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+# Eventify 🎉
 
-    body {
-      background: #0e0e0e;
-      color: #f4f4f4;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      padding: 30px;
-    }
+Welcome to **Eventify** – a modern, user-friendly Event Management System built with a sleek dark theme and vibrant design elements. Whether you're organizing events or attending them, Eventify simplifies the entire process, offering a seamless booking experience and a powerful dashboard for attendees.
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 30px;
-      background-color: #1a1a1a;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
-    }
+---
 
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+## 👥 Meet the Team
 
-    h1 {
-      font-size: 3em;
-      background: linear-gradient(90deg, #FF6F61, #00E5FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+We are a group of passionate Computer Science Engineering students who collaborated to bring Eventify to life. Each member brought unique skills and creativity to the project:
 
-    .tagline {
-      font-size: 1.2em;
-      color: #cccccc;
-      margin-top: 10px;
-      font-style: italic;
-    }
+- **Saksham Deep**  
+- **Sujal**  
+- **Simon**  
+- **Sherani**  
+- **Sidhant** 
 
-    section {
-      margin-bottom: 40px;
-    }
+Together, we’ve combined our knowledge and efforts to design an intuitive, responsive, and elegant event management system.
 
-    h2 {
-      font-size: 1.8em;
-      color: #00E5FF;
-      margin-bottom: 20px;
-      border-left: 6px solid #FF6F61;
-      padding-left: 10px;
-    }
+---
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
+## 📌 Project Description
 
-    ul li {
-      background: #2a2a2a;
-      margin-bottom: 12px;
-      padding: 15px 20px;
-      border-radius: 12px;
-      border-left: 5px solid #FF6F61;
-      transition: transform 0.2s ease, background 0.3s ease;
-    }
+**Eventify** is a Single Page Application (SPA) designed to streamline event booking and management. The system features:
 
-    ul li:hover {
-      background: #333;
-      transform: translateX(5px);
-    }
+- **Home Page** – A welcoming introduction with dynamic content and call-to-actions.
+- **Login Page** – Secure and user-friendly login interface.
+- **Attendee Dashboard** – Personalized dashboard with upcoming events, bookings, and profile options.
+- **Booking Process Page** – Smooth step-by-step event registration and ticket booking.
+- **Profile Page** – Easily accessible from the dashboard for updating personal details.
 
-    p {
-      margin-bottom: 20px;
-      color: #ddd;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🎉 Eventify</h1>
-      <p class="tagline">Where Events Meet Innovation</p>
-    </header>
+All pages are dynamically loaded into a single `index.html` file, ensuring quick navigation and an enhanced user experience without full page reloads.
 
-    <section class="team">
-      <h2>👥 Meet the Team</h2>
-      <ul>
-        <li><strong>Saksham Deep</strong> – UI/UX Designer & Frontend Developer</li>
-        <li><strong>Sujal</strong> – Backend Developer & Data Handler</li>
-        <li><strong>Simon</strong> – Project Manager & API Integrator</li>
-        <li><strong>Sherani</strong> – Content Strategist & Quality Analyst</li>
-        <li><strong>Sidhant</strong> – Full Stack Developer & Tester</li>
-      </ul>
-    </section>
+---
 
-    <section class="description">
-      <h2>📌 Project Description</h2>
-      <p><strong>Eventify</strong> is a Single Page Application (SPA) designed to make event booking and management easier and more enjoyable. Key features include:</p>
-      <ul>
-        <li>🏠 <strong>Home Page</strong> – Engaging introduction with dynamic content</li>
-        <li>🔐 <strong>Login Page</strong> – Secure and user-friendly login experience</li>
-        <li>📋 <strong>Attendee Dashboard</strong> – Personal dashboard with events, bookings, and profile</li>
-        <li>🎟️ <strong>Booking Process Page</strong> – Smooth step-by-step event registration</li>
-        <li>👤 <strong>Profile Page</strong> – Manage personal information easily</li>
-      </ul>
-      <p>All components are loaded dynamically into a single page for a fast, interactive, and modern user experience.</p>
-    </section>
-  </div>
-</body>
-</html>
-```
+## 🌐 Technologies Used
+
+- HTML / CSS  
+- JavaScript 
+- Responsive Design Principles  
+- SPA (Single Page Application) Approach
+
+---
+
+We hope you enjoy exploring **Eventify** as much as we enjoyed building it. Contributions, feedback, and ideas are always welcome!
+
