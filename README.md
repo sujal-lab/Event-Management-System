@@ -1,138 +1,122 @@
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventify - Introduction</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f1e9;
-            color: black;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            overflow-y: auto; /* Prevent content cutoff */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventify - Team & Project</title>
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            background: white;
-            color: #1a1a1a;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 60%;
-            max-width: 800px;
-            max-height: 90vh; /* Prevents it from being too large */
-            overflow: auto; /* Enables scrolling if needed */
-        }
+    body {
+      background: #0e0e0e;
+      color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      padding: 30px;
+    }
 
-        h1 {
-            color: #d6555b;
-            font-size: 32px;
-        }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background-color: #1a1a1a;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+    }
 
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-        .team-section {
-            margin-top: 20px;
-        }
+    h1 {
+      font-size: 3em;
+      background: linear-gradient(90deg, #FF6F61, #00E5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .team-member {
-            background: #fff8ee;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-        }
+    .tagline {
+      font-size: 1.2em;
+      color: #cccccc;
+      margin-top: 10px;
+      font-style: italic;
+    }
 
-        .team-member h3 {
-            margin: 5px 0;
-            color: #d6555b;
-        }
+    section {
+      margin-bottom: 40px;
+    }
 
-        /* Dark Mode */
-        .dark-mode {
-            background: black;
-            color: white;
-        }
+    h2 {
+      font-size: 1.8em;
+      color: #00E5FF;
+      margin-bottom: 20px;
+      border-left: 6px solid #FF6F61;
+      padding-left: 10px;
+    }
 
-        .dark-mode .container {
-            background: #1a1a1a;
-            color: white;
-        }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-        .dark-mode .team-member {
-            background: #333;
-            color: white;
-        }
+    ul li {
+      background: #2a2a2a;
+      margin-bottom: 12px;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border-left: 5px solid #FF6F61;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
 
-        /* Toggle Button */
-        .toggle-btn {
-            background: #d6555b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 20px;
-            border-radius: 6px;
-            font-size: 16px;
-        }
+    ul li:hover {
+      background: #333;
+      transform: translateX(5px);
+    }
 
-        .toggle-btn:hover {
-            background: #b94850;
-        }
-    </style>
+    p {
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>🎉 Eventify</h1>
+      <p class="tagline">Where Events Meet Innovation</p>
+    </header>
 
-    <div class="container">
-        
-        <h1>Welcome To Eventify!</h1>  <!-- It should now appear properly -->
-        <p>Eventify is an innovative event management system designed to simplify planning, organizing, and executing events seamlessly.</p>
+    <section class="team">
+      <h2>👥 Meet the Team</h2>
+      <ul>
+        <li><strong>Saksham Deep</strong> – UI/UX Designer & Frontend Developer</li>
+        <li><strong>Sujal</strong> – Backend Developer & Data Handler</li>
+        <li><strong>Simon</strong> – Project Manager & API Integrator</li>
+        <li><strong>Sherani</strong> – Content Strategist & Quality Analyst</li>
+        <li><strong>Sidhant</strong> – Full Stack Developer & Tester</li>
+      </ul>
+    </section>
 
-        <div class="team-section">
-            <h2>Meet Our Team</h2>
-            
-            <div class="team-member">
-                <h3>Saksham Deep</h3>
-                <p>Manages Attendee Dashboard</p>
-            </div>
-            <div class="team-member">
-                <h3>Sujal</h3>
-                <p>Manages Home Page</p>
-            </div>
-            <div class="team-member">
-                <h3>Simon</h3>
-                <p>Manages Events Page</p>
-            </div>
-            <div class="team-member">
-                <h3>Sherani</h3>
-                <p>Manages Admin Portal</p>
-            </div>
-            <div class="team-member">
-                <h3>Sidhant</h3>
-                <p>Manages Graphic Designing for Webpages</p>
-            </div>
-        </div>
-
-        <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-    </div>
-
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
-
+    <section class="description">
+      <h2>📌 Project Description</h2>
+      <p><strong>Eventify</strong> is a Single Page Application (SPA) designed to make event booking and management easier and more enjoyable. Key features include:</p>
+      <ul>
+        <li>🏠 <strong>Home Page</strong> – Engaging introduction with dynamic content</li>
+        <li>🔐 <strong>Login Page</strong> – Secure and user-friendly login experience</li>
+        <li>📋 <strong>Attendee Dashboard</strong> – Personal dashboard with events, bookings, and profile</li>
+        <li>🎟️ <strong>Booking Process Page</strong> – Smooth step-by-step event registration</li>
+        <li>👤 <strong>Profile Page</strong> – Manage personal information easily</li>
+      </ul>
+      <p>All components are loaded dynamically into a single page for a fast, interactive, and modern user experience.</p>
+    </section>
+  </div>
 </body>
 </html>
+```
