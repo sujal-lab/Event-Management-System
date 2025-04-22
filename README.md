@@ -70,5 +70,72 @@ Streamlined Entry: Event organizers can quickly scan tickets and manage guest en
 - **Frontend:** ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 - **Backend:** ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 - **Database:** ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) 
-- **Version Control:** ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white) 
+- **Version Control:** ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
+## 🎯How to Use
+### 🔑 Step 1: Sign Up / Log In
+- Go to the Eventify Homepage.
+- Click Sign Up to create a new account. 
+  (Fill in your name, email and password and choose your role as Attendee or Organizers.)
+- Already have an account? Click log in and enter your credentials.
+- You'll br redirected to your personal dashboard after successful login.
+
+### 🏠 Step 2: Explore the Home Page
+- View featured events, trending categories and upcoming highlights.
+- Filter events using date, location or event type (concert, seminar, workshop e.t.c).
+
+### 📅 Step 3: Browse & Book Events
+- Click or any event card to see detailed information: (Description, Date and Time, Venue and Ticket Prices).
+- Choose your ticket type (eg. General, VIP).
+- Click "Book Now" to proceed.
+- Complete the payment process.
+- You'll receive a confirmation email.
+
+### 📊 Step 4: Use the Attendee Dashboard
+- View your upcoming events, past bookings and payment receipts.
+- Get real-time event notifications (reminders, changes, alerts).
+- Download or Print you e-tickets directly.
+- Track event countdowns and calender views.
+
+### 🛠️ Step 5: (For Organizers) Create & Manage Events
+- Switch to Organizer Mode (or sign up as Organizer).
+- Access your Admin Panel from the dashboard.
+- Click to "Create New Event"
+  Fill in event name, description, date, time, venue and ticket types.
+  Upload an image or banner.
+- Publish the event - it will appear instantly on the homepage.
+
+### 🔔 Step 6: Stay Updated
+- Turn on the notifications to get real-time updates on:
+  - Booked event reminders.
+  - Any changes to schedules or venues.
+  - New events based on your interests.
+- View all notifications directly from your dashboard bell icon 🔔
+
+### ✅ Step 7: Attend & Enjoy
+- On the event day:
+  - Show your QR Code ticket at the entrance.
+  - Organizers will scan and check you in.
+  - Enjoy a smooth, contactless entry and amazing event experience.
+ 
+####  🌟 Whether you're organizing or attending, Eventify makes events easy, engaging, and enjoyable.
+
+## 🚀 Installation Guide
+1. **Clone the repository:**
+   ```sh
+   https://github.com/sujal-lab/Event-Management-System
+   ```
+2. **Navigate to the project directory:**
+   ```sh
+   cd eventify
+   ```
+3. **Install dependencies (if using Node.js backend):**
+   ```sh
+   npm install
+   ```
+4. **Start the development server:**
+   ```sh
+   npm start
+   ```
+5. **Open the application:**
+   Navigate to `http://localhost:3000` in your browser (or the specified port).
