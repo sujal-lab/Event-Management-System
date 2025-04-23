@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css files/Events.css">
     <title>Eventify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
-        <span class="fas fa-bars menu-icon" onclick="toggleSidebar()">☰</span>
+        <i class="fas fa-bars menu-icon" onclick="toggleSidebar()">☰</i>
         <div class="logo">
             <a href="home page.html">
-                <img src="../frontend images/eventify logo.png" alt="Logo" height="80px" width="200px" class="logo-glow" style="margin-right: 90px;">
+                <img src="../frontend images/eventify logo.png" alt="Logo" height="70px" width="170px" class="logo-glow" style="margin-right: 90px;">
             </a>
         </div>
         
@@ -36,9 +37,9 @@
                 <h2><i class="far fa-calendar-alt"></i> Select Date</h2>
                 <input type="date" class="date-picker">
                 <div class="filter-links">
-                    <a href="#yesterday"><i class="far fa-clock"></i> Yesterday</a>
-                    <a href="#today"><i class="fas fa-calendar-day"></i> Today</a>
-                    <a href="#tomorrow"><i class="far fa-sun"></i> Tomorrow</a>
+                    <a href="#" onclick="filterEvents('yesterday')"><i class="far fa-clock"></i> Yesterday</a>
+                    <a href="#" onclick="filterEvents('today')"><i class="fas fa-calendar-day"></i> Today</a>
+                    <a href="#" onclick="filterEvents('tomorrow')"><i class="far fa-sun"></i> Tomorrow</a>
                 </div>
             </div>
             

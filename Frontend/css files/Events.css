@@ -41,7 +41,7 @@ html {
 }
 
 .menu-icon {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     cursor: pointer;
     color: white;
     transition: all 0.3s ease;
@@ -61,7 +61,7 @@ html {
 .nav-links a {
     color: var(--text);
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
     padding: 0.5rem 0;
     position: relative;
@@ -127,7 +127,7 @@ html {
 
 
 .left-section {
-    width: 500px;
+    width: 430px;
     overflow-y: auto;
     transition: all 0.4s ease;
     background: var(--card-bg) ;
@@ -184,6 +184,7 @@ html {
     text-decoration: none;
     border-radius: 5px;
     transition: all 0.3s ease;
+    font-size: 1.6rem;
 }
 
 .filter-links a i {
@@ -236,10 +237,11 @@ html {
 .event-box {
     background: black;
     padding: 0;
+    margin: 5px;
     text-align: center;
     box-shadow: 0 4px 10px #DC143C;
-    height: 450px;
-    width: 350px;
+    height: 400px;
+    width: 300px;
     font-size: 18px;
     border-radius: 10px;
     overflow: hidden;
