@@ -27,30 +27,12 @@ function renderEvents(eventsToShow) {
 
 function loadEvents() {
   // Load dynamic events from localStorage
-  const dynamicEvents = JSON.parse(localStorage.getItem('events')) || [];
+  allEvents = JSON.parse(localStorage.getItem('events')) || [];
+  // const dynamicEvents = JSON.parse(localStorage.getItem('events')) || [];
   
-  // Static events
-  const staticEvents = [
-    {
-      id: "static1",
-      name: "Comedy Night",
-      date: "2025-04-10",
-      time: "7 PM",
-      location: "Auditorium",
-      poster: "frontend images/comedy (1).jpg"
-    },
-    {
-      id: "static2",
-      name: "Music Fest",
-      date: "2025-04-15",
-      time: "6 PM",
-      location: "Open Grounds",
-      poster: "frontend images/comedy (2).jpg"
-    }
-  ];
-
+  
   // Combine events
-  allEvents = [...staticEvents, ...dynamicEvents];
+  
   renderEvents(allEvents);
 }
 
