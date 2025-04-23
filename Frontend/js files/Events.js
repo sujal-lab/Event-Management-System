@@ -26,13 +26,8 @@ function renderEvents(eventsToShow) {
 }
 
 function loadEvents() {
-  // Load dynamic events from localStorage
+  
   allEvents = JSON.parse(localStorage.getItem('events')) || [];
-  // const dynamicEvents = JSON.parse(localStorage.getItem('events')) || [];
-  
-  
-  // Combine events
-  
   renderEvents(allEvents);
 }
 
@@ -69,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
       filterEvents(filterType === 'all events' ? 'all' : filterType);
     });
   });
+  
+  //add here
+
+  
 });
 
 // Sidebar toggle function

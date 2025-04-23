@@ -8,40 +8,50 @@
 </head>
 <body>
     <header class="header">
-        <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+        <span class="fas fa-bars menu-icon" onclick="toggleSidebar()">☰</span>
         <div class="logo">
             <a href="home page.html">
                 <img src="../frontend images/eventify logo.png" alt="Logo" height="80px" width="200px" class="logo-glow" style="margin-right: 90px;">
             </a>
         </div>
         
-        <input type="text" placeholder="Search..." class="search-bar">
+       
         <nav class="nav-links">
-            <a href="home page.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="about us.html">About</a>
-            <a href="contactpage.html">Contact</a>
+            <a href="home page.html"><i class="fas fa-home"></i>Home</a>
+            <a href="Events.html"><i class="fas fa-calendar-alt"></i>Events</a>
+            <a href="about us.html"><i class="fas fa-info-circle"></i>About</a>
+            <a href="contactpage.html"><i class="fas fa-envelope"></i>Contact</a>
         </nav>
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search events..." class="search-bar">
+
+        </div>
     </header>
 
     <div class="container">
         <div class="left-section" id="sidebar">
-            <h2>Select Date</h2>
-            <div class="box1">
-                <input type="date" style="width: 100%; padding: 12px; font-size: 18px; border: 2px solid #DC143C; border-radius: 5px; background: black; color: white;">
-                <div class="date-links">
-                    <a href="#yesterday">Yesterday</a>
-                    <a href="#today">Today</a>
-                    <a href="#tomorrow">Tomorrow</a>
-                   
+            <div class="filter-group">
+                <h2><i class="far fa-calendar-alt"></i> Select Date</h2>
+                <input type="date" class="date-picker">
+                <div class="filter-links">
+                    <a href="#yesterday"><i class="far fa-clock"></i> Yesterday</a>
+                    <a href="#today"><i class="fas fa-calendar-day"></i> Today</a>
+                    <a href="#tomorrow"><i class="far fa-sun"></i> Tomorrow</a>
                 </div>
             </div>
-            <div class="datee-links">
-                <a href="#" style="margin-top: 50px;">Upcoming</a>
-                <a href="#">Finished</a>
-                <a href="#">Ongoing</a>
-                <a href="#">All events</a>
+            
+            <div class="filter-group">
+                <h2><i class="fas fa-filter"></i> Filter Events</h2>
+                <div class="filter-links">
+                    <a href="#" onclick="filterEvents('upcoming')"><i class="fas fa-rocket"></i> Upcoming</a>
+                    <a href="#" onclick="filterEvents('finished')"><i class="fas fa-check-circle"></i> Finished</a>
+                    <a href="#" onclick="filterEvents('ongoing')"><i class="fas fa-play-circle"></i> Ongoing</a>
+                    <a href="#" onclick="filterEvents('all')"><i class="fas fa-list"></i> All Events</a>
+                </div>
             </div>
+           
         
         </div>
         <div class="right-section">
