@@ -1,20 +1,27 @@
-let allEvents = []; // Global array to hold all events
+let allEvents = [];
 
 function renderEvents(eventsToShow) {
   const container = document.querySelector('.events-grid');
   container.innerHTML = '';
   
   if (eventsToShow.length === 0) {
-    container.innerHTML = `<p style="text-align: center; color: #DC143C; font-size: 20px;">Oops! No events</p>`;
+    container.innerHTML = `
+      <div class="no-events" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+        <i class="far fa-calendar-times" style="font-size: 3rem; color: var(--primary);"></i>
+        <h3 style="margin: 1rem 0; color: var(--text);">No Events Found</h3>
+        <p style="color: var(--text-secondary);">There are no events scheduled for this date.</p>
+      </div>
+    `;
     return;
   }
+
 
   eventsToShow.forEach(event => {
     const eventHTML = `
       <div class="event-box" data-date="${event.date}">
         <img src="${event.poster}" class="event-img">
         <div class="event-details">
-          <p><strong>Date:</strong> ${event.date}</p>
+          <p><strong>Date:</strong> ${formatDate(event.date)}</p>
           <p><strong>Time:</strong> ${event.time}</p>
           <p><strong>Location:</strong> ${event.location}</p>
           <button class="book-btn">Book Now</button>
@@ -25,11 +32,18 @@ function renderEvents(eventsToShow) {
   });
 }
 
+// Helper function to format date as "Month Day, Year"
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
 function loadEvents() {
   
   allEvents = JSON.parse(localStorage.getItem('events')) || [];
   renderEvents(allEvents);
 }
+
 
 function filterEvents(filterType) {
   const currentDate = new Date().toISOString().split('T')[0];
@@ -45,6 +59,19 @@ function filterEvents(filterType) {
     case 'finished':
       filteredEvents = allEvents.filter(e => e.date < currentDate);
       break;
+      case 'yesterday':
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      filteredEvents = allEvents.filter(e => e.date === yesterday.toISOString().split('T')[0]);
+      break;
+    case 'today':
+      filteredEvents = allEvents.filter(e => e.date === currentDate);
+      break;
+    case 'tomorrow':
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      filteredEvents = allEvents.filter(e => e.date === tomorrow.toISOString().split('T')[0]);
+      break;
     default:
       filteredEvents = allEvents;
   }
@@ -55,16 +82,35 @@ function filterEvents(filterType) {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
   loadEvents();
+  // Set today's date as default in the date picker
+  const datePicker = document.querySelector('.date-picker');
+  datePicker.valueAsDate = new Date();
+
+  // Date picker change handler
+  datePicker.addEventListener('change', function() {
+    const selectedDate = this.value;
+    if (!selectedDate) return;
+
+    const filteredEvents = allEvents.filter(event => event.date === selectedDate);
+    renderEvents(filteredEvents);
+  });
   
   // Filter button handlers
-  document.querySelectorAll('.datee-links a').forEach(button => {
+  document.querySelectorAll('.filter-links a').forEach(button => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       const filterType = button.textContent.trim().toLowerCase();
-      filterEvents(filterType === 'all events' ? 'all' : filterType);
+      if (filterType.includes('yesterday')) {
+        filterEvents('yesterday');
+      } else if (filterType.includes('today')) {
+        filterEvents('today');
+      } else if (filterType.includes('tomorrow')) {
+        filterEvents('tomorrow');
+      } else {
+        filterEvents(filterType);
+      }
     });
   });
-  
   //add here
 
   
