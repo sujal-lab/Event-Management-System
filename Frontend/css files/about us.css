@@ -1,0 +1,29 @@
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .bg-dark-maroon {
+      background-color: #900000;
+    }
+
+    .text-crimson {
+      color: #FF4D4D;
+    }
+
+    .bg-crimson {
+      background-color: #FF4D4D;
+    }
+
+    .from-crimson {
+      --tw-gradient-from: #800000;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
+    }
+
+    .to-crimson {
+      --tw-gradient-to: #800000;
+    }
+ 
