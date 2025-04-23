@@ -4,129 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eventify - Events</title>
-  <style>
-body {
-  margin: 0;
-  padding: 20px;
-  background: #0f0f0f;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-}
-
-h1 {
-  color: #ff3c41;
-  font-size: 50px;
-  text-align: center;
-  text-shadow: 0 0 10px #ff3c41;
-}
-
-h2 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin: 30px 0 10px;
-  text-shadow: 0 0 8px rgba(255, 110, 199, 0.5);
-}
-
-a.back-link {
-  color: #fff;
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #ff416c;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-a.back-link:hover {
-  box-shadow: 0 0 16px #ff416c, 0 0 32px #ff4b2b;
-}
-
-.event-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.event-card {
-  background-color: #1e1e1e;
-  padding: 14px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 0 10px rgba(255, 110, 199, 0.1);
-  border: 1px solid rgba(255, 110, 199, 0.2);
-}
-
-.event-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px #ff3c41;
-}
-
-.event-title {
-  font-size: 1rem;
-  color: #ff3c41;
-  margin-bottom: 8px;
-}
-
-.event-info {
-  font-size: 0.8rem;
-  color: #c0c0c0;
-  margin-bottom: 2px;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  display: none;
-}
-
-.modal-content {
-  background-color: #1f1f1f;
-  padding: 24px;
-  border-radius: 16px;
-  max-width: 500px;
-  width: 100%;
-  position: relative;
-  color: #ffffff;
-  box-shadow: 0 0 20px #ff3c41;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 16px;
-  color: #ff3c41;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.modal-title {
-  font-size: 1.5rem;
-  color: #ff3c41;
-  margin-bottom: 10px;
-}
-
-.modal-info {
-  font-size: 0.9rem;
-  color: #dddddd;
-  margin-bottom: 8px;
-}
-
-.modal-description {
-  font-size: 0.85rem;
-  color: #cccccc;
-}
-
-  </style>
+  <link rel="stylesheet" href="../css files/my event.css">
 </head>
 <body>
 
@@ -154,6 +32,6 @@ a.back-link:hover {
     </div>
   </div>
 
-  <script src="myevent.js"></script>
+  <script src="../js files/myevent.js"></script>
 </body>
 </html>
