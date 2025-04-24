@@ -1,71 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Attendee Dashboard</title>
-  <link rel="stylesheet" href="../css files/attendee.css"/>
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-      <h2>Attendee Dashboard</h2>
-      <ul>
-        <li class="active"><a href="#">📊 Dashboard</a></li>
-        <li><a href="home page.html">🏠 Home</a></li>
-        <li><a href="myevent.html">📅 My Events</a></li>
-        <li><a href="profile.html">👤 Profile</a></li>
-        <li><a href="logout.html" id="logout">🚪 Logout</a></li>
-      </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <div class="header">
-        <h1>Welcome to the attendee Dashboard<span id="saksham"></span></h1>
-        <button class="dark-mode-toggle"></button>
-      </div>
-
-<!-- Dashboard Overview Section -->
-<p class="overview-text">Here’s a quick overview of your events:</p>
-
-<div class="dashboard-cards">
-  <div class="card overview-card">
-    <h3>📅 Upcoming Events</h3>
-    <p><span id="upcoming-count">0</span></p>
-  </div>
-  <div class="card overview-card">
-    <h3>⏳ Past Events</h3>
-    <p><span id="past-count">0</span></p>
-  </div>
-  <div class="card overview-card">
-    <h3>🔔 Notifications</h3>
-    <p><span id="notifications-count">0</span></p>
-  </div>
-</div>
-
-
-<!-- Event List with Search & Filter -->
-<section class="events-section">
-  <h2 class="section-title">🎟️ Your Events</h2>
-
-  <div class="event-controls">
-    <input type="text" id="search" placeholder="🔍 Search events...">
-    <select id="filter">
-      <option value="all">All Events</option>
-      <option value="upcoming">Upcoming</option>
-      <option value="past">Past</option>
-    </select>
-  </div>
-
-  <ul id="event-list" class="event-list">
-    <li>Loading events...</li>
-  </ul>
-</section>
-
-
-  <!-- External JS -->
-  <script src="../js files/attendee.js"></script>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventify - My Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF4D4D;
+            --primary-dark: #E60000;
+            --primary-light: #FF9999;
+            --accent: #00FFC2;
+            --dark: #121212;
+            --darker: #0A0A0A;
+            --light: #FFFFFF;
+            --gray: #2A2A2A;
+            --success: #00E676;
+            --warning: #FFC107;
+            --info: #17A2B8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 20px 5%;
+            box-shadow: 0 4px 30px rgba(255, 77, 77, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: var(--light);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+        
