@@ -502,6 +502,71 @@
         }
     </style>
 </head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="home.html"><i class="fas fa-ticket-alt"></i>Eventify</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="my-events.html" class="active"><i class="fas fa-user"></i> My Events</a>
+            <a href="scanner.html"><i class="fas fa-qrcode"></i> Scanner</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="particles" id="particles"></div>
+        
+        <div class="page-title">
+            <h1>My Events</h1>
+            <p>All your upcoming and past events in one place. Never miss an event again!</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="upcoming"><i class="fas fa-calendar-check"></i> Upcoming</button>
+            <button class="tab-btn" data-tab="past"><i class="fas fa-history"></i> Past</button>
+            <button class="tab-btn" data-tab="cancelled"><i class="fas fa-times-circle"></i> Cancelled</button>
+        </div>
+  
+        <!-- Upcoming Events Tab -->
+        <div class="tab-content active" id="upcoming-tab">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Upcoming Events</h2>
+                <span class="timeline-count" id="upcoming-count">0 Events</span>
+            </div>
+            
+            <div class="events-grid" id="upcoming-events">
+                <!-- Events will be inserted here by JavaScript -->
+                
+                <!-- Example event card (will be removed by JavaScript if no events) -->
+                <div class="event-card upcoming">
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert" class="event-poster">
+                    <div class="event-details">
+                        <div class="event-date upcoming">Jun 15, 2023</div>
+                        <h3 class="event-title">Summer Music Festival</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item"><i class="fas fa-clock"></i> 6:00 PM</div>
+                            <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Central Park</div>
+                        </div>
+                        <p class="event-description">Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!</p>
+                        <div class="event-actions">
+                            <span class="event-price">$120.00</span>
+                            <span class="event-status status-upcoming">Confirmed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="empty-state" id="upcoming-empty" style="display: none;">
+                <i class="fas fa-calendar-plus"></i>
+                <h3>No Upcoming Events</h3>
+                <p>You don't have any upcoming events booked. Explore our events and book your tickets now!</p>
+                <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+            </div>
+        </div>
+        
+
 
 
 
