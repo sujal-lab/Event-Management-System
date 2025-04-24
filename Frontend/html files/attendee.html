@@ -56,4 +56,69 @@
             display: flex;
             align-items: center;
         }
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
         
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            background: var(--accent);
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .container {
+            padding: 40px 5%;
+            position: relative;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .page-title h1 {
+            font-size: 36px;
+            color: var(--light);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .page-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .page-title p {
+            color: var(--primary-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+
