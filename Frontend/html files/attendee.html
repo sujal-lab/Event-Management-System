@@ -120,5 +120,184 @@
             max-width: 700px;
             margin: 0 auto;
         }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--gray);
+            padding-bottom: 10px;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--light);
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .tab-btn:hover {
+            color: var(--accent);
+        }
+        
+        .tab-btn.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .event-card {
+            background: linear-gradient(to bottom, var(--darker), var(--gray));
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 77, 77, 0.2);
+        }
+        
+        .event-card.upcoming {
+            border-left-color: var(--success);
+        }
+        
+        .event-card.past {
+            border-left-color: var(--warning);
+            opacity: 0.8;
+        }
+        
+        .event-card.cancelled {
+            border-left-color: var(--primary);
+            opacity: 0.7;
+        }
+        
+        .event-poster {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .event-details {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .event-date {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+        }
+        
+        .event-date.upcoming {
+            background: var(--success);
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+        }
+        
+        .event-date.past {
+            background: var(--warning);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+        
+        .event-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--light);
+            font-weight: 600;
+        }
+        
+        .event-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            color: var(--primary-light);
+            font-size: 14px;
+        }
+        
+        .event-meta-item i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        .event-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .event-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 18px;
+        }
+        
+        
 
 
