@@ -281,7 +281,6 @@
             margin-bottom: 20px;
             font-size: 14px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -508,7 +507,7 @@
             <a href="home.html"><i class="fas fa-ticket-alt"></i>Eventify</a>
         </div>
         <div class="nav-links">
-            <a href="home.html"><i class="fas fa-home"></i> Home</a>
+            <a href="../home page.html"><i class="fas fa-home"></i> Home</a>
             <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
             <a href="my-events.html" class="active"><i class="fas fa-user"></i> My Events</a>
             <a href="scanner.html"><i class="fas fa-qrcode"></i> Scanner</a>
@@ -528,8 +527,7 @@
             <button class="tab-btn" data-tab="past"><i class="fas fa-history"></i> Past</button>
             <button class="tab-btn" data-tab="cancelled"><i class="fas fa-times-circle"></i> Cancelled</button>
         </div>
-  
-        <!-- Upcoming Events Tab -->
+
         <div class="tab-content active" id="upcoming-tab">
             <div class="timeline-header">
                 <h2 class="timeline-title">Upcoming Events</h2>
@@ -598,7 +596,7 @@
                     <i class="fas fa-history"></i>
                     <h3>No Past Events</h3>
                     <p>You haven't attended any events yet. Book your first event and start creating memories!</p>
-                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+                    <a href="Events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
                 </div>
             </div>
             
@@ -617,197 +615,209 @@
                     <i class="fas fa-ban"></i>
                     <h3>No Cancelled Events</h3>
                     <p>You haven't cancelled any events. Keep it up!</p>
-                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+                    <a href="Events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
                 </div>
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                function createParticles(containerId, count) {
-                    const container = document.getElementById(containerId);
-                    for (let i = 0; i < count; i++) {
-                        const particle = document.createElement('div');
-                        particle.classList.add('particle');
-        
-                        const size = Math.random() * 4 + 2;
-                        particle.style.width = `${size}px`;
-                        particle.style.height = `${size}px`;
-        
-                        particle.style.left = `${Math.random() * 100}%`;
-                        particle.style.bottom = `-${size}px`;
-        
-                        const duration = Math.random() * 10 + 10;
-                        particle.style.animationDuration = `${duration}s`;
-        
-                        particle.style.animationDelay = `${Math.random() * 5}s`;
-        
-                        container.appendChild(particle);
-                    }
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Event Management</title>
+            <style>
+                .particle {
+                    position: absolute;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-radius: 50%;
+                    animation: float-up linear infinite;
                 }
         
-                createParticles('particles', 30);
-        
-                const tabBtns = document.querySelectorAll('.tab-btn');
-                const tabContents = document.querySelectorAll('.tab-content');
-        
-                tabBtns.forEach(btn => {
-                    btn.addEventListener('click', function () {
-                        const tabId = this.getAttribute('data-tab');
-                        tabBtns.forEach(btn => btn.classList.remove('active'));
-                        this.classList.add('active');
-                        tabContents.forEach(content => content.classList.remove('active'));
-                        document.getElementById(`${tabId}-tab`).classList.add('active');
-                    });
-                });
-        
-                function loadEvents() {
-                    const myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-        
-                    if (myEvents.length > 0) {
-                        document.getElementById('upcoming-events').innerHTML = '';
-                        document.getElementById('past-events').innerHTML = '';
-                        document.getElementById('cancelled-events').innerHTML = '';
+                @keyframes float-up {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 1;
                     }
-        
-                    let upcomingCount = 0;
-                    let pastCount = 0;
-                    let cancelledCount = 0;
-        
-                    myEvents.forEach(event => {
-                        const eventDate = new Date(event.date);
-                        eventDate.setHours(0, 0, 0, 0);
-        
-                        const eventCard = document.createElement('div');
-                        eventCard.className = 'event-card';
-        
-                        let statusClass = '';
-                        let statusText = '';
-                        let dateClass = '';
-        
-                        if (event.status === 'Cancelled') {
-                            statusClass = 'cancelled';
-                            statusText = 'Cancelled';
-                            cancelledCount++;
-                        } else if (eventDate >= today) {
-                            statusClass = 'upcoming';
-                            statusText = 'Confirmed';
-                            dateClass = 'upcoming';
-                            upcomingCount++;
-                        } else {
-                            statusClass = 'past';
-                            statusText = 'Attended';
-                            dateClass = 'past';
-                            pastCount++;
-                        }
-        
-                        eventCard.classList.add(statusClass);
-        
-                        let price = event.price || event.totalAmount;
-                        if (price && !price.startsWith('$')) {
-                            price = '$' + parseFloat(price).toFixed(2);
-                        }
-        
-                        eventCard.innerHTML = `
-                            <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
-                            <div class="event-details">
-                                <div class="event-date ${dateClass}">${event.date}</div>
-                                <h3 class="event-title">${event.name}</h3>
-                                <div class="event-meta">
-                                    <div class="event-meta-item"><i class="fas fa-clock"></i> ${event.time || '7:00 PM'}</div>
-                                    <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> ${event.location || 'Venue TBD'}</div>
-                                </div>
-                                <p class="event-description">${event.description || 'Join us for an amazing event with great music, food, and entertainment!'}</p>
-                                <div class="event-actions">
-                                    <span class="event-price">${price || '$0.00'}</span>
-                                    <span class="event-status status-${statusClass.toLowerCase()}">${statusText}</span>
-                                </div>
-                            </div>
-                        `;
-        
-                        if (statusClass === 'upcoming') {
-                            document.getElementById('upcoming-events').appendChild(eventCard);
-                        } else if (statusClass === 'past') {
-                            document.getElementById('past-events').appendChild(eventCard);
-                        } else if (statusClass === 'cancelled') {
-                            document.getElementById('cancelled-events').appendChild(eventCard);
-                        }
-                    });
-        
-                    document.getElementById('upcoming-count').textContent = `${upcomingCount} ${upcomingCount === 1 ? 'Event' : 'Events'}`;
-                    document.getElementById('past-count').textContent = `${pastCount} ${pastCount === 1 ? 'Event' : 'Events'}`;
-                    document.getElementById('cancelled-count').textContent = `${cancelledCount} ${cancelledCount === 1 ? 'Event' : 'Events'}`;
-        
-                    if (upcomingCount === 0) {
-                        document.getElementById('upcoming-empty').style.display = 'block';
-                    }
-        
-                    if (pastCount === 0) {
-                        document.getElementById('past-empty').style.display = 'block';
-                    }
-        
-                    if (cancelledCount === 0) {
-                        document.getElementById('cancelled-empty').style.display = 'block';
-                    } else {
-                        document.getElementById('cancelled-empty').style.display = 'none';
+                    100% {
+                        transform: translateY(-100vh) rotate(360deg);
+                        opacity: 0;
                     }
                 }
+                /* Add any other CSS styles you need */
+            </style>
+        </head>
+        <body>
+            <div id="particles-container"></div>
+            
+            <!-- Your HTML content here -->
         
-                const sampleEvents = [
-                    {
-                        name: 'Sample Event',
-                        date: 'Apr 25, 2025',
-                        status: 'Confirmed',
-                        totalAmount: '75.00'
-                    }
-                ];
-        
-                localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
-                loadEvents();
-            });        
-            // Add some sample events if localStorage is empty (for demo purposes)
-            if (!localStorage.getItem('myEvents')) {
-                const sampleEvents = [
-                    {
-                        id: 'EVT-789123',
-                        name: 'Summer Music Festival',
-                        date: 'Jun 15, 2023',
-                        time: '6:00 PM',
-                        location: 'Central Park',
-                        price: '$120.00',
-                        poster: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-                        description: 'Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!',
-                        status: 'Confirmed',
-                        tickets: '2',
-                        totalAmount: '$240.00'
-                    },
-                    {
-                        id: 'EVT-456789',
-                        name: 'Spring Jazz Night',
-                        date: 'May 20, 2023',
-                        time: '8:00 PM',
-                        location: 'Downtown Jazz Club',
-                        price: '$75.00',
-                        poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-                        description: 'An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.',
-                        status: 'Attended',
-                        tickets: '1',
-                        totalAmount: '$75.00'
-                    }
-                ];
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    function createParticles(containerId, count) {
+                        const container = document.getElementById(containerId);
+                        for (let i = 0; i < count; i++) {
+                            const particle = document.createElement('div');
+                            particle.classList.add('particle');
                 
-                localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
-                loadEvents();
-            }
-    </script>
-</body>
-</html>
-           
-
-
-
-
+                            const size = Math.random() * 4 + 2;
+                            particle.style.width = `${size}px`;
+                            particle.style.height = `${size}px`;
+                
+                            particle.style.left = `${Math.random() * 100}%`;
+                            particle.style.bottom = `-${size}px`;
+                
+                            const duration = Math.random() * 10 + 10;
+                            particle.style.animationDuration = `${duration}s`;
+                
+                            particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                            container.appendChild(particle);
+                        }
+                    }
+                
+                    createParticles('particles', 30);
+                
+                    const tabBtns = document.querySelectorAll('.tab-btn');
+                    const tabContents = document.querySelectorAll('.tab-content');
+                
+                    tabBtns.forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            const tabId = this.getAttribute('data-tab');
+                            tabBtns.forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+                            tabContents.forEach(content => content.classList.remove('active'));
+                            document.getElementById(`${tabId}-tab`).classList.add('active');
+                        });
+                    });
+                
+                    function loadEvents() {
+                        const myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                
+                        if (myEvents.length > 0) {
+                            document.getElementById('upcoming-events').innerHTML = '';
+                            document.getElementById('past-events').innerHTML = '';
+                            document.getElementById('cancelled-events').innerHTML = '';
+                        }
+                
+                        let upcomingCount = 0;
+                        let pastCount = 0;
+                        let cancelledCount = 0;
+                
+                        myEvents.forEach(event => {
+                            const eventDate = new Date(event.date);
+                            eventDate.setHours(0, 0, 0, 0);
+                
+                            const eventCard = document.createElement('div');
+                            eventCard.className = 'event-card';
+                
+                            let statusClass = '';
+                            let statusText = '';
+                            let dateClass = '';
+                
+                            if (event.status === 'Cancelled') {
+                                statusClass = 'cancelled';
+                                statusText = 'Cancelled';
+                                cancelledCount++;
+                            } else if (eventDate >= today) {
+                                statusClass = 'upcoming';
+                                statusText = 'Confirmed';
+                                dateClass = 'upcoming';
+                                upcomingCount++;
+                            } else {
+                                statusClass = 'past';
+                                statusText = 'Attended';
+                                dateClass = 'past';
+                                pastCount++;
+                            }
+                
+                            eventCard.classList.add(statusClass);
+                
+                            let price = event.price || event.totalAmount;
+                            if (price && !price.startsWith('$')) {
+                                price = '$' + parseFloat(price).toFixed(2);
+                            }
+                
+                            eventCard.innerHTML = `
+                                <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
+                                <div class="event-details">
+                                    <div class="event-date ${dateClass}">${event.date}</div>
+                                    <h3 class="event-title">${event.name}</h3>
+                                    <div class="event-meta">
+                                        <div class="event-meta-item"><i class="fas fa-clock"></i> ${event.time || '7:00 PM'}</div>
+                                        <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> ${event.location || 'Venue TBD'}</div>
+                                    </div>
+                                    <p class="event-description">${event.description || 'Join us for an amazing event with great music, food, and entertainment!'}</p>
+                                    <div class="event-actions">
+                                        <span class="event-price">${price || '$0.00'}</span>
+                                        <span class="event-status status-${statusClass.toLowerCase()}">${statusText}</span>
+                                    </div>
+                                </div>
+                            `;
+                
+                            if (statusClass === 'upcoming') {
+                                document.getElementById('upcoming-events').appendChild(eventCard);
+                            } else if (statusClass === 'past') {
+                                document.getElementById('past-events').appendChild(eventCard);
+                            } else if (statusClass === 'cancelled') {
+                                document.getElementById('cancelled-events').appendChild(eventCard);
+                            }
+                        });
+                
+                        document.getElementById('upcoming-count').textContent = `${upcomingCount} ${upcomingCount === 1 ? 'Event' : 'Events'}`;
+                        document.getElementById('past-count').textContent = `${pastCount} ${pastCount === 1 ? 'Event' : 'Events'}`;
+                        document.getElementById('cancelled-count').textContent = `${cancelledCount} ${cancelledCount === 1 ? 'Event' : 'Events'}`;
+                
+                        if (upcomingCount === 0) {
+                            document.getElementById('upcoming-empty').style.display = 'block';
+                        }
+                
+                        if (pastCount === 0) {
+                            document.getElementById('past-empty').style.display = 'block';
+                        }
+                
+                        if (cancelledCount === 0) {
+                            document.getElementById('cancelled-empty').style.display = 'block';
+                        } else {
+                            document.getElementById('cancelled-empty').style.display = 'none';
+                        }
+                    }
+                
+                    // Initialize with sample events only if empty
+                    if (!localStorage.getItem('myEvents')) {
+                        const sampleEvents = [
+                            {
+                                id: 'EVT-789123',
+                                name: 'Summer Music Festival',
+                                date: 'Jun 15, 2023',
+                                time: '6:00 PM',
+                                location: 'Central Park',
+                                price: '$120.00',
+                                poster: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                                description: 'Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!',
+                                status: 'Confirmed',
+                                tickets: '2',
+                                totalAmount: '$240.00'
+                            },
+                            {
+                                id: 'EVT-456789',
+                                name: 'Spring Jazz Night',
+                                date: 'May 20, 2023',
+                                time: '8:00 PM',
+                                location: 'Downtown Jazz Club',
+                                price: '$75.00',
+                                poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                                description: 'An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.',
+                                status: 'Attended',
+                                tickets: '1',
+                                totalAmount: '$75.00'
+                            }
+                        ];
+                        localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
+                    }
         
-        
-
+                    // Load events
+                    loadEvents();
+                });
+            </script>
+        </body>
+        </html>
