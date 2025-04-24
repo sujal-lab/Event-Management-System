@@ -565,7 +565,64 @@
                 <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
             </div>
         </div>
-        
+               <!-- Past Events Tab -->
+               <div class="tab-content" id="past-tab">
+                <div class="timeline-header">
+                    <h2 class="timeline-title">Past Events</h2>
+                    <span class="timeline-count" id="past-count">0 Events</span>
+                </div>
+                
+                <div class="events-grid" id="past-events">
+                    <!-- Events will be inserted here by JavaScript -->
+                    
+                    <!-- Example event card (will be removed by JavaScript if no events) -->
+                    <div class="event-card past">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert" class="event-poster">
+                        <div class="event-details">
+                            <div class="event-date past">May 20, 2023</div>
+                            <h3 class="event-title">Spring Jazz Night</h3>
+                            <div class="event-meta">
+                                <div class="event-meta-item"><i class="fas fa-clock"></i> 8:00 PM</div>
+                                <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Downtown Jazz Club</div>
+                            </div>
+                            <p class="event-description">An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.</p>
+                            <div class="event-actions">
+                                <span class="event-price">$75.00</span>
+                                <span class="event-status status-past">Attended</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="empty-state" id="past-empty" style="display: none;">
+                    <i class="fas fa-history"></i>
+                    <h3>No Past Events</h3>
+                    <p>You haven't attended any events yet. Book your first event and start creating memories!</p>
+                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+                </div>
+            </div>
+            
+            <!-- Cancelled Events Tab -->
+            <div class="tab-content" id="cancelled-tab">
+                <div class="timeline-header">
+                    <h2 class="timeline-title">Cancelled Events</h2>
+                    <span class="timeline-count" id="cancelled-count">0 Events</span>
+                </div>
+                
+                <div class="events-grid" id="cancelled-events">
+                    <!-- Events will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="empty-state" id="cancelled-empty">
+                    <i class="fas fa-ban"></i>
+                    <h3>No Cancelled Events</h3>
+                    <p>You haven't cancelled any events. Keep it up!</p>
+                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+                </div>
+            </div>
+        </div>
+    
+           
 
 
 
