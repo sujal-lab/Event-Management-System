@@ -725,6 +725,96 @@
                             price = '$' + parseFloat(price).toFixed(2);
                         }
     
+                                
+                        eventCard.innerHTML = `
+                        <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
+                        <div class="event-details">
+                            <div class="event-date ${dateClass}">${event.date}</div>
+                            <h3 class="event-title">${event.name}</h3>
+                            <div class="event-meta">
+                                <div class="event-meta-item"><i class="fas fa-clock"></i> ${event.time || '7:00 PM'}</div>
+                                <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> ${event.location || 'Venue TBD'}</div>
+                            </div>
+                            <p class="event-description">${event.description || 'Join us for an amazing event with great music, food, and entertainment!'}</p>
+                            <div class="event-actions">
+                                <span class="event-price">${price || '$0.00'}</span>
+                                <span class="event-status status-${statusClass.toLowerCase()}">${statusText}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add to appropriate container
+                    if (statusClass === 'upcoming') {
+                        document.getElementById('upcoming-events').appendChild(eventCard);
+                    } else if (statusClass === 'past') {
+                        document.getElementById('past-events').appendChild(eventCard);
+                    } else if (statusClass === 'cancelled') {
+                        document.getElementById('cancelled-events').appendChild(eventCard);
+                    }
+                });
+                
+                // Update counts
+                document.getElementById('upcoming-count').textContent = ${upcomingCount} ${upcomingCount === 1 ? 'Event' : 'Events'};
+                document.getElementById('past-count').textContent = ${pastCount} ${pastCount === 1 ? 'Event' : 'Events'};
+                document.getElementById('cancelled-count').textContent = ${cancelledCount} ${cancelledCount === 1 ? 'Event' : 'Events'};
+                
+                // Show empty states if needed
+                if (upcomingCount === 0) {
+                    document.getElementById('upcoming-empty').style.display = 'block';
+                }
+                
+                if (pastCount === 0) {
+                    document.getElementById('past-empty').style.display = 'block';
+                }
+                
+                if (cancelledCount === 0) {
+                    document.getElementById('cancelled-empty').style.display = 'block';
+                } else {
+                    document.getElementById('cancelled-empty').style.display = 'none';
+                }
+            }
+            
+            // Initial load
+            loadEvents();
+            
+            // Add some sample events if localStorage is empty (for demo purposes)
+            if (!localStorage.getItem('myEvents')) {
+                const sampleEvents = [
+                    {
+                        id: 'EVT-789123',
+                        name: 'Summer Music Festival',
+                        date: 'Jun 15, 2023',
+                        time: '6:00 PM',
+                        location: 'Central Park',
+                        price: '$120.00',
+                        poster: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        description: 'Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!',
+                        status: 'Confirmed',
+                        tickets: '2',
+                        totalAmount: '$240.00'
+                    },
+                    {
+                        id: 'EVT-456789',
+                        name: 'Spring Jazz Night',
+                        date: 'May 20, 2023',
+                        time: '8:00 PM',
+                        location: 'Downtown Jazz Club',
+                        price: '$75.00',
+                        poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                        description: 'An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.',
+                        status: 'Attended',
+                        tickets: '1',
+                        totalAmount: '$75.00'
+                    }
+                ];
+                
+                localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
+                loadEvents();
+            }
+        });
+    </script>
+</body>
+</html>
            
 
 
