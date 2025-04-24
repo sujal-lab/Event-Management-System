@@ -628,14 +628,19 @@
                     for (let i = 0; i < count; i++) {
                         const particle = document.createElement('div');
                         particle.classList.add('particle');
+        
                         const size = Math.random() * 4 + 2;
                         particle.style.width = `${size}px`;
                         particle.style.height = `${size}px`;
+        
                         particle.style.left = `${Math.random() * 100}%`;
                         particle.style.bottom = `-${size}px`;
+        
                         const duration = Math.random() * 10 + 10;
                         particle.style.animationDuration = `${duration}s`;
+        
                         particle.style.animationDelay = `${Math.random() * 5}s`;
+        
                         container.appendChild(particle);
                     }
                 }
@@ -663,6 +668,7 @@
                     if (myEvents.length > 0) {
                         document.getElementById('upcoming-events').innerHTML = '';
                         document.getElementById('past-events').innerHTML = '';
+                        document.getElementById('cancelled-events').innerHTML = '';
                     }
         
                     let upcomingCount = 0;
@@ -704,7 +710,7 @@
                         }
         
                         eventCard.innerHTML = `
-                            <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
+                            <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
                             <div class="event-details">
                                 <div class="event-date ${dateClass}">${event.date}</div>
                                 <h3 class="event-title">${event.name}</h3>
@@ -748,8 +754,18 @@
                     }
                 }
         
+                const sampleEvents = [
+                    {
+                        name: 'Sample Event',
+                        date: 'Apr 25, 2025',
+                        status: 'Confirmed',
+                        totalAmount: '75.00'
+                    }
+                ];
+        
+                localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
                 loadEvents();
-            });
+            });        
             // Add some sample events if localStorage is empty (for demo purposes)
             if (!localStorage.getItem('myEvents')) {
                 const sampleEvents = [
