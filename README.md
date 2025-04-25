@@ -249,5 +249,4 @@ As Eventify continues to grow, the platform is committed to evolving with user n
 - Use AI to analyze attendee feedback and reviews.
 - Identify strengths and improvement areas for future events.
 
-## 🌍 Global Event Search
 
