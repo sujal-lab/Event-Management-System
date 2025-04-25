@@ -113,6 +113,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   //add here
 
+  document.querySelectorAll('.book-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const eventBox = this.closest('.event-box');
+        const eventDetails = {
+            name: eventBox.querySelector('strong').textContent,
+            date: eventBox.querySelector('p:nth-child(1)').textContent.replace('Date:', '').trim(),
+            time: eventBox.querySelector('p:nth-child(2)').textContent.replace('Time:', '').trim(),
+            location: eventBox.querySelector('p:nth-child(3)').textContent.replace('Location:', '').trim(),
+            price: '$25.00', // You would get this from your data
+            poster: eventBox.querySelector('img').src
+        };
+        
+        localStorage.setItem('selectedEvent', JSON.stringify(eventDetails));
+        window.location.href = 'scanner.html';
+    });
+});
+
   
 });
 
