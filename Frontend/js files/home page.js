@@ -226,14 +226,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
+// Helper function to parse date strings
+function parseEventDate(dateString) {
+    // Try multiple date formats
+    const parsedDate = new Date(dateString);
+    if (!isNaN(parsedDate.getTime())) {
+        return parsedDate;
+    }
+    console.warn("Could not parse date:", dateString);
+    return new Date(0); // Return very old date if parsing fails
+}
 
 
 
 
 // In home page.js
 function loadEvents() {
+
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+
     const events = JSON.parse(localStorage.getItem('events')) || [];
+    const upcomingEvents = events.filter(event => {
+        try {
+            // Parse event date (assuming format like "March 25, 2025")
+            const eventDate = new Date(event.date);
+            eventDate.setHours(0, 0, 0, 0); // Normalize to start of day
+            return eventDate >= currentDate;
+        } catch (e) {
+            console.error("Error parsing date for event:", event.name, e);
+            return false; // Exclude events with invalid dates
+        }
+    });
     const container = document.getElementById('event-slider');
 
     container.innerHTML = '';
@@ -247,10 +271,11 @@ function loadEvents() {
         return;
     }
 
-    events.forEach(event => {
+    upcomingEvents.forEach((event, index) => {
         const eventCard = document.createElement('div');
         eventCard.className = 'event-card';
         eventCard.setAttribute('data-aos', 'fade-up');
+        eventCard.setAttribute('data-aos-delay', `${100 * (index + 1)}`);
         
         eventCard.innerHTML = `
             <img src="${event.poster}" alt="${event.name}" height="560px" width="360px">
