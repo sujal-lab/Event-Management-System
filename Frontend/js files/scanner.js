@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const storedEvent = localStorage.getItem('selectedEvent');
+    if (storedEvent) {
+        try {
+            const eventDetails = JSON.parse(storedEvent);
+            
+            // Set default values if not provided
+            if (!eventDetails.time) eventDetails.time = "7:00 PM";
+            if (!eventDetails.location) eventDetails.location = "University Main Hall";
+            if (!eventDetails.price) eventDetails.price = "$25.00";
+            
+            // Populate event details
+            document.getElementById('event-name').textContent = eventDetails.name;
+            document.getElementById('event-date').textContent = eventDetails.date;
+            document.getElementById('event-time').textContent = eventDetails.time;
+            document.getElementById('event-location').textContent = eventDetails.location;
+            document.getElementById('event-price').textContent = eventDetails.price;
+            
+            // Set poster image with fallback
+            const posterImg = document.getElementById('event-poster');
+            posterImg.src = eventDetails.poster;
+            posterImg.onerror = function() {
+                this.src = '../Frontend/frontend images/default-event.jpg'; // Fallback image
+            };
+            
+            // Also populate booking info section
+            document.getElementById('booking-event').textContent = eventDetails.name;
+            document.getElementById('booking-date').textContent = eventDetails.date;
+        } catch (e) {
+            console.error("Error parsing event data:", e);
+            redirectToHomepage();
+        }
+    } else {
+        redirectToHomepage();
+    }
+
+
+    
     // Create floating particles
     function createParticles(containerId, count) {
         const container = document.getElementById(containerId);
@@ -25,24 +63,24 @@ document.addEventListener('DOMContentLoaded', function() {
     createParticles('particles-form', 20);
 
     // Check if an event was selected
-    const storedEvent = localStorage.getItem('selectedEvent');
-    if (storedEvent) {
-        const eventDetails = JSON.parse(storedEvent);
-        // Populate event details
-        document.getElementById('event-name').textContent = eventDetails.name;
-        document.getElementById('event-date').textContent = eventDetails.date;
-        document.getElementById('event-time').textContent = eventDetails.time;
-        document.getElementById('event-location').textContent = eventDetails.location;
-        document.getElementById('event-price').textContent = eventDetails.price || '$25.00';
-        document.getElementById('event-poster').src = eventDetails.poster;
-        // Also populate booking info section
-        document.getElementById('booking-event').textContent = eventDetails.name;
-        document.getElementById('booking-date').textContent = eventDetails.date;
-    } else {
-        alert("No event selected. Redirecting to homepage.");
-        window.location.href = "home%20page.html";
+    // const storedEvent = localStorage.getItem('selectedEvent');
+    // if (storedEvent) {
+    //     const eventDetails = JSON.parse(storedEvent);
+    //     // Populate event details
+    //     document.getElementById('event-name').textContent = eventDetails.name;
+    //     document.getElementById('event-date').textContent = eventDetails.date;
+    //     document.getElementById('event-time').textContent = eventDetails.time;
+    //     document.getElementById('event-location').textContent = eventDetails.location;
+    //     document.getElementById('event-price').textContent = eventDetails.price || '$25.00';
+    //     document.getElementById('event-poster').src = eventDetails.poster;
+    //     // Also populate booking info section
+    //     document.getElementById('booking-event').textContent = eventDetails.name;
+    //     document.getElementById('booking-date').textContent = eventDetails.date;
+    // } else {
+    //     alert("No event selected. Redirecting to homepage.");
+    //     window.location.href = "home%20page.html";
 
-    }
+    // }
 
     // Calculate total amount when tickets number changes
     document.getElementById('tickets').addEventListener('change', function() {
@@ -227,3 +265,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 });
+
+
+function redirectToHomepage() {
+    alert("No event selected. Redirecting to homepage.");
+    window.location.href = "home page.html";
+}

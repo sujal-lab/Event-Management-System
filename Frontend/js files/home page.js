@@ -284,13 +284,34 @@ function loadEvents() {
                     <h3>${event.name}</h3>
                     <p>${event.description}</p>
                     <p class="event-date">Date: ${event.date}</p>
-                    <a href="#" class="card-button">Book Now</a>
+                    <a href="#" class="card-button" data-event='${JSON.stringify(event).replace(/'/g, "\\'")}'>Book Now</a>
                 </div>
             </div>
         `;
         
         container.appendChild(eventCard);
     });
+
+    // Add event delegation for Book Now buttons
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('card-button')) {
+        e.preventDefault();
+        const eventData = JSON.parse(e.target.getAttribute('data-event'));
+        
+        // Store the selected event in localStorage
+        localStorage.setItem('selectedEvent', JSON.stringify({
+            name: eventData.name,
+            date: eventData.date,
+            time: eventData.time || "7:00 PM", // Default time if not specified
+            location: eventData.location || "University Main Hall", // Default location
+            price: eventData.price || "$25.00", // Default price
+            poster: eventData.poster
+        }));
+        
+        // Redirect to scanner page
+        window.location.href = "/Frontend/html files/scanner.html";
+    }
+});
 
 // Initialize or refresh the slider
 initializeSlider();
@@ -327,6 +348,25 @@ function initializeSlider() {
 // Initial load when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     loadEvents();
+
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('card-button')) {
+            e.preventDefault();
+            const eventData = JSON.parse(e.target.getAttribute('data-event'));
+            
+            localStorage.setItem('selectedEvent', JSON.stringify({
+                name: eventData.name,
+                date: eventData.date,
+                time: eventData.time || "7:00 PM",
+                location: eventData.location || "University Main Hall",
+                price: eventData.price || "$25.00",
+                poster: eventData.poster
+            }));
+            
+            // Use absolute path to be safe
+            window.location.href = "/Frontend/html files/scanner.html";
+        }
+    });
     
     // Also load events when storage changes (if admin adds new events in another tab)
     window.addEventListener('storage', loadEvents);
