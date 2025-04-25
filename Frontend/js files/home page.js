@@ -236,40 +236,142 @@ function loadEvents() {
     const events = JSON.parse(localStorage.getItem('events')) || [];
     const container = document.getElementById('event-slider');
 
-    
-    container.innerHTML = events.map(event => `
-        <div class="event-card" style="background-image: url('${event.poster}');">
-          <div class="card-overlay">
-            <div class="card-content">
-              <h3>${event.name}</h3>
-              <p>${event.description}</p>
-              <p class="event-date">Date: ${event.date}</p>
-              <a href="#" class="card-button">Book Now</a>
+    container.innerHTML = '';
+    if (events.length === 0) {
+        container.innerHTML = `
+            <div class="no-events">
+                <p>No upcoming events found. Check back later!</p>
+                <a href="../Frontend/html files/Events.html" class="cta-button">Browse All Events</a>
             </div>
-          </div>
-        </div>
-      `).join('');
-      
-  
-      
-  
-    // Reinitialize Slick slider
-    $('.slider-container').slick('destroy').slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 3,
-      responsive: [
-        { breakpoint: 768, settings: { slidesToShow: 1 } }
-      ]
+        `;
+        return;
+    }
+
+    events.forEach(event => {
+        const eventCard = document.createElement('div');
+        eventCard.className = 'event-card';
+        eventCard.setAttribute('data-aos', 'fade-up');
+        
+        eventCard.innerHTML = `
+            <img src="${event.poster}" alt="${event.name}" height="560px" width="360px">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h3>${event.name}</h3>
+                    <p>${event.description}</p>
+                    <p class="event-date">Date: ${event.date}</p>
+                    <a href="#" class="card-button">Book Now</a>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(eventCard);
     });
-  }
+
+// Initialize or refresh the slider
+initializeSlider();
+}
+
+function initializeSlider() {
+    $('.slider-container').slick('destroy').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        speed: 800,
+        infinite: true,
+        dots: true,
+        arrows: true,
+        cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
+        pauseOnHover: true,
+        centerMode: true,
+        variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 2, centerMode: false }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 1, centerMode: true }
+            }
+        ]
+    });
+}
+
+
+// Initial load when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    loadEvents();
+    
+    // Also load events when storage changes (if admin adds new events in another tab)
+    window.addEventListener('storage', loadEvents);
+
+});
+
+
+
+
+    
+//     container.innerHTML = events.map(event => `
+//         <div class="event-card" style="background-image: url('${event.poster}');">
+//           <div class="card-overlay">
+//             <div class="card-content">
+//               <h3>${event.name}</h3>
+//               <p>${event.description}</p>
+//               <p class="event-date">Date: ${event.date}</p>
+//               <a href="#" class="card-button">Book Now</a>
+//             </div>
+//           </div>
+//         </div>
+//       `).join('');
+      
   
-  // Initial load
-  document.addEventListener('DOMContentLoaded', loadEvents);
+//       $('.slider-container').slick('destroy');
+//     if (events.length > 0) {
+//         $('.slider-container').slick({
+//             slidesToShow: 3,
+//             slidesToScroll: 1,
+//             autoplay: true,
+//             autoplaySpeed: 3000,
+//             speed: 800,
+//             infinite: true,
+//             dots: true,
+//             arrows: true,
+//             cssEase: 'cubic-bezier(0.25, 0.8, 0.25, 1)',
+//             pauseOnHover: true,
+//             centerMode: true,
+//             variableWidth: true,
+//             responsive: [
+//                 {
+//                     breakpoint: 1024,
+//                     settings: { slidesToShow: 2, centerMode: false }
+//                 },
+//                 {
+//                     breakpoint: 768,
+//                     settings: { slidesToShow: 1, centerMode: true }
+//                 }
+//             ]
+//         });
+//     }
+      
+  
+//     // Reinitialize Slick slider
+//     $('.slider-container').slick('destroy').slick({
+//       dots: true,
+//       infinite: true,
+//       speed: 300,
+//       slidesToShow: 3,
+//       responsive: [
+//         { breakpoint: 768, settings: { slidesToShow: 1 } }
+//       ]
+//     });
+//   }
+  
+//   // Initial load
+//   document.addEventListener('DOMContentLoaded', loadEvents);
   
   // Refresh when storage changes
-  window.addEventListener('storage', loadEvents);
+//   window.addEventListener('storage', loadEvents);
 
   function searchEvents() {
     const query = document.getElementById('searchInput').value.toLowerCase();
