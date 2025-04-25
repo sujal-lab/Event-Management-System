@@ -73,6 +73,10 @@ QR Code Scanning: Attendees receive digital tickets with QR codes for easy check
 
 Streamlined Entry: Event organizers can quickly scan tickets and manage guest entries, reducing waiting times.
 
+### 🛠 Developer Tools & API Integration
+#### Extend Eventify's Capabilities:
+Developers can integrate with Eventify through APIs to customize and extend the platform's functionality. For example , integrate with third-party ticketing systems or add custom analytics dashboards to suit your event's unique needs. 
+
 ## 🛠 Tech Stack
 - **Frontend:** ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 - **Backend:** ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -244,3 +248,6 @@ As Eventify continues to grow, the platform is committed to evolving with user n
 ### 🧠 15. Sentiment Analysis for Feedback
 - Use AI to analyze attendee feedback and reviews.
 - Identify strengths and improvement areas for future events.
+
+## 🌍 Global Event Search
+
