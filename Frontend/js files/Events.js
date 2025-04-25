@@ -6,7 +6,7 @@ function renderEvents(eventsToShow) {
   
   if (eventsToShow.length === 0) {
     container.innerHTML = `
-      <div class="no-events" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+     <div class="no-events" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
         <i class="far fa-calendar-times" style="font-size: 3rem; color: var(--primary);"></i>
         <h3 style="margin: 1rem 0; color: var(--text);">No Events Found</h3>
         <p style="color: var(--text-secondary);">There are no events scheduled for this date.</p>
@@ -16,11 +16,12 @@ function renderEvents(eventsToShow) {
   }
 
 
-  eventsToShow.forEach(event => {
+  eventsToShow.forEach((event, index) => {
     const eventHTML = `
-      <div class="event-box" data-date="${event.date}">
+      <div class="event-box" data-date="${event.date}" data-event-id="${index}">
         <img src="${event.poster}" class="event-img">
         <div class="event-details">
+        <p><strong>${event.name || 'Event'}</strong></p>
           <p><strong>Date:</strong> ${formatDate(event.date)}</p>
           <p><strong>Time:</strong> ${event.time}</p>
           <p><strong>Location:</strong> ${event.location}</p>
@@ -111,35 +112,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  //add here
+  document.querySelector('.events-grid').addEventListener('click', function(e) {
+    if (e.target.classList.contains('book-btn')) {
+      const eventBox = e.target.closest('.event-box');
+      const eventDetails = {
+        name: eventBox.querySelector('strong').textContent,
+        date: eventBox.querySelector('p:nth-child(2)').textContent.replace('Date:', '').trim(),
+        time: eventBox.querySelector('p:nth-child(3)').textContent.replace('Time:', '').trim(),
+        location: eventBox.querySelector('p:nth-child(4)').textContent.replace('Location:', '').trim(),
+        price: '$25.00', // You would get this from your data
+        poster: eventBox.querySelector('img').src
+      };
+      
+      localStorage.setItem('selectedEvent', JSON.stringify(eventDetails));
+      window.location.href = 'scanner.html';
+    }
+  });
 
-  document.querySelectorAll('.book-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const eventBox = this.closest('.event-box');
-        const eventDetails = {
-            name: eventBox.querySelector('strong').textContent,
-            date: eventBox.querySelector('p:nth-child(1)').textContent.replace('Date:', '').trim(),
-            time: eventBox.querySelector('p:nth-child(2)').textContent.replace('Time:', '').trim(),
-            location: eventBox.querySelector('p:nth-child(3)').textContent.replace('Location:', '').trim(),
-            price: '$25.00', // You would get this from your data
-            poster: eventBox.querySelector('img').src
-        };
-        
-        localStorage.setItem('selectedEvent', JSON.stringify(eventDetails));
-        window.location.href = 'scanner.html';
-    });
-});
+  
 
   
 });
 
-// Sidebar toggle function
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  const eventGrid = document.querySelector(".events-grid");
-  
-  sidebar.classList.toggle("open");
-  eventGrid.style.gridTemplateColumns = sidebar.classList.contains("open") 
-    ? "repeat(3, 1fr)" 
-    : "repeat(4, 1fr)";
-}

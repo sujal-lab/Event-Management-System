@@ -40,6 +40,13 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.logo{
+    float: left;
+}
+ #home{
+    margin-right: 10px;
+ }
+
 .menu-icon {
     font-size: 1.4rem;
     cursor: pointer;
@@ -55,7 +62,7 @@ html {
 
 .nav-links{
     display: flex;
-    gap: 1.5rem;
+    gap: 1.8rem;
 }
 
 .nav-links a {
@@ -88,36 +95,6 @@ html {
     width: 100%;
 }
 
-.search-container{
-    position: relative;
-    width: 30%;
-    min-width: 250px;
-}
-.search-bar {
-    width: 100%;
-    padding: 0.8rem 1rem 0.8rem 2.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.1);;
-    color: var(--text);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.search-bar:focus {
-    box-shadow: 0 0 15px rgba(255, 45, 85, 0.5);
-    background: rgba(255, 255, 255, 0.15);
-    outline: none;
-}
-
-.search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-secondary);
-}
 
 /* Main Container */
 .container {
