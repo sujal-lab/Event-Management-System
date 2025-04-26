@@ -269,5 +269,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function redirectToHomepage() {
     alert("No event selected. Redirecting to homepage.");
-    window.location.href = "home page.html";
+    window.location.href = "../home page.html";
 }
