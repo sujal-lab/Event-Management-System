@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: var(--bg);
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 100%);
             color: var(--text);
             margin: 0;
             padding: 20px;
@@ -28,20 +28,40 @@
         .trivia-container {
             max-width: 800px;
             width: 100%;
-            background-color: var(--card-bg);
-            border-radius: 10px;
+            background: rgba(26, 26, 26, 0.25);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 2rem;
             margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trivia-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(120deg, 
+                rgba(156, 14, 14, 0.1) 0%,
+                rgba(156, 14, 14, 0.05) 100%);
+            pointer-events: none;
         }
 
         .question-count {
             color: var(--muted);
             margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         .question-text {
             font-size: 1.5rem;
             margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .answer-options {
@@ -51,17 +71,88 @@
         }
 
         .answer-btn {
-            background-color: var(--card-bg);
+            background: rgba(26, 26, 26, 0.4);
             color: var(--text);
-            border: 2px solid var(--primary);
-            border-radius: 5px;
+            border: 1px solid rgba(156, 14, 14, 0.3);
+            border-radius: 8px;
             padding: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(4px);
         }
 
         .answer-btn:hover {
-            background-color: var(--primary);
+            background: rgba(156, 14, 14, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .answer-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .answer-btn:hover::before {
+            left: 100%;
+        }
+
+        .answer-btn.correct {
+            background: rgba(14, 156, 14, 0.3) !important;
+            border-color: rgba(14, 156, 14, 0.5);
+        }
+
+        .answer-btn.wrong {
+            background: rgba(156, 14, 14, 0.3) !important;
+            border-color: rgba(156, 14, 14, 0.5);
+        }
+
+        .next-btn, .restart-btn, .start-btn {
+            background: linear-gradient(45deg, 
+                rgba(156, 14, 14, 0.8) 0%, 
+                rgba(156, 14, 14, 0.6) 100%);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-btn::after, .restart-btn::after, .start-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .next-btn:hover::after, .restart-btn:hover::after, .start-btn:hover::after {
+            left: 50%;
         }
 
         .answer-btn.correct {
