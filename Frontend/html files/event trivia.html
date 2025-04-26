@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventify Trivia</title>
+    <style>
+        :root {
+            --primary: #9c0e0e;
+            --bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text: #ffffff;
+            --muted: #bbbbbb;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trivia-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .question-count {
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-btn {
+            background-color: var(--card-bg);
+            color: var(--text);
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .answer-btn:hover {
+            background-color: var(--primary);
+        }
+
+        .answer-btn.correct {
+            background-color: #0e9c0e !important;
+            border-color: #0e9c0e;
+        }
+
+        .answer-btn.wrong {
+            background-color: var(--primary) !important;
+        }
+
+        .next-btn {
+            background-color: var(--primary);
+            color: var(--text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            float: right;
+        }
+
+        .score-screen {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .restart-btn {
+            background-color: var(--primary);
+            color: var(--text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .start-screen {
+            text-align: center;
+        }
+
+        .start-btn {
+            background-color: var(--primary);
+            color: var(--text);
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="trivia-container">
+        <h1>Eventify Trivia</h1>
+        <div class="start-screen">
+            <button class="start-btn">Start Game</button>
+        </div>
+        <div class="game-screen" style="display: none;">
+            <div class="question-count">Question 1/10</div>
+            <div class="question-text">Sample question text?</div>
+            <div class="answer-options">
+                <!-- Answers will be injected here -->
+            </div>
+            <button class="next-btn" disabled>Next Question</button>
+        </div>
+        <div class="end-screen" style="display: none;">
+            <div class="score-screen">
+                Game Over! Your Score: <span class="score">0</span>/10
+            </div>
+            <button class="restart-btn">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        
+        const questions = [
+            {
+                question: "What year was the first Eventify conference held?",
+                options: ["2015", "2017", "2019", "2021"],
+                correct: 1
+            },
+            {
+                question: "Which feature is unique to Eventify's registration system?",
+                options: ["AI Matchmaking", "Facial Recognition Check-in", "VR Venue Tours", "Blockchain Ticketing"],
+                correct: 0
+            },
+            {
+                question: "What's the maximum capacity Eventify can handle for a single event?",
+                options: ["10,000 attendees", "50,000 attendees", "100,000 attendees", "Unlimited"],
+                correct: 3
+            },
+            {
+                question: "Which technology does Eventify use for real-time analytics?",
+                options: ["Apache Kafka", "Google Analytics", "Tableau", "Mixpanel"],
+                correct: 0
+            },
+            {
+                question: "What's Eventify's core value proposition?",
+                options: ["Lowest Prices", "Fastest Setup", "End-to-End Event Ecosystem", "Social Media Integration"],
+                correct: 2
+            }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+        const gameDuration = 600; // 10 minutes in seconds
+
+        document.querySelector('.start-btn').addEventListener('click', startGame);
+        document.querySelector('.restart-btn').addEventListener('click', startGame);
+
+        function startGame() {
+            currentQuestion = 0;
+            score = 0;
+            document.querySelector('.start-screen').style.display = 'none';
+            document.querySelector('.end-screen').style.display = 'none';
+            document.querySelector('.game-screen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.querySelector('.question-count').textContent = 
+                `Question ${currentQuestion + 1}/${questions.length}`;
+            document.querySelector('.question-text').textContent = question.question;
+            
+            const optionsContainer = document.querySelector('.answer-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = option;
+                button.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(button);
+            });
+            
+            document.querySelector('.next-btn').disabled = true;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.answer-btn');
+            
+            buttons.forEach(button => button.disabled = true);
+            
+            if(selectedIndex === question.correct) {
+                buttons[selectedIndex].classList.add('correct');
+                score++;
+            } else {
+                buttons[selectedIndex].classList.add('wrong');
+                buttons[question.correct].classList.add('correct');
+            }
+            
+            document.querySelector('.next-btn').disabled = false;
+        }
+
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            currentQuestion++;
+            if(currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                endGame();
+            }
+        });
+
+        function endGame() {
+            document.querySelector('.game-screen').style.display = 'none';
+            document.querySelector('.end-screen').style.display = 'block';
+            document.querySelector('.score').textContent = score;
+        }
+    </script>
+</body>
+</html>
