@@ -6,214 +6,191 @@
     <title>Eventify Trivia</title>
     <style>
         :root {
-            --primary: #9c0e0e;
-            --bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text: #ffffff;
-            --muted: #bbbbbb;
-        }
+    --primary: #800000; /* Deep maroon */
+    --secondary: #0e9c0e; /* You can use a muted maroon or dark gray here if you want less green */
+    --bg: #0a0a0a;
+    --card-bg: rgba(26, 26, 26, 0.25);
+    --text: #fff;
+    --muted: #bbbbbb;
+    --gloss: rgba(255,255,255,0.10);
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 100%);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .trivia-container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.25);
-            backdrop-filter: blur(16px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
+.trivia-container {
+    max-width: 800px;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-radius: 24px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 32px rgba(128,0,0,0.4), 0 1.5px 8px rgba(0,0,0,0.7);
+    padding: 2.5rem;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
 
-        .trivia-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(120deg, 
-                rgba(156, 14, 14, 0.1) 0%,
-                rgba(156, 14, 14, 0.05) 100%);
-            pointer-events: none;
-        }
+/* Glassy Gloss Overlay */
+.trivia-container::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 30%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 100%);
+    border-radius: 24px 24px 60% 60% / 18% 18% 40% 40%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+    filter: blur(2px);
+}
 
-        .question-count {
-            color: var(--muted);
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
+.timer {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 1.2rem;
+    background: rgba(128,0,0,0.18);
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 2px 8px rgba(128,0,0,0.12);
+    z-index: 2;
+}
 
-        .question-text {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+.progress-container {
+    height: 8px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    margin: 1.2rem 0;
+    overflow: hidden;
+}
 
-        .answer-options {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #800000 0%, #a83232 100%);
+    box-shadow: 0 2px 8px rgba(128,0,0,0.25);
+    transition: width 0.3s ease;
+}
 
-        .answer-btn {
-            background: rgba(26, 26, 26, 0.4);
-            color: var(--text);
-            border: 1px solid rgba(156, 14, 14, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            backdrop-filter: blur(4px);
-        }
+.answer-btn {
+    background: rgba(40, 0, 0, 0.35);
+    color: var(--text);
+    border: 1.5px solid rgba(128,0,0,0.22);
+    border-radius: 10px;
+    padding: 1.1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(.4,0,.2,1);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 8px rgba(128,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+}
 
-        .answer-btn:hover {
-            background: rgba(156, 14, 14, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+.answer-btn:hover, .answer-btn:focus {
+    background: rgba(128,0,0,0.25);
+    box-shadow: 0 4px 16px rgba(128,0,0,0.18);
+    outline: none;
+}
 
-        .answer-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transition: 0.5s;
-        }
+.answer-btn.correct {
+    background: rgba(14, 156, 14, 0.25) !important;
+    border-color: rgba(14, 156, 14, 0.45);
+    animation: pulse 0.5s ease;
+}
 
-        .answer-btn:hover::before {
-            left: 100%;
-        }
+.answer-btn.wrong {
+    background: rgba(128,0,0,0.4) !important;
+    border-color: rgba(128,0,0,0.7);
+}
 
-        .answer-btn.correct {
-            background: rgba(14, 156, 14, 0.3) !important;
-            border-color: rgba(14, 156, 14, 0.5);
-        }
+.next-btn, .start-btn, .restart-btn {
+    background: linear-gradient(90deg, #800000 60%, #1a1a1a 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0 0;
+    box-shadow: 0 2px 8px rgba(128,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.22s, box-shadow 0.22s;
+}
 
-        .answer-btn.wrong {
-            background: rgba(156, 14, 14, 0.3) !important;
-            border-color: rgba(156, 14, 14, 0.5);
-        }
+.next-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
-        .next-btn, .restart-btn, .start-btn {
-            background: linear-gradient(45deg, 
-                rgba(156, 14, 14, 0.8) 0%, 
-                rgba(156, 14, 14, 0.6) 100%);
-            color: var(--text);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.next-btn:hover, .start-btn:hover, .restart-btn:hover {
+    background: linear-gradient(90deg, #a83232 60%, #800000 100%);
+    box-shadow: 0 4px 16px rgba(128,0,0,0.25);
+}
 
-        .next-btn::after, .restart-btn::after, .start-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transform: rotate(45deg);
-            transition: 0.5s;
-        }
+.fact-tooltip {
+    background: rgba(128,0,0,0.13);
+    padding: 1.1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(128,0,0,0.12);
+    color: #fff;
+    z-index: 2;
+    animation: slideIn 0.3s ease;
+}
 
-        .next-btn:hover::after, .restart-btn:hover::after, .start-btn:hover::after {
-            left: 50%;
-        }
+@media (max-width: 768px) {
+    .trivia-container { padding: 1rem; margin-top: 1rem; }
+    .timer { position: static; margin: 1rem 0; }
+    .answer-btn { padding: 0.8rem; font-size: 0.97rem; }
+}
 
-        .answer-btn.correct {
-            background-color: #0e9c0e !important;
-            border-color: #0e9c0e;
-        }
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.07);}
+    100% { transform: scale(1);}
+}
 
-        .answer-btn.wrong {
-            background-color: var(--primary) !important;
-        }
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
-        .next-btn {
-            background-color: var(--primary);
-            color: var(--text);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            float: right;
-        }
 
-        .score-screen {
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .restart-btn {
-            background-color: var(--primary);
-            color: var(--text);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 2rem;
-        }
-
-        .start-screen {
-            text-align: center;
-        }
-
-        .start-btn {
-            background-color: var(--primary);
-            color: var(--text);
-            border: none;
-            padding: 1.5rem 3rem;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-top: 2rem;
-        }
     </style>
 </head>
 <body>
+    <div class="bg-shape shape1"></div>
+<div class="bg-shape shape2"></div>
+<div class="bg-shape shape3"></div>
+
     <div class="trivia-container">
+        <div class="timer" id="timer">10:00</div>
         <h1>Eventify Trivia</h1>
         <div class="start-screen">
             <button class="start-btn">Start Game</button>
         </div>
         <div class="game-screen" style="display: none;">
-            <div class="question-count">Question 1/10</div>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="question-count">Question 1/5</div>
             <div class="question-text">Sample question text?</div>
             <div class="answer-options">
                 <!-- Answers will be injected here -->
@@ -222,107 +199,219 @@
         </div>
         <div class="end-screen" style="display: none;">
             <div class="score-screen">
-                Game Over! Your Score: <span class="score">0</span>/10
+                <h2>Game Over!</h2>
+                <p>Your Score: <span class="score">0</span>/5</p>
+                <p id="performance-comment"></p>
             </div>
             <button class="restart-btn">Play Again</button>
         </div>
     </div>
+    <button class="back-btn" onclick="window.location.href='offer.html'">← Back to Game Page</button>
+
 
     <script>
-        
         const questions = [
             {
                 question: "What year was the first Eventify conference held?",
                 options: ["2015", "2017", "2019", "2021"],
-                correct: 1
+                correct: 1,
+                fact: "Eventify started during the rise of virtual event platforms!"
             },
             {
                 question: "Which feature is unique to Eventify's registration system?",
                 options: ["AI Matchmaking", "Facial Recognition Check-in", "VR Venue Tours", "Blockchain Ticketing"],
-                correct: 0
+                correct: 0,
+                fact: "Our AI analyzes attendee profiles to suggest perfect matches!"
             },
             {
                 question: "What's the maximum capacity Eventify can handle for a single event?",
                 options: ["10,000 attendees", "50,000 attendees", "100,000 attendees", "Unlimited"],
-                correct: 3
+                correct: 3,
+                fact: "Our cloud infrastructure scales to meet any demand!"
             },
             {
                 question: "Which technology does Eventify use for real-time analytics?",
                 options: ["Apache Kafka", "Google Analytics", "Tableau", "Mixpanel"],
-                correct: 0
+                correct: 0,
+                fact: "Kafka allows us to process millions of events per second!"
             },
             {
                 question: "What's Eventify's core value proposition?",
                 options: ["Lowest Prices", "Fastest Setup", "End-to-End Event Ecosystem", "Social Media Integration"],
-                correct: 2
+                correct: 2,
+                fact: "We handle everything from registration to post-event analytics!"
             }
         ];
+    
         let currentQuestion = 0;
         let score = 0;
-        const gameDuration = 600; // 10 minutes in seconds
-
+        let timeLeft = 600; // 10 minutes in seconds
+        let timerId;
+        let selectedAnswer = null;
+    
+        // Initialize game elements
+        const startScreen = document.querySelector('.start-screen');
+        const gameScreen = document.querySelector('.game-screen');
+        const endScreen = document.querySelector('.end-screen');
+        const nextBtn = document.querySelector('.next-btn');
+        const questionText = document.querySelector('.question-text');
+        const answerOptions = document.querySelector('.answer-options');
+        const progressBar = document.querySelector('.progress-bar');
+        const timerDisplay = document.getElementById('timer');
+    
+        // Event listeners
         document.querySelector('.start-btn').addEventListener('click', startGame);
         document.querySelector('.restart-btn').addEventListener('click', startGame);
-
+        nextBtn.addEventListener('click', showNextQuestion);
+    
         function startGame() {
             currentQuestion = 0;
             score = 0;
-            document.querySelector('.start-screen').style.display = 'none';
-            document.querySelector('.end-screen').style.display = 'none';
-            document.querySelector('.game-screen').style.display = 'block';
+            timeLeft = 600;
+            selectedAnswer = null;
+            
+            // Reset UI
+            startScreen.style.display = 'none';
+            endScreen.style.display = 'none';
+            gameScreen.style.display = 'block';
+            progressBar.style.width = '0%';
+            document.querySelectorAll('.confetti').forEach(c => c.remove());
+            
+            // Initialize timer
+            clearInterval(timerId);
+            startTimer();
             showQuestion();
         }
-
+    
+        function startTimer() {
+            timerId = setInterval(() => {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) endGame();
+            }, 1000);
+        }
+    
         function showQuestion() {
             const question = questions[currentQuestion];
-            document.querySelector('.question-count').textContent = 
-                `Question ${currentQuestion + 1}/${questions.length}`;
-            document.querySelector('.question-text').textContent = question.question;
-            
-            const optionsContainer = document.querySelector('.answer-options');
-            optionsContainer.innerHTML = '';
-            
+            questionText.innerHTML = question.question;
+            answerOptions.innerHTML = '';
+    
+            // Create answer buttons
             question.options.forEach((option, index) => {
                 const button = document.createElement('button');
                 button.className = 'answer-btn';
-                button.textContent = option;
-                button.addEventListener('click', () => selectAnswer(index));
-                optionsContainer.appendChild(button);
+                button.innerHTML = option;
+                button.onclick = () => selectAnswer(index);
+                answerOptions.appendChild(button);
             });
+    
+            // Update progress
+            progressBar.style.width = `${(currentQuestion / questions.length) * 100}%`;
+            document.querySelector('.question-count').textContent = 
+                `Question ${currentQuestion + 1}/${questions.length}`;
             
-            document.querySelector('.next-btn').disabled = true;
+            nextBtn.disabled = true;
+            answerOptions.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('correct', 'wrong');
+            });
         }
-
-        function selectAnswer(selectedIndex) {
+    
+        function selectAnswer(index) {
+            if (selectedAnswer !== null) return;
+            selectedAnswer = index;
             const question = questions[currentQuestion];
-            const buttons = document.querySelectorAll('.answer-btn');
+            const buttons = answerOptions.querySelectorAll('.answer-btn');
             
-            buttons.forEach(button => button.disabled = true);
-            
-            if(selectedIndex === question.correct) {
-                buttons[selectedIndex].classList.add('correct');
+            buttons.forEach(btn => btn.disabled = true);
+            playSound(index === question.correct ? 'correct' : 'wrong');
+    
+            buttons.forEach((button, i) => {
+                if (i === question.correct) {
+                    button.classList.add('correct');
+                }
+                if (i === index && i !== question.correct) {
+                    button.classList.add('wrong');
+                }
+            });
+    
+            if (index === question.correct) {
                 score++;
-            } else {
-                buttons[selectedIndex].classList.add('wrong');
-                buttons[question.correct].classList.add('correct');
+                if (score === questions.length) createConfetti();
             }
+    
+            // Show fact tooltip
+            const factTooltip = document.createElement('div');
+            factTooltip.className = 'fact-tooltip';
+            factTooltip.textContent = question.fact;
+            answerOptions.appendChild(factTooltip);
             
-            document.querySelector('.next-btn').disabled = false;
+            nextBtn.disabled = false;
         }
-
-        document.querySelector('.next-btn').addEventListener('click', () => {
+    
+        function showNextQuestion() {
+            selectedAnswer = null;
             currentQuestion++;
-            if(currentQuestion < questions.length) {
+            
+            if (currentQuestion < questions.length) {
                 showQuestion();
             } else {
                 endGame();
             }
-        });
-
+        }
+    
         function endGame() {
-            document.querySelector('.game-screen').style.display = 'none';
-            document.querySelector('.end-screen').style.display = 'block';
+            clearInterval(timerId);
+            gameScreen.style.display = 'none';
+            endScreen.style.display = 'block';
+            
+            const comment = document.getElementById('performance-comment');
+            if (score === questions.length) {
+                comment.textContent = "Perfect score! You're an Eventify expert! 🎉";
+            } else if (score >= questions.length * 0.8) {
+                comment.textContent = "Great job! You know your stuff! 👍";
+            } else {
+                comment.textContent = "Good effort! Keep learning! 💪";
+            }
+            
             document.querySelector('.score').textContent = score;
+        }
+    
+        // Sound effects (simplified version)
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+    
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+    
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(
+                type === 'correct' ? 880 : 440,
+                audioContext.currentTime
+            );
+    
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.2);
+        }
+    
+        // Confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
         }
     </script>
 </body>
