@@ -42,6 +42,8 @@ html {
 
 .logo{
     float: left;
+    height: auto;
+    
 }
  #home{
     margin-right: 10px;
