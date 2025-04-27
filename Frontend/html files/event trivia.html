@@ -9,6 +9,20 @@
     <button class="difficulty-btn">Medium</button>
     <button class="difficulty-btn">Hard</button>
 </div>
+
+<div class="challenge-panel">
+    <div class="challenge-header">
+        <h3>Daily Challenge</h3>
+        <div class="streak-display">🔥 streak</div>
+    </div>
+    <div class="challenge-content">
+        <div class="challenge-progress">
+            <div class="progress-bar" style="width: 0%"></div>
+        </div>
+        <p class="challenge-text">challenge</p>
+        <div class="reward-badge">reward-badge</div>
+    </div>
+</div>
     <style>
       :root {
     --primary: #9c0e0e;
@@ -208,6 +222,58 @@ body::after {
     content: '✕';
     margin-left: auto;
     color: var(--primary);
+}
+/* Daily Challenge Panel */
+.challenge-panel {
+    background: rgba(40, 0, 0, 0.35);
+    border: 1px solid rgba(156, 14, 14, 0.4);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 800px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(128, 0, 0, 0.15);
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.8rem;
+}
+
+.streak-display {
+    background: rgba(156, 14, 14, 0.25);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.challenge-progress {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.challenge-progress .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #9c0e0e 0%, #ff6b6b 100%);
+    transition: width 0.5s ease;
+}
+
+.reward-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(156,14,14,0.4) 0%, rgba(40,0,0,0.4) 100%);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+    border: 1px dashed rgba(255,255,255,0.2);
 }
 
 /* Next/Start/Restart Buttons */
@@ -444,6 +510,93 @@ difficultyBtns.forEach(btn => {
         // Add your difficulty adjustment logic here
     });
 });
+
+// Add after your questions array
+const dailyChallenges = {
+    // Structure: dayNumber -> { goal, reward, completed }
+    "1": { goal: "Answer 3 questions correctly", target: 3, reward: "5 XP", completed: false },
+    "2": { goal: "Complete a game in under 5 minutes", target: 300, reward: "10 XP", completed: false },
+    "3": { goal: "Get a 5-question streak", target: 5, reward: "Unlock Premium Avatar", completed: false },
+    // ... add more days
+};
+
+
+let currentDay = new Date().getDate(); // Gets day of month (1-31)
+let challengeStreak = 0;
+// Add to selectAnswer() function:
+function selectAnswer(index) {
+    // ... existing code ...
+    
+    // Daily challenge tracking
+    updateDailyChallenge();
+}
+
+function updateDailyChallenge() {
+    const challenge = dailyChallenges[currentDay];
+    if (!challenge.completed) {
+        let progress = 0;
+        
+        // Track different challenge types
+        if (challenge.goal.includes("correctly")) {
+            progress = score;
+        } else if (challenge.goal.includes("minutes")) {
+            progress = 600 - timeLeft;
+        } else if (challenge.goal.includes("streak")) {
+            progress = Math.max(progress, currentStreak);
+        }
+        
+        // Update UI
+        const progressPercent = Math.min((progress / challenge.target) * 100, 100);
+        document.querySelector('.challenge-progress .progress-bar').style.width = `${progressPercent}%`;
+        
+        // Check completion
+        if (progress >= challenge.target) {
+            challenge.completed = true;
+            showChallengeComplete();
+        }
+    }
+}
+
+function showChallengeComplete() {
+    const challenge = dailyChallenges[currentDay];
+    challengeStreak++;
+    
+    // Update UI
+    document.querySelector('.streak-display').textContent = `🔥 ${challengeStreak}-day streak`;
+    document.querySelector('.challenge-content').innerHTML = `
+        <div class="challenge-complete">
+            <svg viewBox="0 0 24 24" width="48" height="48" class="checkmark">
+                <path fill="#0e9c0e" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+            </svg>
+            <h4>Challenge Complete!</h4>
+            <p>${challenge.reward} earned</p>
+        </div>
+    `;
+    
+    // Celebration effect
+    createConfetti();
+    playSound('correct');
+    
+    // Save to localStorage
+    localStorage.setItem('challengeStreak', challengeStreak);
+    localStorage.setItem(`challenge-${currentDay}`, 'completed');
+}
+
+// Initialize on load
+function initChallenges() {
+    const savedStreak = localStorage.getItem('challengeStreak');
+    if (savedStreak) challengeStreak = parseInt(savedStreak);
+    
+    // Check if today's challenge already completed
+    if (localStorage.getItem(`challenge-${currentDay}`)) {
+        dailyChallenges[currentDay].completed = true;
+        showChallengeComplete();
+    }
+}
+
+
+// Call this when page loads
+initChallenges();
     
         // Initialize game elements
         const startScreen = document.querySelector('.start-screen');
