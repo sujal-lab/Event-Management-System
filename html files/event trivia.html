@@ -530,7 +530,25 @@ function selectAnswer(index) {
     // Daily challenge tracking
     updateDailyChallenge();
 }
+function checkDailyChallenge() {
+    const today = new Date().toDateString();
+    if (localStorage.getItem('lastPlayed') !== today) {
+        // Reset daily progress
+        localStorage.setItem('lastPlayed', today);
+        resetDailyProgress();
+    }
+    updateChallengeUI();
+}
 
+function getQuestionsByDifficulty(difficulty) {
+    // Return different question sets or modify existing ones
+    if (difficulty === 'easy') {
+        return questions.map(q => ({...q, options: q.options.slice(0, 3)})); // fewer options
+    } else if (difficulty === 'hard') {
+        return questions.map(q => ({...q, timeLimit: 15})); // shorter time per question
+    }
+    return questions;
+}
 function updateDailyChallenge() {
     const challenge = dailyChallenges[currentDay];
     if (!challenge.completed) {
