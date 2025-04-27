@@ -4,25 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventify Trivia</title>
-<div class="difficulty-selector">
-    <button class="difficulty-btn active">Easy</button>
-    <button class="difficulty-btn">Medium</button>
-    <button class="difficulty-btn">Hard</button>
-</div>
-
-<div class="challenge-panel">
-    <div class="challenge-header">
-        <h3>Daily Challenge</h3>
-        <div class="streak-display">🔥 streak</div>
-    </div>
-    <div class="challenge-content">
-        <div class="challenge-progress">
-            <div class="progress-bar" style="width: 0%"></div>
-        </div>
-        <p class="challenge-text">challenge</p>
-        <div class="reward-badge">reward-badge</div>
-    </div>
-</div>
     <style>
       :root {
     --primary: #9c0e0e;
@@ -234,6 +215,20 @@ body::after {
     max-width: 800px;
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px rgba(128, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge-panel::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(156,14,14,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
 }
 
 .challenge-header {
@@ -243,6 +238,17 @@ body::after {
     margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.challenge-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    background: linear-gradient(90deg, #fff 0%, #ff9999 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .streak-display {
@@ -250,30 +256,94 @@ body::after {
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.challenge-content {
+    position: relative;
+    z-index: 1;
 }
 
 .challenge-progress {
-    height: 6px;
+    height: 8px;
     background: rgba(255,255,255,0.1);
-    border-radius: 3px;
+    border-radius: 4px;
     margin-bottom: 1rem;
     overflow: hidden;
+    position: relative;
 }
 
 .challenge-progress .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, #9c0e0e 0%, #ff6b6b 100%);
     transition: width 0.5s ease;
+    position: relative;
+}
+
+.challenge-progress .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0.8) 0%, 
+        rgba(255,255,255,0) 50%, 
+        rgba(255,255,255,0.8) 100%);
+    animation: shine 2s infinite;
+}
+
+.challenge-text {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+.challenge-goal {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.5rem;
 }
 
 .reward-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     background: linear-gradient(135deg, rgba(156,14,14,0.4) 0%, rgba(40,0,0,0.4) 100%);
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
     margin-top: 0.8rem;
     border: 1px dashed rgba(255,255,255,0.2);
+    gap: 8px;
+}
+
+.reward-badge::before {
+    content: "🏆";
+}
+
+.challenge-complete {
+    text-align: center;
+    padding: 1rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.challenge-complete .checkmark {
+    margin-bottom: 1rem;
+    animation: bounce 0.5s ease;
+}
+
+.challenge-complete h4 {
+    margin: 0.5rem 0;
+    color: var(--secondary);
+}
+
+.challenge-complete p {
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 /* Next/Start/Restart Buttons */
@@ -400,6 +470,25 @@ body::after {
     to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
@@ -408,6 +497,8 @@ body::after {
     .question-text { font-size: 1.2rem; }
     .answer-btn { padding: 0.8rem; font-size: 0.97rem; }
     .back-btn { padding: 0.6rem 1.2rem; font-size: 0.97rem; }
+    .challenge-panel { padding: 1rem; }
+    .challenge-header h3 { font-size: 1.1rem; }
 }
 
 .start-btn:hover {
@@ -415,17 +506,34 @@ body::after {
     transform: scale(1.05);
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
 }
-
-
-
-
-
     </style>
 </head>
 <body>
     <div class="bg-shape shape1"></div>
 <div class="bg-shape shape2"></div>
 <div class="bg-shape shape3"></div>
+
+<div class="challenge-panel">
+    <div class="challenge-header">
+        <h3>Daily Challenge</h3>
+        <div class="streak-display">🔥 <span id="streak-count">0</span>-day streak</div>
+    </div>
+    <div class="challenge-content">
+        <div class="challenge-progress">
+            <div class="progress-bar" style="width: 0%"></div>
+        </div>
+        <p class="challenge-goal" id="challenge-goal">Answer 5 questions correctly</p>
+        <p class="challenge-text">Complete today's challenge to earn rewards!</p>
+        <div class="reward-badge" id="reward-badge">+50 XP</div>
+        <div id="challenge-complete" style="display: none;" class="challenge-complete">
+            <svg viewBox="0 0 24 24" width="48" height="48" class="checkmark">
+                <path fill="#0e9c0e" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+            </svg>
+            <h4>Challenge Complete!</h4>
+            <p>You earned +50 XP</p>
+        </div>
+    </div>
+</div>
 
     <div class="trivia-container">
         <div class="timer" id="timer">10:00</div>
@@ -490,6 +598,92 @@ body::after {
             }
         ];
 
+        // Daily Challenge System
+        const dailyChallenge = {
+            target: 5, // Answer 5 questions correctly
+            reward: "+50 XP",
+            completed: false,
+            progress: 0,
+            streak: 0,
+            lastCompletedDate: null
+        };
+
+        // Initialize daily challenge from localStorage
+        function initDailyChallenge() {
+            const today = new Date().toDateString();
+            const savedChallenge = localStorage.getItem('dailyChallenge');
+            
+            if (savedChallenge) {
+                const parsed = JSON.parse(savedChallenge);
+                if (parsed.lastCompletedDate === today) {
+                    dailyChallenge.completed = true;
+                    dailyChallenge.progress = parsed.progress;
+                    dailyChallenge.streak = parsed.streak;
+                } else if (new Date(parsed.lastCompletedDate).getTime() > new Date().getTime() - 86400000 * 2) {
+                    // If completed within last 2 days, continue streak
+                    dailyChallenge.streak = parsed.streak;
+                }
+            }
+            
+            updateChallengeUI();
+        }
+
+        // Update challenge progress
+        function updateChallengeProgress(correctAnswers) {
+            if (dailyChallenge.completed) return;
+            
+            dailyChallenge.progress = correctAnswers;
+            
+            if (dailyChallenge.progress >= dailyChallenge.target) {
+                completeDailyChallenge();
+            }
+            
+            updateChallengeUI();
+            saveChallengeProgress();
+        }
+
+        // Complete the challenge
+        function completeDailyChallenge() {
+            dailyChallenge.completed = true;
+            dailyChallenge.streak++;
+            dailyChallenge.lastCompletedDate = new Date().toDateString();
+            
+            // Show celebration
+            document.getElementById('challenge-complete').style.display = 'block';
+            document.getElementById('reward-badge').style.display = 'none';
+            createConfetti();
+            playSound('correct');
+            
+            saveChallengeProgress();
+        }
+
+        // Update UI elements
+        function updateChallengeUI() {
+            const progressPercent = Math.min((dailyChallenge.progress / dailyChallenge.target) * 100, 100);
+            document.querySelector('.challenge-progress .progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('streak-count').textContent = dailyChallenge.streak;
+            
+            if (dailyChallenge.completed) {
+                document.getElementById('challenge-goal').textContent = "Challenge completed!";
+            } else {
+                document.getElementById('challenge-goal').textContent = 
+                    `Answer ${dailyChallenge.target} questions correctly (${dailyChallenge.progress}/${dailyChallenge.target})`;
+            }
+        }
+
+        // Save to localStorage
+        function saveChallengeProgress() {
+            localStorage.setItem('dailyChallenge', JSON.stringify(dailyChallenge));
+        }
+
+        // Reset for new day
+        function checkForNewDay() {
+            const today = new Date().toDateString();
+            if (dailyChallenge.lastCompletedDate !== today) {
+                dailyChallenge.completed = false;
+                dailyChallenge.progress = 0;
+            }
+        }
     
         let currentQuestion = 0;
         let score = 0;
@@ -497,107 +691,6 @@ body::after {
         let timerId;
         let selectedAnswer = null;
 
-        // Difficulty selection functionality
-const difficultyBtns = document.querySelectorAll('.difficulty-btn');
-difficultyBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        difficultyBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // You can use this value to adjust question difficulty
-        const difficulty = btn.textContent.toLowerCase();
-        console.log(`Difficulty set to: ${difficulty}`);
-        // Add your difficulty adjustment logic here
-    });
-});
-
-// Add after your questions array
-const dailyChallenges = {
-    // Structure: dayNumber -> { goal, reward, completed }
-    "1": { goal: "Answer 3 questions correctly", target: 3, reward: "5 XP", completed: false },
-    "2": { goal: "Complete a game in under 5 minutes", target: 300, reward: "10 XP", completed: false },
-    "3": { goal: "Get a 5-question streak", target: 5, reward: "Unlock Premium Avatar", completed: false },
-    // ... add more days
-};
-
-
-let currentDay = new Date().getDate(); // Gets day of month (1-31)
-let challengeStreak = 0;
-// Add to selectAnswer() function:
-function selectAnswer(index) {
-    // ... existing code ...
-    
-    // Daily challenge tracking
-    updateDailyChallenge();
-}
-
-function updateDailyChallenge() {
-    const challenge = dailyChallenges[currentDay];
-    if (!challenge.completed) {
-        let progress = 0;
-        
-        // Track different challenge types
-        if (challenge.goal.includes("correctly")) {
-            progress = score;
-        } else if (challenge.goal.includes("minutes")) {
-            progress = 600 - timeLeft;
-        } else if (challenge.goal.includes("streak")) {
-            progress = Math.max(progress, currentStreak);
-        }
-        
-        // Update UI
-        const progressPercent = Math.min((progress / challenge.target) * 100, 100);
-        document.querySelector('.challenge-progress .progress-bar').style.width = `${progressPercent}%`;
-        
-        // Check completion
-        if (progress >= challenge.target) {
-            challenge.completed = true;
-            showChallengeComplete();
-        }
-    }
-}
-
-function showChallengeComplete() {
-    const challenge = dailyChallenges[currentDay];
-    challengeStreak++;
-    
-    // Update UI
-    document.querySelector('.streak-display').textContent = `🔥 ${challengeStreak}-day streak`;
-    document.querySelector('.challenge-content').innerHTML = `
-        <div class="challenge-complete">
-            <svg viewBox="0 0 24 24" width="48" height="48" class="checkmark">
-                <path fill="#0e9c0e" d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
-            </svg>
-            <h4>Challenge Complete!</h4>
-            <p>${challenge.reward} earned</p>
-        </div>
-    `;
-    
-    // Celebration effect
-    createConfetti();
-    playSound('correct');
-    
-    // Save to localStorage
-    localStorage.setItem('challengeStreak', challengeStreak);
-    localStorage.setItem(`challenge-${currentDay}`, 'completed');
-}
-
-// Initialize on load
-function initChallenges() {
-    const savedStreak = localStorage.getItem('challengeStreak');
-    if (savedStreak) challengeStreak = parseInt(savedStreak);
-    
-    // Check if today's challenge already completed
-    if (localStorage.getItem(`challenge-${currentDay}`)) {
-        dailyChallenges[currentDay].completed = true;
-        showChallengeComplete();
-    }
-}
-
-
-// Call this when page loads
-initChallenges();
-    
         // Initialize game elements
         const startScreen = document.querySelector('.start-screen');
         const gameScreen = document.querySelector('.game-screen');
@@ -607,7 +700,13 @@ initChallenges();
         const answerOptions = document.querySelector('.answer-options');
         const progressBar = document.querySelector('.progress-bar');
         const timerDisplay = document.getElementById('timer');
-    
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            initDailyChallenge();
+            checkForNewDay();
+        });
+
         // Event listeners
         document.querySelector('.start-btn').addEventListener('click', startGame);
         document.querySelector('.restart-btn').addEventListener('click', startGame);
@@ -690,6 +789,7 @@ initChallenges();
     
             if (index === question.correct) {
                 score++;
+                updateChallengeProgress(score); // Update daily challenge progress
                 if (score === questions.length) createConfetti();
             }
     
@@ -712,9 +812,7 @@ initChallenges();
                 endGame();
             }
         }
-        const difficulty = document.getElementById('difficulty').value;
-// Adjust questions based on difficulty
-
+    
         function endGame() {
             clearInterval(timerId);
             gameScreen.style.display = 'none';
