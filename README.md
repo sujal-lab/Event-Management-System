@@ -73,6 +73,9 @@ QR Code Scanning: Attendees receive digital tickets with QR codes for easy check
 
 Streamlined Entry: Event organizers can quickly scan tickets and manage guest entries, reducing waiting times.
 
+### 13. Offers and Games
+In this you can play games and have free wheel spin to get exciting offers.
+
 ### 🛠 Developer Tools & API Integration
 #### Extend Eventify's Capabilities:
 Developers can integrate with Eventify through APIs to customize and extend the platform's functionality. For example , integrate with third-party ticketing systems or add custom analytics dashboards to suit your event's unique needs. 
