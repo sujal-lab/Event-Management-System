@@ -76,3 +76,22 @@ body {
     100% { text-shadow: 0 0 8px #ff0000, 0 0 12px #ff0000; }
   }
   
+  /* Button styling */
+#scoreButton {
+  background-color: #b30000; /* Red background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#scoreButton:hover {
+  background-color: #a30000; /* Darker red on hover */
+}
+
+#scoreButton:focus {
+  outline: none; /* Remove focus outline */
+}

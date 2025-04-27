@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eventify - Scavenger Hunt</title>
   <link rel="stylesheet" href="../css files/scavenger.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
   <style>
     body {
       background-color: #0d0d0d !important;
@@ -16,7 +18,40 @@
     }
     .instructions {
     color: #ffffff; 
+    font-size: 20px;
   }
+  .score-display {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+    }
+    .hidden-item {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url('../frontend images/eventify logo.png'); /* Assuming this is the icon */
+      background-size: cover;
+      cursor: pointer;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+    }
   </style>
   
 </head>
@@ -56,9 +91,10 @@
       </div>
     </div>
   </div>
-  <div id="score" style="color: white; text-align: center; margin-top: 10px; font-size: 1.1rem;">
-    Score: 0/5
+  <div class="score-display">
+    <p id="score">Score: 0/5</p>
   </div>
+  
   
 
   <script src="../js files/scavenger.js"></script>
