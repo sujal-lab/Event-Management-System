@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventify Trivia</title>
+<div class="difficulty-selector">
+    <button class="difficulty-btn active">Easy</button>
+    <button class="difficulty-btn">Medium</button>
+    <button class="difficulty-btn">Hard</button>
+</div>
     <style>
       :root {
     --primary: #9c0e0e;
@@ -227,7 +232,69 @@ body::after {
     background: linear-gradient(90deg, #a83232 60%, #800000 100%);
     box-shadow: 0 4px 16px rgba(128,0,0,0.25);
 }
+.difficulty-selector {
+  display: flex;
+  gap: 12px;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
 
+.difficulty-btn {
+  padding: 0.7rem 1.8rem;
+  border: 1.5px solid rgba(156, 14, 14, 0.5);
+  border-radius: 12px;
+  background: rgba(40, 0, 0, 0.25);
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.difficulty-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(156,14,14,0.15) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.difficulty-btn:hover {
+  background: rgba(60, 0, 0, 0.35);
+  color: var(--text);
+  border-color: rgba(156, 14, 14, 0.7);
+  box-shadow: 0 4px 16px rgba(156,14,14,0.25);
+}
+
+.difficulty-btn:hover::before {
+  opacity: 1;
+}
+
+.difficulty-btn.active {
+  background: linear-gradient(120deg, rgba(156,14,14,0.45) 0%, rgba(26,26,26,0.45) 100%);
+  color: #fff;
+  border-color: rgba(156, 14, 14, 0.8);
+  box-shadow: 0 4px 20px rgba(156,14,14,0.35);
+}
+
+.difficulty-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 2px;
+}
 /* Fact Tooltip */
 .fact-tooltip {
     background: rgba(128,0,0,0.13);
@@ -267,6 +334,7 @@ body::after {
     to { transform: translateY(0); opacity: 1; }
 }
 
+
 /* Mobile Optimization */
 @media (max-width: 768px) {
     .trivia-container { padding: 1rem; margin-top: 1rem; }
@@ -275,6 +343,16 @@ body::after {
     .answer-btn { padding: 0.8rem; font-size: 0.97rem; }
     .back-btn { padding: 0.6rem 1.2rem; font-size: 0.97rem; }
 }
+
+.start-btn:hover {
+    background: rgba(156, 14, 14, 1);
+    transform: scale(1.05);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 
     </style>
 </head>
@@ -345,12 +423,27 @@ body::after {
                 fact: "We handle everything from registration to post-event analytics!"
             }
         ];
+
     
         let currentQuestion = 0;
         let score = 0;
         let timeLeft = 600; // 10 minutes in seconds
         let timerId;
         let selectedAnswer = null;
+
+        // Difficulty selection functionality
+const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+difficultyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        difficultyBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // You can use this value to adjust question difficulty
+        const difficulty = btn.textContent.toLowerCase();
+        console.log(`Difficulty set to: ${difficulty}`);
+        // Add your difficulty adjustment logic here
+    });
+});
     
         // Initialize game elements
         const startScreen = document.querySelector('.start-screen');
@@ -466,7 +559,9 @@ body::after {
                 endGame();
             }
         }
-    
+        const difficulty = document.getElementById('difficulty').value;
+// Adjust questions based on difficulty
+
         function endGame() {
             clearInterval(timerId);
             gameScreen.style.display = 'none';
