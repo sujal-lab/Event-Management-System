@@ -43,7 +43,8 @@ html {
 .logo{
     float: left;
     height: auto;
-    
+    width: 150px;
+
 }
  #home{
     margin-right: 10px;
