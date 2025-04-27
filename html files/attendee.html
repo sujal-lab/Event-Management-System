@@ -513,7 +513,7 @@
             <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
             <a href="offers.html">Offers</a>
             <a href="myevent.html" class="active"><i class="fas fa-user"></i> My Events</a>
-            <a href="scanner.html"><i class="fas fa-qrcode"></i> Scanner</a>
+            <a href="scanner.html"><i class="fas fa-qrcode"></i> Book Events</a>
             <a href="profile.html"><i class="fas fa-profile"></i>Profile</a>
             <a href="logout.html"><i class="fas fa-logout"></i>Logout</a>
         </div>
@@ -532,7 +532,8 @@
             <button class="tab-btn" data-tab="past"><i class="fas fa-history"></i> Past</button>
             <button class="tab-btn" data-tab="cancelled"><i class="fas fa-times-circle"></i> Cancelled</button>
         </div>
-
+        
+        <!-- Upcoming Events Tab -->
         <div class="tab-content active" id="upcoming-tab">
             <div class="timeline-header">
                 <h2 class="timeline-title">Upcoming Events</h2>
@@ -543,7 +544,7 @@
                 <!-- Events will be inserted here by JavaScript -->
                 
                 <!-- Example event card (will be removed by JavaScript if no events) -->
-                <div class="event-card upcoming">
+                <!-- <div class="event-card upcoming">
                     <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert" class="event-poster">
                     <div class="event-details">
                         <div class="event-date upcoming">Jun 15, 2023</div>
@@ -558,7 +559,7 @@
                             <span class="event-status status-upcoming">Confirmed</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             
             <div class="empty-state" id="upcoming-empty" style="display: none;">
@@ -568,91 +569,63 @@
                 <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
             </div>
         </div>
-               <!-- Past Events Tab -->
-               <div class="tab-content" id="past-tab">
-                <div class="timeline-header">
-                    <h2 class="timeline-title">Past Events</h2>
-                    <span class="timeline-count" id="past-count">0 Events</span>
-                </div>
+        
+        <!-- Past Events Tab -->
+        <div class="tab-content" id="past-tab">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Past Events</h2>
+                <span class="timeline-count" id="past-count">0 Events</span>
+            </div>
+            
+            <div class="events-grid" id="past-events">
+                <!-- Events will be inserted here by JavaScript -->
                 
-                <div class="events-grid" id="past-events">
-                    <!-- Events will be inserted here by JavaScript -->
-                    
-                    <!-- Example event card (will be removed by JavaScript if no events) -->
-                    <div class="event-card past">
-                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert" class="event-poster">
-                        <div class="event-details">
-                            <div class="event-date past">May 20, 2023</div>
-                            <h3 class="event-title">Spring Jazz Night</h3>
-                            <div class="event-meta">
-                                <div class="event-meta-item"><i class="fas fa-clock"></i> 8:00 PM</div>
-                                <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Downtown Jazz Club</div>
-                            </div>
-                            <p class="event-description">An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.</p>
-                            <div class="event-actions">
-                                <span class="event-price">$75.00</span>
-                                <span class="event-status status-past">Attended</span>
-                            </div>
+                <!-- Example event card (will be removed by JavaScript if no events) -->
+                <!-- <div class="event-card past">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert" class="event-poster">
+                    <div class="event-details">
+                        <div class="event-date past">May 20, 2023</div>
+                        <h3 class="event-title">Spring Jazz Night</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item"><i class="fas fa-clock"></i> 8:00 PM</div>
+                            <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> Downtown Jazz Club</div>
+                        </div>
+                        <p class="event-description">An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.</p>
+                        <div class="event-actions">
+                            <span class="event-price">$75.00</span>
+                            <span class="event-status status-past">Attended</span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="empty-state" id="past-empty" style="display: none;">
-                    <i class="fas fa-history"></i>
-                    <h3>No Past Events</h3>
-                    <p>You haven't attended any events yet. Book your first event and start creating memories!</p>
-                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
-                </div>
+                </div> -->
             </div>
             
-            <!-- Cancelled Events Tab -->
-            <div class="tab-content" id="cancelled-tab">
-                <div class="timeline-header">
-                    <h2 class="timeline-title">Cancelled Events</h2>
-                    <span class="timeline-count" id="cancelled-count">0 Events</span>
-                </div>
-                
-                <div class="events-grid" id="cancelled-events">
-                    <!-- Events will be inserted here by JavaScript -->
-                </div>
-                
-                <div class="empty-state" id="cancelled-empty">
-                    <i class="fas fa-ban"></i>
-                    <h3>No Cancelled Events</h3>
-                    <p>You haven't cancelled any events. Keep it up!</p>
-                    <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
-                </div>
+            <div class="empty-state" id="past-empty" style="display: none;">
+                <i class="fas fa-history"></i>
+                <h3>No Past Events</h3>
+                <p>You haven't attended any events yet. Book your first event and start creating memories!</p>
+                <a href="../html files/Events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
             </div>
         </div>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Event Management</title>
-            <style>
-                .particle {
-                    position: absolute;
-                    background-color: rgba(255, 255, 255, 0.7);
-                    border-radius: 50%;
-                    animation: float-up linear infinite;
-                }
         
-                @keyframes float-up {
-                    0% {
-                        transform: translateY(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateY(-100vh) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-                /* Add any other CSS styles you need */
-            </style>
-        </head>
-        <body>
-            <div id="particles-container"></div>
+        <!-- Cancelled Events Tab -->
+        <div class="tab-content" id="cancelled-tab">
+            <div class="timeline-header">
+                <h2 class="timeline-title">Cancelled Events</h2>
+                <span class="timeline-count" id="cancelled-count">0 Events</span>
+            </div>
             
-            <!-- Your HTML content here -->
+            <div class="events-grid" id="cancelled-events">
+                <!-- Events will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="empty-state" id="cancelled-empty">
+                <i class="fas fa-ban"></i>
+                <h3>No Cancelled Events</h3>
+                <p>You haven't cancelled any events. Keep it up!</p>
+                <a href="events.html" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Browse Events</a>
+            </div>
+        </div>
+    </div>
         
             <script>
                 document.addEventListener('DOMContentLoaded', function () {

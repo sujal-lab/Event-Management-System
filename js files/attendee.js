@@ -1,187 +1,189 @@
-// Sample event data
-const events = [
-  {
-    name: "Freshers Party",
-    date: "2025-03-25"
-  },
-  {
-    name: "Pitaara Nights",
-    date: "2025-01-04"
-  },
-  {
-    name: "Sports Tournament",
-    date: "2024-04-20"
-  }
-];
-
-const eventList = document.getElementById("event-list");
-const today = new Date();
-
-// Remove bullet styling via JS
-eventList.style.listStyle = "none";
-eventList.style.paddingLeft = "0";
-eventList.style.textAlign = "left";
-
-// Split events
-const upcoming = events.filter(e => new Date(e.date) >= today);
-const past = events.filter(e => new Date(e.date) < today);
-
-// Update counters
-document.getElementById("upcoming-count").textContent = upcoming.length;
-document.getElementById("past-count").textContent = past.length;
-
-// Function to display events
-function displayEvents(eventArray) {
-  eventList.innerHTML = "";
-
-  if (eventArray.length === 0) {
-    const li = document.createElement("li");
-    li.textContent = "No events to display.";
-    styleListItem(li);
-    eventList.appendChild(li);
-    return;
-  }
-
-  eventArray.forEach(event => {
-    const li = document.createElement("li");
-    li.textContent = `${event.name} - ${event.date}`;
-    li.classList.add(new Date(event.date) >= today ? "upcoming" : "past");
-    styleListItem(li);
-    eventList.appendChild(li);
-  });
-}
-
-// Style helper
-function styleListItem(li) {
-  li.style.marginBottom = "0.5rem";
-  li.style.textAlign = "left";
-  li.style.listStyle = "none";
-}
-
-// Initially show all events
-displayEvents(events);
-
-const event = [
-  { name: "Freshers Party", date: "2025-03-25" },
-  { name: "Pitaara Nights", date: "2025-01-04" },
-  { name: "Sports Tournament", date: "2024-04-20" },
-];
-
-function renderEvents(filterText = '', filterType = 'all') {
-  const list = document.getElementById("event-list");
-  list.innerHTML = '';
-
-  const today = new Date();
-  let matchedEvents = events.filter(event => {
-    const matchesText = event.name.toLowerCase().includes(filterText.toLowerCase());
-    const eventDate = new Date(event.date);
-
-    if (filterType === 'upcoming' && eventDate < today) return false;
-    if (filterType === 'past' && eventDate >= today) return false;
-    return matchesText;
-  });
-
-  if (matchedEvents.length === 0) {
-    list.innerHTML = '<li>No matching events found.</li>';
-  } else {
-    matchedEvents.forEach(event => {
-      const li = document.createElement('li');
-      li.textContent = `${event.name} - ${event.date}`;
-      list.appendChild(li);
-    });
-  }
-}
-
-document.getElementById("search").addEventListener("input", () => {
-  const search = document.getElementById("search").value;
-  const filter = document.getElementById("filter").value;
-  renderEvents(search, filter);
-});
-
-document.getElementById("filter").addEventListener("change", () => {
-  const search = document.getElementById("search").value;
-  const filter = document.getElementById("filter").value;
-  renderEvents(search, filter);
-});
-
-renderEvents(); // Initial render
-
-
-// Search logic
-document.getElementById("search").addEventListener("input", function () {
-  const keyword = this.value.toLowerCase();
-  const filtered = events.filter(e => e.name.toLowerCase().includes(keyword));
-  displayEvents(filtered);
-});
-
-// Sidebar toggle for small screens
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.getElementById("sidebar");
-
-menuToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-});
-
-// Auto-close sidebar when a link is clicked (on small screens)
-document.querySelectorAll(".sidebar ul li a").forEach(link => {
-  link.addEventListener("click", () => {
-    if (window.innerWidth < 768) {
-      sidebar.classList.remove("show");
-    }
-  });
-});
-async function fetchDashboardData() {
-  try {
-    const response = await fetch('/api/dashboard-data'); // Your backend endpoint
-    const data = await response.json();
-
-    const today = new Date();
-    let upcoming = 0, past = 0;
-
-    data.events.forEach(event => {
-      const eventDate = new Date(event.date);
-      if (eventDate >= today) {
-        upcoming++;
-      } else {
-        past++;
+document.addEventListener('DOMContentLoaded', function() {
+  // Create floating particles
+  function createParticles(containerId, count) {
+      const container = document.getElementById(containerId);
+      for (let i = 0; i < count; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random size between 2px and 6px
+          const size = Math.random() * 4 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.bottom = `-${size}px`;
+          
+          // Random animation duration between 10s and 20s
+          const duration = Math.random() * 10 + 10;
+          particle.style.animationDuration = `${duration}s`;
+          
+          // Random delay
+          particle.style.animationDelay = `${Math.random() * 5}s`;
+          
+          container.appendChild(particle);
       }
-    });
-
-    // Update counts
-    document.getElementById("upcoming-count").textContent = upcoming;
-    document.getElementById("past-count").textContent = past;
-    document.getElementById("notifications-count").textContent = data.notifications.length;
-
-    // Optional: Render events to their respective sections
-    renderEvents(data.events);
-  } catch (err) {
-    console.error("Failed to fetch dashboard data:", err);
   }
-}
-
-function renderEvents(events) {
-  const upcomingContainer = document.getElementById("upcoming-events");
-  const pastContainer = document.getElementById("past-events");
-  const today = new Date();
-
-  upcomingContainer.innerHTML = "";
-  pastContainer.innerHTML = "";
-
-  events.forEach(event => {
-    const eventDate = new Date(event.date);
-    const cardHTML = `
-      <div class="event-card">
-        <h4>${event.title}</h4>
-        <p>Date: ${event.date}</p>
-        <p>Location: ${event.location}</p>
-      </div>
-    `;
-    if (eventDate >= today) {
-      upcomingContainer.innerHTML += cardHTML;
-    } else {
-      pastContainer.innerHTML += cardHTML;
-    }
+  
+  createParticles('particles', 30);
+  
+  // Tab switching functionality
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-tab');
+          
+          // Update active tab button
+          tabBtns.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update active tab content
+          tabContents.forEach(content => content.classList.remove('active'));
+          document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
   });
-}
-
-document.addEventListener("DOMContentLoaded", fetchDashboardData);
+  
+  // Load events from localStorage
+  function loadEvents() {
+      const myEvents = JSON.parse(localStorage.getItem('myEvents')) || [];
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      // Clear example cards if we have real events
+      if (myEvents.length > 0) {
+          document.getElementById('upcoming-events').innerHTML = '';
+          document.getElementById('past-events').innerHTML = '';
+      }
+      
+      let upcomingCount = 0;
+      let pastCount = 0;
+      let cancelledCount = 0;
+      
+      myEvents.forEach(event => {
+          // Parse event date (assuming format like "Jun 15, 2023")
+          const eventDate = new Date(event.date);
+          eventDate.setHours(0, 0, 0, 0);
+          
+          // Create event card
+          const eventCard = document.createElement('div');
+          eventCard.className = 'event-card';
+          
+          // Determine if event is upcoming or past
+          let statusClass = '';
+          let statusText = '';
+          let dateClass = '';
+          
+          if (event.status === 'Cancelled') {
+              statusClass = 'cancelled';
+              statusText = 'Cancelled';
+              dateClass = '';
+              cancelledCount++;
+          } else if (eventDate >= today) {
+              statusClass = 'upcoming';
+              statusText = 'Confirmed';
+              dateClass = 'upcoming';
+              upcomingCount++;
+          } else {
+              statusClass = 'past';
+              statusText = 'Attended';
+              dateClass = 'past';
+              pastCount++;
+          }
+          
+          eventCard.classList.add(statusClass);
+          
+          // Format price if not already formatted
+          let price = event.price || event.totalAmount;
+          if (price && !price.startsWith('$')) {
+              price = '$' + parseFloat(price).toFixed(2);
+          }
+          
+          eventCard.innerHTML = `
+              <img src="${event.poster || 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'}" alt="${event.name}" class="event-poster">
+              <div class="event-details">
+                  <div class="event-date ${dateClass}">${event.date}</div>
+                  <h3 class="event-title">${event.name}</h3>
+                  <div class="event-meta">
+                      <div class="event-meta-item"><i class="fas fa-clock"></i> ${event.time || '7:00 PM'}</div>
+                      <div class="event-meta-item"><i class="fas fa-map-marker-alt"></i> ${event.location || 'Venue TBD'}</div>
+                  </div>
+                  <p class="event-description">${event.description || 'Join us for an amazing event with great music, food, and entertainment!'}</p>
+                  <div class="event-actions">
+                      <span class="event-price">${price || '$0.00'}</span>
+                      <span class="event-status status-${statusClass.toLowerCase()}">${statusText}</span>
+                  </div>
+              </div>
+          `;
+          
+          // Add to appropriate container
+          if (statusClass === 'upcoming') {
+              document.getElementById('upcoming-events').appendChild(eventCard);
+          } else if (statusClass === 'past') {
+              document.getElementById('past-events').appendChild(eventCard);
+          } else if (statusClass === 'cancelled') {
+              document.getElementById('cancelled-events').appendChild(eventCard);
+          }
+      });
+      
+      // Update counts
+      document.getElementById('upcoming-count').textContent = `${upcomingCount} ${upcomingCount === 1 ? 'Event' : 'Events'}`;
+      document.getElementById('past-count').textContent = `${pastCount} ${pastCount === 1 ? 'Event' : 'Events'}`;
+      document.getElementById('cancelled-count').textContent = `${cancelledCount} ${cancelledCount === 1 ? 'Event' : 'Events'}`;
+      
+      // Show empty states if needed
+      if (upcomingCount === 0) {
+          document.getElementById('upcoming-empty').style.display = 'block';
+      }
+      
+      if (pastCount === 0) {
+          document.getElementById('past-empty').style.display = 'block';
+      }
+      
+      if (cancelledCount === 0) {
+          document.getElementById('cancelled-empty').style.display = 'block';
+      } else {
+          document.getElementById('cancelled-empty').style.display = 'none';
+      }
+  }
+  
+  // Initial load
+  loadEvents();
+  
+  // Add some sample events if localStorage is empty (for demo purposes)
+  if (!localStorage.getItem('myEvents')) {
+      const sampleEvents = [
+          {
+              id: 'EVT-789123',
+              name: 'Summer Music Festival',
+              date: 'Jun 15, 2023',
+              time: '6:00 PM',
+              location: 'Central Park',
+              price: '$120.00',
+              poster: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+              description: 'Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!',
+              status: 'Confirmed',
+              tickets: '2',
+              totalAmount: '$240.00'
+          },
+          {
+              id: 'EVT-456789',
+              name: 'Spring Jazz Night',
+              date: 'May 20, 2023',
+              time: '8:00 PM',
+              location: 'Downtown Jazz Club',
+              price: '$75.00',
+              poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+              description: 'An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.',
+              status: 'Attended',
+              tickets: '1',
+              totalAmount: '$75.00'
+          }
+      ];
+      
+      localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
+      loadEvents();
+  }
+});
