@@ -4,7 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event Predictor Game</title>
-  <link rel="stylesheet" href="eventpredictor.css">
+  
+  <style>
+    body {
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+    
+    .card {
+      background-color: #2c2c2c;
+      color: #ffffff;
+      width: 400px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .card h2 {
+      color: #FFA500;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    
+    .card p {
+      color: #cccccc;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .play-button, .option-button {
+      background-color: #cc0000;
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin: 5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    
+    .play-button:hover, .option-button:hover {
+      background-color: #a80000;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .result {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -26,6 +89,93 @@
   <button class="play-button" onclick="restartGame()">Play Again</button>
 </div>
 
-<script src="eventpredictor.js"></script>
+<script>
+  let questions = [
+    {
+      question: "Who will win the match?",
+      options: ["Team A", "Team B"],
+      answer: "Team A"
+    },
+    {
+      question: "Will it rain tomorrow?",
+      options: ["Yes", "No"],
+      answer: "No"
+    },
+    {
+      question: "Which car will win the race?",
+      options: ["Red Car", "Blue Car"],
+      answer: "Red Car"
+    },
+    {
+      question: "Will the stock price go up?",
+      options: ["Yes", "No"],
+      answer: "Yes"
+    }
+  ];
+  
+  let currentQuestion = 0;
+  let score = 0;
+  
+  function startGame() {
+    document.getElementById('start-screen').classList.add('hidden');
+    document.getElementById('game-screen').classList.remove('hidden');
+    loadQuestion();
+  }
+  
+  function loadQuestion() {
+    const questionObj = questions[currentQuestion];
+    document.getElementById('question-text').innerText = questionObj.question;
+  
+    const optionsDiv = document.getElementById('options');
+    optionsDiv.innerHTML = '';
+  
+    questionObj.options.forEach(option => {
+      const button = document.createElement('button');
+      button.classList.add('option-button');
+      button.innerText = option;
+      button.onclick = () => selectOption(option);
+      optionsDiv.appendChild(button);
+    });
+  }
+  
+  function selectOption(choice) {
+    const correctAnswer = questions[currentQuestion].answer;
+    let resultText = "";
+  
+    if (choice === correctAnswer) {
+      resultText = "🎉 Correct!";
+      score++;
+    } else {
+      resultText = "❌ Wrong!";
+    }
+  
+    document.getElementById('result').innerText = resultText;
+  
+    // Wait 1 second before moving to next question
+    setTimeout(() => {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+        document.getElementById('result').innerText = "";
+      } else {
+        showLeaderboard();
+      }
+    }, 1000);
+  }
+  
+  function showLeaderboard() {
+    document.getElementById('game-screen').classList.add('hidden');
+    document.getElementById('leaderboard-screen').classList.remove('hidden');
+    document.getElementById('final-score').innerText = score + "/" + questions.length;
+  }
+  
+  function restartGame() {
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById('leaderboard-screen').classList.add('hidden');
+    document.getElementById('start-screen').classList.remove('hidden');
+  }
+</script>
+
 </body>
 </html>
