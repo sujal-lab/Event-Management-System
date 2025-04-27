@@ -6,11 +6,19 @@ Eventify is a next-gen, sleek, and highly scalable event management platform des
 From corporate seminars to concerts, from workshops to virtual expos — Eventify makes the entire process effortless, smart, and delightfully engaging.
 
 ## 🌟 Key Highlights
-- 🔒 Secure Login System for easy access and personalized dashboards
-- 🎫 Intuitive Booking Process that streamlines registration
-- 📆 Dynamic Dashboard showcasing upcoming and past events
-- ⚡ SPA Architecture for a seamless, no-refresh user experience
-- 🌙 Dark Theme with Vibrant Accents for an eye-catching, modern vibe
+🔒 Secure Authentication with JWT & optional Social Logins
+
+🎫 Smooth Booking Process with real-time confirmation
+
+📆 Smart Dashboard for real-time updates and analytics
+
+⚡ Single Page Application (SPA) for blazing fast navigation
+
+🌙 Dark Theme + Vibrant Accents for a modern, stylish UX
+
+🛠️ Modular Design for easy scalability and integration
+
+📲 Mobile-First Responsive UI for flawless experience across all devices
 
 ## ✨ Key-Features
 ### 1. Effortless Event Booking
