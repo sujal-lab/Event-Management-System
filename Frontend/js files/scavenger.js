@@ -18,3 +18,16 @@ hiddenItems.forEach(item => {
 closeModal.addEventListener('click', () => {
   winModal.style.display = 'none';
 });
+let score = 0;
+
+function collectItem(icon) {
+  icon.style.display = 'none';
+  score++;
+  document.getElementById('score').textContent = `Score: ${score}/5`;
+  
+  if (score === 5) {
+    setTimeout(() => {
+      alert("🎉 Congratulations! You found all the icons!");
+    }, 200);
+  }
+}

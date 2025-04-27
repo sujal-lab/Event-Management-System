@@ -63,4 +63,16 @@ body {
     border-radius: 8px;
     text-align: center;
   }
+  .instructions {
+    color: #ffffff;
+    text-shadow: 0 0 8px #ff0000, 0 0 12px #ff0000; /* red-white glow */
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { text-shadow: 0 0 8px #ff0000, 0 0 12px #ff0000; }
+    50% { text-shadow: 0 0 18px #ff3333, 0 0 24px #ff3333; }
+    100% { text-shadow: 0 0 8px #ff0000, 0 0 12px #ff0000; }
+  }
   
