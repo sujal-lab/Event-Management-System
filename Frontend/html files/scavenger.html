@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventify - Scavenger Hunt</title>
+  <link rel="stylesheet" href="../css files/scavenger.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="../home page.html">
+        <img src="../frontend images/eventify logo.png" alt="Logo" width="150px">
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="Events.html">Events</a>
+      <a href="offers.html">Offers & Games</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about us.html">About</a>
+      <a href="contactpage.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 class="page-title">Scavenger Hunt</h1>
+    <p class="instructions">Find all 5 hidden Eventify icons on this page! Click on them to collect.</p>
+    
+    <!-- Hidden Items -->
+    <div class="hidden-item" style="top: 20%; left: 30%;"></div>
+    <div class="hidden-item" style="top: 40%; left: 60%;"></div>
+    <div class="hidden-item" style="top: 70%; left: 20%;"></div>
+    <div class="hidden-item" style="top: 55%; left: 75%;"></div>
+    <div class="hidden-item" style="top: 85%; left: 45%;"></div>
+
+    <!-- Congratulations Modal -->
+    <div class="modal" id="winModal">
+      <div class="modal-content">
+        <h2>Congratulations!</h2>
+        <p>You found all the hidden items! 🎉</p>
+        <button id="closeModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js files/scavenger.js"></script>
+</body>
+</html>
