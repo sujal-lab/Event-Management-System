@@ -148,42 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('cancelled-empty').style.display = 'none';
       }
   }
-  
-  // Initial load
   loadEvents();
   
-  // Add some sample events if localStorage is empty (for demo purposes)
-  // if (!localStorage.getItem('myEvents')) {
-  //     const sampleEvents = [
-  //         {
-  //             id: 'EVT-789123',
-  //             name: 'Summer Music Festival',
-  //             date: 'Jun 15, 2023',
-  //             time: '6:00 PM',
-  //             location: 'Central Park',
-  //             price: '$120.00',
-  //             poster: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //             description: 'Join us for the biggest music festival of the summer featuring top artists from around the world. Three days of non-stop music, food, and fun!',
-  //             status: 'Confirmed',
-  //             tickets: '2',
-  //             totalAmount: '$240.00'
-  //         },
-  //         {
-  //             id: 'EVT-456789',
-  //             name: 'Spring Jazz Night',
-  //             date: 'May 20, 2023',
-  //             time: '8:00 PM',
-  //             location: 'Downtown Jazz Club',
-  //             price: '$75.00',
-  //             poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-  //             description: 'An evening of smooth jazz with international artists performing their greatest hits in an intimate setting.',
-  //             status: 'Attended',
-  //             tickets: '1',
-  //             totalAmount: '$75.00'
-  //         }
-  //     ];
-      
-//       localStorage.setItem('myEvents', JSON.stringify(sampleEvents));
-//       loadEvents();
-//   }
 });
