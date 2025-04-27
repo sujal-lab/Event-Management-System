@@ -64,13 +64,18 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .play-btn:hover {
       background-color: #ff7979;
+      transform: scale(1.05);
     }
   </style>
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <div class="card">
@@ -95,16 +100,32 @@
       const userGuess = document.getElementById('prediction').value;
 
       if (userGuess === "") {
-        alert("Please select your prediction!");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Please select your prediction!',
+          confirmButtonColor: '#ff5252'
+        });
         return;
       }
 
       const actualOutcome = getRandomOutcome();
-      
+
       if (userGuess === actualOutcome) {
-        alert(`🎉 Correct! ${actualOutcome} won!`);
+        confettiExplosion();
+        Swal.fire({
+          icon: 'success',
+          title: '🎉 Correct!',
+          text: `${actualOutcome} won!`,
+          confirmButtonColor: '#ff5252'
+        });
       } else {
-        alert(`😅 Oops! The correct outcome was ${actualOutcome}.`);
+        Swal.fire({
+          icon: 'error',
+          title: '😅 Wrong!',
+          text: `The correct outcome was ${actualOutcome}.`,
+          confirmButtonColor: '#ff5252'
+        });
       }
     }
 
@@ -112,6 +133,14 @@
       const outcomes = ["Team A", "Team B", "Draw"];
       const randomIndex = Math.floor(Math.random() * outcomes.length);
       return outcomes[randomIndex];
+    }
+
+    function confettiExplosion() {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
     }
   </script>
 </body>
