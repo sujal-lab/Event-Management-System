@@ -20,10 +20,11 @@ jobs:
           cp -R .[^.]* build/ || true
 
       - name: Rewrite asset paths for GitHub Pages
-        # Convert any absolute or relative asset links to use /Eventify baseurl
         run: |
           find build -type f -name "*.html" -print0 \
             | xargs -0 sed -i \
+                -e 's|href="assets|href="/Eventify/assets|g' \
+                -e 's|src="assets|src="/Eventify/assets|g' \
                 -e 's|href="/assets|href="/Eventify/assets|g' \
                 -e 's|src="/assets|src="/Eventify/assets|g' \
                 -e 's|href="../assets|href="/Eventify/assets|g' \
