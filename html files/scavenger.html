@@ -200,3 +200,70 @@
       border: 1px solid var(--primary);
       animation: modalEnter 0.5s ease-out;
     }
+    @keyframes pop {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .difficulty-selector {
+      margin: 1rem 0;
+    }
+    
+    .difficulty-selector button {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .difficulty-selector button.active {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(153, 0, 0, 0.3);
+    }
+    
+    .difficulty-selector button:hover {
+      background: rgba(153, 0, 0, 0.3);
+    }
+    
+    .game-info {
+      display: flex;
+      justify-content: space-around;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .info-box {
+      text-align: center;
+    }
+    
+    .info-box h3 {
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .restart-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid var(--primary);
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .restart-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(153, 0, 0, 0.3);
+    }
