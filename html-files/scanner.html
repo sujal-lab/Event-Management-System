@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventify - Book Your Ticket</title>
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@latest/dist/html5-qrcode.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Eventify/assets/css-files/scanner.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="/Eventify/assets/frontend-images/eventify-logo.png" alt="Logo" height="auto" width="150px">
+              </a>
+            </div>
+        <div class="nav-links">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="offers.html" class="active"><i class="fas fa-tags"></i> Offers & Games</a>
+            <a href="attendee.html" class="active"><i class="fas fa-user"></i> My Events</a>
+            <a href="profile.html"><i class="fas fa-profile"></i>Profile</a>
+            <a href="logout.html"><i class="fas fa-logout"></i>Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="event-display">
+            <div class="particles" id="particles"></div>
+            <div class="event-poster-container">
+                <img id="event-poster" src="" alt="Event Poster" class="event-poster">
+            </div>
+            <div class="event-info">
+                <h2 id="event-name">Event Name</h2>
+                <p><i class="fas fa-calendar-alt"></i><strong>Date:</strong> <span id="event-date">Loading...</span></p>
+                <p><i class="fas fa-clock"></i><strong>Time:</strong> <span id="event-time">Loading...</span></p>
+                <p><i class="fas fa-map-marker-alt"></i><strong>Location:</strong> <span id="event-location">Loading...</span></p>
+                <p><i class="fas fa-tag"></i><strong>Ticket Price:</strong> <span id="event-price">$0.00</span></p>
+            </div>
+        </div>
+
+        <div class="booking-form">
+            <div class="particles" id="particles-form"></div>
+            <h2 class="form-title">Complete Your Booking</h2>
+            
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tickets"><i class="fas fa-ticket-alt"></i> Number of Tickets</label>
+                <input type="number" id="tickets" class="form-control" min="1" value="1" required>
+            </div>
+            
+            <div class="scanner-container" id="scanner">
+                <div class="scanner-overlay"></div>
+                <div class="qr-frame"></div>
+                <div class="scanner-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                    <p>QR Code Scanner</p>
+                    <p>Point your camera at a ticket QR code</p>
+                    <p class="hint">Make sure the QR code is within the frame</p>
+                </div>
+            </div>
+            
+            <button id="start-scanner" class="btn btn-secondary">
+                <i class="fas fa-camera"></i> Start Scanner
+            </button>
+            <button id="book-now" class="btn">
+                <i class="fas fa-check-circle"></i> Confirm Booking
+            </button>
+            
+            <div class="ticket-info" id="ticket-info">
+                <h3><i class="fas fa-ticket-alt"></i> Your Ticket Information</h3>
+                <p><strong>Booking ID:</strong> <span id="booking-id">123456</span></p>
+                <p><strong>Status:</strong> <span id="booking-status">Confirmed</span></p>
+                <p><strong>Total Amount:</strong> <span id="total-amount">$0.00</span></p>
+                <p><strong>Event:</strong> <span id="booking-event">Event Name</span></p>
+                <p><strong>Date:</strong> <span id="booking-date">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Eventify/assets/js-files/scanner.js"></script>
+</body>
+</html>

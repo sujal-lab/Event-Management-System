@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventify - Events</title>
+  <link rel="stylesheet" href="/Eventify/assets/css-files/my-event.css">
+</head>
+<body>
+
+  <a href="attendee.html" class="back-link">← Back to Dashboard</a>
+  <h1>My Events</h1>
+
+  <h2>Upcoming Events</h2>
+  <div id="upcoming-events" class="event-grid">
+    <!-- Upcoming event cards -->
+  </div>
+
+  <h2>Past Attended Events</h2>
+  <div id="past-events" class="event-grid">
+    <!-- Past event cards -->
+  </div>
+
+  <!-- Modal -->
+  <div id="event-modal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeEventModal()">×</button>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <p id="modal-date" class="modal-info"></p>
+      <p id="modal-location" class="modal-info"></p>
+      <p id="modal-description" class="modal-description"></p>
+    </div>
+  </div>
+
+  <script src="/Eventify/assets/js-files/myevent.js"></script>
+</body>
+</html>

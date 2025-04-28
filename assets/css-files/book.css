@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a1a1a; /* dark grey instead of pure black */
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.back-link {
+  display: inline-block;
+  margin: 20px;
+  color: #d32f2f; /* soft red */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #ff5252;
+  text-shadow: 0 0 5px #ff5252;
+}
+
+.booking-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 35px;
+  background: light red;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 82, 82, 0.3);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.booking-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ff4d4d; 
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+}
+
+.booking-form .form-group {
+  margin-bottom: 20px;
+}
+
+.booking-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ff6666;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #3d0f0f;
+  border: 1px solid #ff6666;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+  outline: none;
+  border-color: #ff9999;
+  background-color: #531717;
+  box-shadow: 0 0 10px #ff6666;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background-color: #e53935;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+}
+
+.btn:hover {
+  background-color: #ff6666;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 15px rgba(255, 102, 102, 0.5);
+}

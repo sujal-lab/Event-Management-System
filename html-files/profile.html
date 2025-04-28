@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - Eventify</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      color: #fff;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff3c41;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 0 10px #ff3c41aa;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 60, 65, 0.2);
+    }
+
+    section h2 {
+      color: #ff3c41;
+      margin-bottom: 24px;
+      font-size: 1.8rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .info-item label {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .info-item input,
+    .info-item select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 10px;
+      background-color: #1f1f1f;
+      color: #fff;
+      transition: 0.3s ease;
+    }
+
+    .info-item input:focus,
+    .info-item select:focus {
+      outline: 2px solid #ff3c41;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff3c41, #ff005c);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff3c4177;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px #ff3c41;
+    }
+
+    .summary {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .summary-card {
+      flex: 1;
+      min-width: 180px;
+      padding: 20px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #1b1b1b, #232323);
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 60, 65, 0.3);
+    }
+
+    .summary-card h3 {
+      color: #ff3c41;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .summary-card p {
+      color: #ccc;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .actions button {
+      background: transparent;
+      color: #ff3c41;
+      border: 1px solid #ff3c41;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background-color: #ff3c41;
+      color: white;
+      box-shadow: 0 0 10px #ff3c41;
+    }
+
+    @media (max-width: 600px) {
+      .summary {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align: left; margin-bottom: 20px;">
+    <a href="attendee.html" class="btn">🔙 Back to Attendee Dashboard</a>
+  </div>
+
+  <h1>✨ Welcome User ! ✨</h1>
+
+  <div class="container">
+
+    <!-- Section: User Info -->
+    <section>
+      <h2>👤 User Info</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <label for="name">Full Name</label>
+          <input id="name" type="text" value="Saksham Deep" disabled />
+        </div>
+        <div class="info-item">
+          <label for="email">Email</label>
+          <input id="email" type="email" value="saksham@example.com" disabled />
+        </div>
+        <div class="info-item">
+          <label for="phone">Phone</label>
+          <input id="phone" type="text" value="9876543210" disabled />
+        </div>
+        <div class="info-item">
+          <label for="institution">Institution</label>
+          <input id="institution" type="text" value="Chitkara University" disabled />
+        </div>
+        <div class="info-item">
+          <label for="roll">Roll Number</label>
+          <input id="roll" type="text" value="CSE2025001" disabled />
+        </div>
+      </div>
+      <button class="btn" id="editBtn">Edit Profile</button>
+    </section>
+
+    <!-- Section: Event Summary -->
+    <section>
+      <h2>📊 Event Summary</h2>
+      <div class="summary">
+        <div class="summary-card">
+          <h3>5</h3>
+          <p>Total Events</p>
+        </div>
+        <div class="summary-card">
+          <h3>2</h3>
+          <p>Upcoming</p>
+        </div>
+        <div class="summary-card">
+          <h3>3</h3>
+          <p>Attended</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Actions -->
+    <section>
+      <h2>🧰 More Actions</h2>
+      <div class="actions">
+        <button onclick="deleteAccount()">🗑️ Delete Account</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    document.getElementById('editBtn').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('.info-item input');
+      const isDisabled = inputs[0].disabled;
+      inputs.forEach(input => input.disabled = !isDisabled);
+      document.getElementById('editBtn').textContent = isDisabled ? 'Save Changes' : 'Edit Profile';
+    });
+
+    function downloadData() {
+      alert("Downloading your data... (simulated)");
+      // You can generate a JSON blob and trigger download if needed
+    }
+
+    function deleteAccount() {
+      const confirmDelete = confirm("Are you sure you want to delete your account?");
+      if (confirmDelete) {
+        alert("Your account has been deleted. (simulated)");
+      }
+    }
+  </script>
+</body>
+</html>

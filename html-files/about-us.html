@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Eventify</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #9c0e0e;
+      --bg: #0a0a0a;
+      --card-bg: #1a1a1a;
+      --text: #ffffff;
+      --muted: #bbbbbb;
+    }
+    .hero-overlay {
+      background: linear-gradient(45deg, rgba(156,14,14,0.3) 0%, rgba(10,10,10,0.7) 100%);
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border-left: 4px solid var(--primary);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .stat-item {
+      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(26,26,26,0.7) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .stat-item:hover::after {
+      transform: scaleX(1);
+    }
+    .story-box, .goal-box {
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-box:hover, .goal-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(156,14,14,0.2);
+    }
+    .story-box::before, .goal-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.05) 100%);
+      pointer-events: none;
+    }
+    .team-member {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-member img {
+      transition: transform 0.3s;
+    }
+    .team-member:hover img {
+      transform: scale(1.1);
+    }
+    .team-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .team-member:hover .team-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-[var(--bg)] text-[var(--text)]">
+  <!-- Navigation -->
+  <nav class="bg-[var(--card-bg)] py-4 shadow-xl">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="/Eventify/assets/frontend-images/eventify-logo.png" alt="Logo" height="70px" width="200px">
+        </a>
+      </div>
+      <div class="hidden md:flex space-x-8">
+        <a href="Events.html" class="hover:text-[var(--primary)] transition-colors">Events</a>
+        <a href="offers.html" class="hover:text-[var(--primary)] transition-colors">Offers</a>
+        <a href="gallery.html" class="hover:text-[var(--primary)] transition-colors">Gallery</a>
+        <a href="about-us.html" class="hover:text-[var(--primary)] transition-colors">About</a>
+        <a href="contactpage.html" class="hover:text-[var(--primary)] transition-colors">Contact</a>
+        <a href="attendee.html" class="hover:text-[var(--primary)] transition-colors">Dashboard</a>
+
+
+      </div>
+      <button id="menu-toggle" class="md:hidden text-[var(--primary)] text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden bg-[var(--card-bg)] px-6 py-4">
+      <a href="#about" class="block mb-2 hover:text-[var(--primary)]">About</a>
+      <a href="#features" class="block mb-2 hover:text-[var(--primary)]">Features</a>
+      <a href="#team" class="block mb-2 hover:text-[var(--primary)]">Team</a>
+      <a href="#contact" class="block hover:text-[var(--primary)]">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative h-[500px] flex items-center justify-center">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="container mx-auto px-6 relative z-10 text-center">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        Crafting <span class="text-[var(--primary)]">Unforgettable</span> Experiences
+      </h1>
+      <p class="text-xl text-[var(--muted)] max-w-2xl mx-auto">
+        Where innovation meets celebration – creating moments that last a lifetime.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story & Mission -->
+  <section id="about" class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <!-- Our Story -->
+      <div class="story-box bg-[var(--card-bg)] p-8 rounded-lg border-t-4 border-[var(--primary)]">
+        <div class="w-12 h-12 bg-[var(--primary)] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-book-open text-white text-xl"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Our Story</h3>
+        <p class="text-[var(--muted)] leading-relaxed">
+          Founded in 2018 by five passionate event enthusiasts, Eventify began as a university project. Our shared vision for revolutionizing event management turned a class assignment into a thriving platform, now serving thousands worldwide while maintaining our creative, personal touch.
+        </p>
+      </div>
+      <!-- Our Mission -->
+      <div class="goal-box bg-[var(--card-bg)] p-8 rounded-lg border-t-4 border-[#1a73e8]">
+        <div class="w-12 h-12 bg-[#1a73e8] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-bullseye text-white text-xl"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+        <p class="text-[var(--muted)] leading-relaxed">
+          To empower individuals and organizations to create unforgettable experiences through innovative technology and personalized service. We simplify event planning while preserving the magic of human connection, striving to be the most trusted partner in event management.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-[var(--card-bg)]">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div class="stat-item p-8 rounded-lg text-center">
+        <div class="text-4xl text-[var(--primary)] font-bold mb-2">1500+</div>
+        <div class="text-[var(--muted)]">Events Hosted</div>
+      </div>
+      <div class="stat-item p-8 rounded-lg text-center">
+        <div class="text-4xl text-[var(--primary)] font-bold mb-2">98%</div>
+        <div class="text-[var(--muted)]">Client Satisfaction</div>
+      </div>
+      <div class="stat-item p-8 rounded-lg text-center">
+        <div class="text-4xl text-[var(--primary)] font-bold mb-2">40+</div>
+        <div class="text-[var(--muted)]">Countries Served</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div class="feature-card p-8 rounded-lg">
+        <div class="w-12 h-12 bg-[var(--primary)] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-calendar-check text-white text-xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Seamless Planning</h3>
+        <p class="text-[var(--muted)]">Intuitive tools for perfect event organization.</p>
+      </div>
+      <div class="feature-card p-8 rounded-lg">
+        <div class="w-12 h-12 bg-[var(--primary)] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-users text-white text-xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Collaboration</h3>
+        <p class="text-[var(--muted)]">Real-time teamwork for smooth coordination.</p>
+      </div>
+      <div class="feature-card p-8 rounded-lg">
+        <div class="w-12 h-12 bg-[var(--primary)] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-mobile-alt text-white text-xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Mobile Friendly</h3>
+        <p class="text-[var(--muted)]">Plan and manage on the go from any device.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-20 bg-[var(--card-bg)]">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16">Meet Our Team</h2>
+      <div class="grid md:grid-cols-5 gap-8">
+        <div class="team-member">
+          <img src="../frontend images/sherani.png " alt="Sherani , USeless" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Sherani</h4>
+            <p class="text-sm text-[var(--muted)]">Frontend Developer</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="../frontend images/simon.png " alt="Simon, CTO" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Simon</h4>
+            <p class="text-sm text-[var(--muted)]">Frontend Developer</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="../frontend images/sujal.png " alt="Sujal, Lead Developer" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Sujal</h4>
+            <p class="text-sm text-[var(--muted)]">Lead Developer</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="../frontend images/sidhant.png " alt="sidhant, Tester" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Sidhant</h4>
+            <p class="text-sm text-[var(--muted)]">Frontend Dev and Tester</p>
+          </div>
+        </div>
+        <div class="team-member">
+          <img src="../frontend images/saksham.png " alt="Saksham, front dev" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Sakshamdeep</h4>
+            <p class="text-sm text-[var(--muted)]">Frontend Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-[var(--primary)]">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-8">Ready to Create Magic?</h2>
+      <a href="signup.html" class="inline-block bg-white text-[var(--primary)] px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all focus:ring-2 focus:ring-[var(--primary)] focus:outline-none">
+        Start Planning Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--card-bg)] py-12" id="contact">
+    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-[var(--primary)] text-lg font-bold mb-4">Eventify</h4>
+        <p class="text-[var(--muted)] text-sm">Making every event an extraordinary experience.</p>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-2">Quick Links</h5>
+        <ul class="text-[var(--muted)] text-sm space-y-1">
+          <li><a href="#about" class="hover:text-[var(--primary)]">About</a></li>
+          <li><a href="#features" class="hover:text-[var(--primary)]">Features</a></li>
+          <li><a href="#team" class="hover:text-[var(--primary)]">Team</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-2">Contact</h5>
+        <ul class="text-[var(--muted)] text-sm space-y-1">
+          <li>Email: hello@eventify.com</li>
+          <li>Phone: 9876543210</li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-2">Follow Us</h5>
+        <div class="flex space-x-4">
+          <a href="#" aria-label="Twitter" class="hover:text-[var(--primary)]"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook" class="hover:text-[var(--primary)]"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram" class="hover:text-[var(--primary)]"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-[var(--muted)] text-xs mt-8">&copy; 2025 Eventify. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    // Close menu on click outside
+    document.addEventListener('click', (e) => {
+      if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

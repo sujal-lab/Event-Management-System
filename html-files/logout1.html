@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logged Out - Eventify</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff3c41;
+      margin-bottom: 16px;
+      text-shadow: 0 0 10px #ff3c41aa;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      text-decoration: none;
+      background-color: #ff3c41;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px #ff3c4170;
+    }
+
+    a.button:hover {
+      background-color: #e60026;
+      box-shadow: 0 0 20px #ff3c41;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation: wave 1.2s infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="emoji">👋</div>
+  <h1>You’ve been logged out</h1>
+  <p>Thanks for using Eventify. See you again!</p>
+  <a href="admin-panel.html" class="button">🔐 Login Again</a>
+
+  <script>
+    // Clear user data if stored in local/session storage
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log("User session cleared.");
+  </script>
+
+</body>
+</html>

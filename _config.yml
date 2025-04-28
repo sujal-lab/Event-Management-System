@@ -1,0 +1,13 @@
+title: Eventify
+description: Event Management System
+
+# the GitHub Pages “project site” sub-path:
+url: "https://sujal-lab.github.io"
+baseurl: "/Eventify"
+
+# only exclude your node_modules/back-end junk
+exclude:
+  - node_modules
+  - Backend
+
+# (no need to exclude html-files or assets; Jekyll will copy them by default)

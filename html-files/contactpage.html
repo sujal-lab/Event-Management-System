@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Eventify</title>
+  <link rel="stylesheet" href="/Eventify/assets/css-files/contact-page.css">
+</head>
+<body>
+  <header class="header">
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+    <div class="logo">
+      <a href="../index.html">
+        <img src="/Eventify/assets/frontend-images/eventify-logo.png" alt="Logo" height="70px" width="200px">
+      </a>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html">Home</a>
+      <a href="Events.html">Events</a>
+      <a href="offers.html">Offers</a>
+      <a href="gallery.html">Gallery</a>
+
+      <a href="about-us.html">About</a>
+      <a href="attendee.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="left-section">
+      <h1>Contact Us</h1>
+      <p>We’re always here to help. Reach out with any questions or feedback!</p>
+      <h2><strong>📞</strong> +91 9897645782</h2>
+      <h2><strong>📧</strong> helpdesk@eventify.in</h2>
+      <h2><strong>📍</strong> #723c, Central Plaza, Sector 9, Urban Estate, Chandigarh</h2>
+    </div>
+
+    <div class="right-section">
+      <form>
+        <div class="form-group">
+          <h1>Name</h1>
+          <input type="text" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+          <h1>Email</h1>
+          <input type="text" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <h1>Phone</h1>
+          <input type="text" placeholder="Enter your phone number" />
+        </div>
+        <div class="form-group">
+          <h1>Message</h1>
+          <textarea placeholder="Enter your message"></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

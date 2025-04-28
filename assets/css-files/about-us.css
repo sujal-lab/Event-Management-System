@@ -1,0 +1,108 @@
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .bg-dark-maroon {
+      background-color: #900000;
+    }
+
+    .text-crimson {
+      color: #FF4D4D;
+    }
+
+    .bg-crimson {
+      background-color: #FF4D4D;
+    }
+
+    .from-crimson {
+      --tw-gradient-from: #800000;
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 77 77 / 0));
+    }
+
+    .to-crimson {
+      --tw-gradient-to: #800000;
+    }
+ 
+    #nav-menu{
+      font-size: 1.2rem;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .glass:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .gradient-text {
+      background: linear-gradient(45deg, #FF6B6B, #FF4D4D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .timeline-connector {
+      position: relative;
+    }
+
+    .timeline-connector:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -40px;
+      width: 30px;
+      height: 2px;
+      background: #FF4D4D;
+      transform: translateY(-50%);
+    }
+
+    .team-avatar {
+      transition: transform 0.3s ease;
+    }
+
+    .team-card:hover .team-avatar {
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fadein {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #FF4D4D;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover:after {
+      width: 100%;
+    }
+
+    .hero-glow {
+      text-shadow: 0 0 30px rgba(255, 77, 77, 0.4);
+    }

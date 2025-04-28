@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Eventify/assets/css-files/Events.css">
+    <title>Eventify</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="/Eventify/assets/frontend-images/eventify-logo.png" alt="Logo" height="70px" width="170px" class="logo-glow" style="margin-right: 980px;">
+            </a>
+        </div>
+        
+       
+        <nav class="nav-links">
+            <a href="../index.html"><i class="fas fa-home" id="home"></i>Home</a>
+           <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+        <a href="about us.html"><i class="fas fa-info-circle"></i> About</a>
+        <a href="contactpage.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="attendee.html"><i class="fas fa-user"></i> Dashboard</a>
+          
+
+        </nav>
+
+       
+    </header>
+
+    <div class="container">
+        <div class="left-section" id="sidebar">
+            <div class="filter-group">
+                <h2><i class="far fa-calendar-alt"></i> Select Date</h2>
+                <input type="date" class="date-picker">
+                <div class="filter-links">
+                    <a href="#" onclick="filterEvents('yesterday')"><i class="far fa-clock"></i> Yesterday</a>
+                    <a href="#" onclick="filterEvents('today')"><i class="fas fa-calendar-day"></i> Today</a>
+                    <a href="#" onclick="filterEvents('tomorrow')"><i class="far fa-sun"></i> Tomorrow</a>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h2><i class="fas fa-filter"></i> Filter Events</h2>
+                <div class="filter-links">
+                    <a href="#" onclick="filterEvents('upcoming')"><i class="fas fa-rocket"></i> Upcoming</a>
+                    <a href="#" onclick="filterEvents('finished')"><i class="fas fa-check-circle"></i> Finished</a>
+                    <a href="#" onclick="filterEvents('ongoing')"><i class="fas fa-play-circle"></i> Ongoing</a>
+                    <a href="#" onclick="filterEvents('all')"><i class="fas fa-list"></i> All Events</a>
+                </div>
+            </div>
+           
+        
+        </div>
+        <div class="right-section">
+            <h1 class = "section-title">EXPLORE EVENTS</h1>
+            <div class="events-grid" id="events-container">
+                
+                </div>
+            </div>
+        </div>
+
+    <script src="/Eventify/assets/js-files/Events.js"></script>
+        
+
+
+
+      
+
+    
+</body>
+</html>

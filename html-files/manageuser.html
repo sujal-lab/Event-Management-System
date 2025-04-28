@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Users</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      background: linear-gradient(to right, #0b0000, #3a0000);
+      color: white;
+    }
+
+    aside {
+      width: 240px;
+      background-color: #0b0000;
+      padding: 40px 30px;
+      box-sizing: border-box;
+      border-right: 2px solid #ffffff30;
+      height: 100vh;
+    }
+
+    aside h1 {
+      color: #ff4c4c;
+      margin-bottom: 30px;
+      font-size: 40px;
+    }
+
+    aside a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 20px 0;
+      font-size: 24px;
+    }
+
+    aside a:hover {
+        transform: scale(1.05);
+        color: #ff6666;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 32px;
+    }
+
+    form.user-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .user-form input, .user-form select {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      min-width: 180px;
+    }
+
+    .user-form button {
+      padding: 15px 25px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #220000;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ffffff20;
+      text-align: left;
+    }
+
+    th {
+      background-color: #400000;
+    }
+
+    .action-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 5px;
+      color: white;
+    }
+
+    .edit-btn {
+      background-color: #1976d2;
+    }
+
+    .delete-btn {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h1>Manage User Panel</h1>
+    <a href="../index.html">Home</a>
+    <a href="attendee.html">Dashboard</a>
+    <a href="admin-panel.html">Admin Panel</a>
+    <a href="Events.html">Events</a>
+    <a href="logout2.html">Logout</a>
+  </aside>
+
+  <main>
+    <h2>Manage Users</h2>
+
+    <form class="user-form" onsubmit="addUser(event)">
+      <input type="text" id="username" placeholder="Name" required>
+      <input type="email" id="useremail" placeholder="Email" required>
+      <select id="userrole">
+        <option value="User">User</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <button type="submit">Add User</button>
+    </form>
+
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Default user row -->
+        <tr>
+          <td>1</td>
+          <td>Sidhant</td>
+          <td>sidhant0785.becse24@chitkara.edu.in</td>
+          <td>User</td>
+          <td>
+            <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+            <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+          </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Sujal Kandari</td>
+            <td>sujal0795.becse24@chitkara.edu.in</td>
+            <td>Admin</td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+                <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Simon</td>
+            <td>simon0786.becse24@chitkara.edu.in</td>
+            <td>Admin</td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+                <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Sherani</td>
+            <td>sherani0769.becse24@chitkara.edu.in</td>
+            <td>User</td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+                <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Saksham Deep</td>
+            <td>saksham0751.becse24@chitkara.edu.in</td>
+            <td>User</td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+                <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    let userId = 2;
+
+    function addUser(e) {
+      e.preventDefault();
+      const name = document.getElementById('username').value.trim();
+      const email = document.getElementById('useremail').value.trim();
+      const role = document.getElementById('userrole').value;
+
+      if (!name || !email) return;
+
+      const table = document.querySelector('#userTable tbody');
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${userId++}</td>
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${role}</td>
+        <td>
+          <button class="action-btn edit-btn" onclick="editUser(this)">Edit</button>
+          <button class="action-btn delete-btn" onclick="deleteUser(this)">Delete</button>
+        </td>
+      `;
+      table.appendChild(row);
+
+      // Reset form
+      document.getElementById('username').value = '';
+      document.getElementById('useremail').value = '';
+      document.getElementById('userrole').value = 'User';
+    }
+
+    function deleteUser(btn) {
+      if (confirm("Are you sure you want to delete this user?")) {
+        btn.closest("tr").remove();
+      }
+    }
+
+    function editUser(btn) {
+      const row = btn.closest("tr");
+      const nameCell = row.children[1];
+      const emailCell = row.children[2];
+      const roleCell = row.children[3];
+
+      const newName = prompt("Enter new name:", nameCell.textContent);
+      const newEmail = prompt("Enter new email:", emailCell.textContent);
+      const newRole = prompt("Enter new role (Admin/User):", roleCell.textContent);
+
+      if (newName && newEmail && newRole) {
+        nameCell.textContent = newName;
+        emailCell.textContent = newEmail;
+        roleCell.textContent = newRole;
+      }
+    }
+  </script>
+
+</body>
+</html>
