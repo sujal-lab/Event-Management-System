@@ -1,4 +1,4 @@
-# 🎉 EVENTIFY - Event Management System
+# 🎉 EVENTIFY - Smart Event Management System
 
 ##  📌 Overview
 Eventify is a next-gen, sleek, and highly scalable event management platform designed to redefine the way events are organized and experienced. Whether you're attending a small meetup or orchestrating a massive festival, Eventify provides a seamless, interactive, and dynamic environment for event discovery, booking, management, and engagement — all wrapped in a visually stunning, user-centric interface.
