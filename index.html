@@ -1313,6 +1313,81 @@ align-items: stretch;
   .form-full button:hover {
     background: linear-gradient(to right, #ff1a1a, #cc0000);
   }
+  .faq-item {
+            border-bottom: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .faq-question {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background-color: rgb(0, 0, 0);
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: var(--secondary-color);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px 30px;
+            max-height: 500px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-container {
+                margin: 20px auto;
+            }
+            
+            .faq-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .faq-question {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 15px 20px;
+            }
+        }
     </style>
 
     </head>
@@ -1413,21 +1488,27 @@ align-items: stretch;
     </section>
       
     <footer>
-        <div class="faq-section" style="padding: 2rem; background-color: #1a1a1a; color: #fff;">
-            <h2 style="margin-bottom: 1rem;">Frequently Asked Questions</h2>
+        <div class="faq-content">
             <div class="faq-item">
-              <h4>How can I book an event?</h4>
-              <p>You can book an event by clicking the "Book Now" button under your preferred event.</p>
+                <div class="faq-question">How can I book an event?</div>
+                <div class="faq-answer">
+                    <p>You can book an event by clicking the "Book Now" button under your preferred event. If you need any assistance, our customer support team is available 24/7 to help you with the booking process.</p>
+                </div>
             </div>
+            
             <div class="faq-item">
-              <h4>Can I cancel or reschedule my booking?</h4>
-              <p>Yes, you can manage your bookings through your account dashboard after logging in.</p>
+                <div class="faq-question">Can I cancel or reschedule my booking?</div>
+                <div class="faq-answer">
+                    <p>Yes, you can manage your bookings through your account dashboard after logging in. For cancellations, please note our refund policy: full refund if cancelled at least 48 hours before the event.</p>
+                </div>
             </div>
+            
             <div class="faq-item">
-              <h4>Do I need to create an account?</h4>
-              <p>Yes, logging in helps us manage your bookings and provide better service.</p>
+                <div class="faq-question">Do I need to create an account?</div>
+                <div class="faq-answer">
+                    <p>Yes, logging in helps us manage your bookings and provide better service. Creating an account takes less than a minute and gives you access to booking history, personalized recommendations, and faster checkout for future events.</p>
+                </div>
             </div>
-          </div>
         <p>&copy; 2025 Eventify. All Rights Reserved.</p>
     </footer>
     
@@ -1868,7 +1949,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 }
-
+document.addEventListener('DOMContentLoaded', function() {
+            // Toggle FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+ // Search functionality
+ const searchInput = document.getElementById('faq-search');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = '';
+                        // Auto-expand if matches search
+                        if (searchTerm.length > 0) {
+                            item.classList.add('active');
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Auto-expand first item on page load
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('active');
+            }
+        });
+   
 </script>
 </body>
 </html>
