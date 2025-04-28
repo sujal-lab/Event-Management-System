@@ -81,6 +81,60 @@
     .team-member:hover .team-overlay {
       opacity: 1;
     }
+    .story-box, .goal-box {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(156,14,14,0.2);
+  }
+
+  .goal-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(26,115,232,0.2);
+  }
+
+  .story-box::before,
+  .goal-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.05) 100%);
+    pointer-events: none;
+  }
+
+  .team-member {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .team-member:hover {
+    transform: translateY(-5px);
+  }
+
+  .team-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .team-member:hover .team-overlay {
+    opacity: 1;
+  }
   </style>
 </head>
 
@@ -109,6 +163,37 @@
       </p>
     </div>
   </section>
+  <section class="py-20">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <!-- Our Story -->
+      <div class="story-box bg-[var(--card-bg)] p-8 rounded-lg border-t-4 border-[var(--primary)] hover:shadow-xl transition-all">
+        <div class="w-12 h-12 bg-[var(--primary)] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-book-open text-white text-xl"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Our Story</h3>
+        <p class="text-[var(--muted)] leading-relaxed">
+          Founded in 2018 by five passionate event enthusiasts, Eventify started as a small university project. 
+          What began as a simple class assignment quickly evolved into a thriving platform when we realized 
+          our shared vision for revolutionizing event management. Today, we're proud to serve thousands of 
+          clients worldwide while maintaining our core values of creativity and personal touch.
+        </p>
+      </div>
+  
+      <!-- Our Goal -->
+      <div class="goal-box bg-[var(--card-bg)] p-8 rounded-lg border-t-4 border-[#1a73e8] hover:shadow-xl transition-all">
+        <div class="w-12 h-12 bg-[#1a73e8] rounded-full mb-4 flex items-center justify-center">
+          <i class="fas fa-bullseye text-white text-xl"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+        <p class="text-[var(--muted)] leading-relaxed">
+          To empower individuals and organizations to create unforgettable experiences through innovative 
+          technology and personalized service. We aim to simplify event planning while preserving the magic 
+          of human connection. Our ultimate goal is to become the most trusted partner in event management 
+          worldwide, one successful event at a time.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Stats Section -->
   <section class="py-20 bg-[var(--card-bg)]">
@@ -135,22 +220,58 @@
     </div>
   </section>
 
-  <!-- Team Section -->
   <section class="py-20 bg-[var(--card-bg)]">
     <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-16">Our Team</h2>
-      <div class="grid md:grid-cols-4 gap-8">
+      <h2 class="text-4xl font-bold text-center mb-16">Meet Our Team</h2>
+      <div class="grid md:grid-cols-5 gap-8">
+        <!-- Team Member 1 -->
         <div class="team-member">
-          <img src="team-member.jpg" alt="Team Member" class="w-full h-64 object-cover">
+          <img src="https://source.unsplash.com/random/400x400/?person1" alt="Alex Johnson" class="w-full h-64 object-cover rounded-lg">
           <div class="team-overlay p-6 w-full text-center">
-            <h4 class="font-bold text-lg">John Doe</h4>
-            <p class="text-sm text-[var(--muted)]">CEO & Founder</p>
+            <h4 class="font-bold text-lg">Alex Johnson</h4>
+            <p class="text-sm text-[var(--muted)]">CEO & Co-Founder</p>
           </div>
         </div>
-        <!-- Add more team members -->
+  
+        <!-- Team Member 2 -->
+        <div class="team-member">
+          <img src="https://source.unsplash.com/random/400x400/?person2" alt="Sarah Williams" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Sarah Williams</h4>
+            <p class="text-sm text-[var(--muted)]">CTO</p>
+          </div>
+        </div>
+  
+        <!-- Team Member 3 -->
+        <div class="team-member">
+          <img src="https://source.unsplash.com/random/400x400/?person3" alt="Michael Chen" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Michael Chen</h4>
+            <p class="text-sm text-[var(--muted)]">Lead Developer</p>
+          </div>
+        </div>
+  
+        <!-- Team Member 4 -->
+        <div class="team-member">
+          <img src="https://source.unsplash.com/random/400x400/?person4" alt="Emma Davis" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">Emma Davis</h4>
+            <p class="text-sm text-[var(--muted)]">Marketing Director</p>
+          </div>
+        </div>
+  
+        <!-- Team Member 5 -->
+        <div class="team-member">
+          <img src="https://source.unsplash.com/random/400x400/?person5" alt="David Kim" class="w-full h-64 object-cover rounded-lg">
+          <div class="team-overlay p-6 w-full text-center">
+            <h4 class="font-bold text-lg">David Kim</h4>
+            <p class="text-sm text-[var(--muted)]">Customer Success</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+  
 
   <!-- CTA Section -->
   <section class="py-20 bg-[var(--primary)]">
