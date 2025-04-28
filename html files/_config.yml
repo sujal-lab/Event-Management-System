@@ -1,0 +1,5 @@
+title: Eventify
+description: Event Management System
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-seo-tag
