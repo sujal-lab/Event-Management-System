@@ -205,7 +205,7 @@ const booking = {
  };
  
  // Save to localStorage
- let myEvents = JSON.parse(localStorage.getItem('myEvents') || []);
+ let myEvents = JSON.parse(localStorage.getItem('myEvents') || '[]');
  myEvents.push(booking);
  localStorage.setItem('myEvents', JSON.stringify(myEvents));
  
