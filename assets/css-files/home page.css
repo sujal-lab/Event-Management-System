@@ -1,4 +1,4 @@
- /* Login Modal Glassmorphism Styling */
+ /* Login Modal Glassmorphism Styling
  .modal-content.glassmorphism {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
@@ -1296,4 +1296,4 @@ align-items: stretch;
   
   .form-full button:hover {
     background: linear-gradient(to right, #ff1a1a, #cc0000);
-  }
+  } */
