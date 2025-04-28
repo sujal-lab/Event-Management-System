@@ -1,0 +1,37 @@
+name: Deploy Eventify Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Prepare build directory
+        run: |
+          rm -rf build
+          mkdir build
+          cp -R * build/
+          cp -R .[^.]* build/ || true
+
+      - name: Rewrite asset paths for GitHub Pages
+        # Convert any absolute or relative asset links to use /Eventify baseurl
+        run: |
+          find build -type f -name "*.html" -print0 \
+            | xargs -0 sed -i \
+                -e 's|href="/assets|href="/Eventify/assets|g' \
+                -e 's|src="/assets|src="/Eventify/assets|g' \
+                -e 's|href="../assets|href="/Eventify/assets|g' \
+                -e 's|src="../assets|src="/Eventify/assets|g'
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages
