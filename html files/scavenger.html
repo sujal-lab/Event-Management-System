@@ -267,3 +267,111 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(153, 0, 0, 0.3);
     }
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        margin-top: 1rem;
+        gap: 1rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .game-container {
+        min-height: 50vh;
+      }
+      
+      .hidden-item {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .game-info {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="../home page.html">
+        <img src="../frontend images/eventify logo.png" alt="Eventify Logo">
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="Events.html">Events</a>
+      <a href="offers.html">Offers & Games</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about us.html">About</a>
+      <a href="contactpage.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 class="page-title">Eventify Treasure Hunt</h1>
+    <p class="instructions">Explore the event scene and find all 5 hidden treasures! Click on them to collect. Be quick - you're racing against the clock!</p>
+    
+    <div class="game-info">
+      <div class="info-box">
+        <h3>Difficulty</h3>
+        <div class="difficulty-selector">
+          <button class="active" data-difficulty="easy">Easy</button>
+          <button data-difficulty="medium">Medium</button>
+          <button data-difficulty="hard">Hard</button>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>Time</h3>
+        <div class="timer-display">01:30</div>
+      </div>
+      <div class="info-box">
+        <h3>Found</h3>
+        <div class="found-items">
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="game-container" id="gameArea">
+      <!-- Hidden items will be placed here by JavaScript -->
+    </div>
+    
+    <div class="score-display">
+      <span>Progress:</span>
+      <div class="score-progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <span id="scoreText">0/5</span>
+    </div>
+    
+    <button class="restart-btn" id="restartBtn">Restart Game</button>
+    
+    <div class="modal" id="winModal">
+      <div class="modal-content">
+        <h2>Congratulations!</h2>
+        <p>You found all the hidden treasures in <span id="finalTime">00:00</span>! 🎉</p>
+        <p>Your reward: <strong>10% off</strong> your next Eventify purchase!</p>
+        <button id="closeModal">Claim Reward</button>
+      </div>
+    </div>
+    
+    <div class="modal" id="loseModal">
+      <div class="modal-content">
+        <h2>Time's Up!</h2>
+        <p>You found <span id="finalScore">0</span> out of 5 treasures.</p>
+        <p>Try again to find them all!</p>
+        <button id="tryAgainBtn">Try Again</button>
+      </div>
+    </div>
+  </div>
