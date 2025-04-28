@@ -4,62 +4,305 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eventify - Scavenger Hunt</title>
-  <link rel="stylesheet" href="../css files/scavenger.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
   <style>
-    body {
-      background-color: #0d0d0d !important;
+    :root {
+      --primary: #990000;
+      --secondary: #ffcc00;
+      --dark: #0d0d0d;
+      --light: #ffffff;
+      --accent: #ff4d4d;
+    }
+    
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    header {
-      border-bottom: 1px solid #990000;
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    .instructions {
-    color: #ffffff; 
-    font-size: 20px;
-  }
-  .score-display {
-      margin-top: 20px;
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: bold;
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(13, 13, 13, 0.9);
+      border-bottom: 2px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 60px;
+      transition: transform 0.3s;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .main-content {
+      padding: 2rem;
       text-align: center;
     }
+    
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+    
+    .instructions {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    .game-container {
+      position: relative;
+      min-height: 60vh;
+      border: 2px dashed var(--primary);
+      border-radius: 10px;
+      margin: 2rem auto;
+      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      background-color: rgba(13, 13, 13, 0.7);
+    }
+    
     .hidden-item {
       position: absolute;
-      width: 50px;
-      height: 50px;
-      background-image: url('../frontend images/eventify logo.png'); /* Assuming this is the icon */
-      background-size: cover;
+      width: 60px;
+      height: 60px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffcc00"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
       cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.7));
     }
+    
+    .hidden-item:hover {
+      transform: scale(1.2) rotate(15deg);
+    }
+    
+    .hidden-item.found {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .score-display {
+      margin: 1rem auto;
+      font-size: 1.5rem;
+      color: var(--light);
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .score-progress {
+      height: 10px;
+      width: 200px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.5s;
+    }
+    
+    .timer-display {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
     .modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.8);
       display: none;
       justify-content: center;
       align-items: center;
+      z-index: 1000;
     }
+    
     .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+      border: 1px solid var(--primary);
+      animation: modalEnter 0.5s ease-out;
+    }
+    @keyframes pop {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .difficulty-selector {
+      margin: 1rem 0;
+    }
+    
+    .difficulty-selector button {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid var(--primary);
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .difficulty-selector button.active {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(153, 0, 0, 0.3);
+    }
+    
+    .difficulty-selector button:hover {
+      background: rgba(153, 0, 0, 0.3);
+    }
+    
+    .game-info {
+      display: flex;
+      justify-content: space-around;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .info-box {
       text-align: center;
     }
+    
+    .info-box h3 {
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .restart-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid var(--primary);
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .restart-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(153, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        margin-top: 1rem;
+        gap: 1rem;
+      }
+      
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .game-container {
+        min-height: 50vh;
+      }
+      
+      .hidden-item {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .game-info {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
   </style>
-  
 </head>
 <body>
   <div class="header">
     <div class="logo">
       <a href="../home page.html">
-        <img src="../frontend images/eventify logo.png" alt="Logo" width="150px">
+        <img src="../frontend images/eventify logo.png" alt="Eventify Logo">
       </a>
     </div>
     <div class="nav-links">
@@ -72,31 +315,338 @@
   </div>
 
   <div class="main-content">
-    <h1 class="page-title">Scavenger Hunt</h1>
-    <p class="instructions">Find all 5 hidden Eventify icons on this page! Click on them to collect.</p>
+    <h1 class="page-title">Eventify Treasure Hunt</h1>
+    <p class="instructions">Explore the event scene and find all 5 hidden treasures! Click on them to collect. Be quick - you're racing against the clock!</p>
     
-
-    <div class="hidden-item" style="top: 20%; left: 30%;"></div>
-    <div class="hidden-item" style="top: 40%; left: 60%;"></div>
-    <div class="hidden-item" style="top: 70%; left: 20%;"></div>
-    <div class="hidden-item" style="top: 55%; left: 75%;"></div>
-    <div class="hidden-item" style="top: 85%; left: 45%;"></div>
-
- 
+    <div class="game-info">
+      <div class="info-box">
+        <h3>Difficulty</h3>
+        <div class="difficulty-selector">
+          <button class="active" data-difficulty="easy">Easy</button>
+          <button data-difficulty="medium">Medium</button>
+          <button data-difficulty="hard">Hard</button>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>Time</h3>
+        <div class="timer-display">01:30</div>
+      </div>
+      <div class="info-box">
+        <h3>Found</h3>
+        <div class="found-items">
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+          <div class="found-item"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="game-container" id="gameArea">
+      <!-- Hidden items will be placed here by JavaScript -->
+    </div>
+    
+    <div class="score-display">
+      <span>Progress:</span>
+      <div class="score-progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <span id="scoreText">0/5</span>
+    </div>
+    
+    <button class="restart-btn" id="restartBtn">Restart Game</button>
+    
     <div class="modal" id="winModal">
       <div class="modal-content">
         <h2>Congratulations!</h2>
-        <p>You found all the hidden items! 🎉</p>
-        <button id="closeModal">Close</button>
+        <p>You found all the hidden treasures in <span id="finalTime">00:00</span>! 🎉</p>
+        <p>Your reward: <strong>10% off</strong> your next Eventify purchase!</p>
+        <button id="closeModal">Claim Reward</button>
+      </div>
+    </div>
+    
+    <div class="modal" id="loseModal">
+      <div class="modal-content">
+        <h2>Time's Up!</h2>
+        <p>You found <span id="finalScore">0</span> out of 5 treasures.</p>
+        <p>Try again to find them all!</p>
+        <button id="tryAgainBtn">Try Again</button>
       </div>
     </div>
   </div>
-  <div class="score-display">
-    <p id="score">Score: 0/5</p>
-  </div>
-  
-  
-
-  <script src="../js files/scavenger.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Game variables
+      let score = 0;
+      const totalItems = 5;
+      let timeLeft = 90; // 1.5 minutes in seconds
+      let gameTimer;
+      let difficulty = 'easy';
+      let itemSize, itemCount, gameDuration;
+      
+      // DOM elements
+      const gameArea = document.getElementById('gameArea');
+      const scoreText = document.getElementById('scoreText');
+      const progressBar = document.getElementById('progressBar');
+      const timerDisplay = document.querySelector('.timer-display');
+      const winModal = document.getElementById('winModal');
+      const loseModal = document.getElementById('loseModal');
+      const closeModal = document.getElementById('closeModal');
+      const tryAgainBtn = document.getElementById('tryAgainBtn');
+      const finalTime = document.getElementById('finalTime');
+      const finalScore = document.getElementById('finalScore');
+      const restartBtn = document.getElementById('restartBtn');
+      const difficultyButtons = document.querySelectorAll('.difficulty-selector button');
+      const foundItems = document.querySelectorAll('.found-item');
+      
+      // Set difficulty
+      function setDifficulty(level) {
+        difficulty = level;
+        
+        // Update active button
+        difficultyButtons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.difficulty === level) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Set game parameters based on difficulty
+        switch(level) {
+          case 'easy':
+            itemSize = 60;
+            timeLeft = 120; // 2 minutes
+            break;
+          case 'medium':
+            itemSize = 45;
+            timeLeft = 90; // 1.5 minutes
+            break;
+          case 'hard':
+            itemSize = 30;
+            timeLeft = 60; // 1 minute
+            break;
+        }
+        
+        updateTimerDisplay();
+        resetGame();
+      }
+      
+      // Initialize game
+      function initGame() {
+        resetGame();
+        placeItems();
+        startTimer();
+      }
+      
+      // Reset game state
+      function resetGame() {
+        // Clear existing items
+        gameArea.innerHTML = '';
+        score = 0;
+        updateScore();
+        
+        // Reset found items display
+        foundItems.forEach(item => item.classList.remove('active'));
+        
+        // Clear existing timer
+        clearInterval(gameTimer);
+        
+        // Set initial time based on difficulty
+        switch(difficulty) {
+          case 'easy':
+            timeLeft = 120;
+            break;
+          case 'medium':
+            timeLeft = 90;
+            break;
+          case 'hard':
+            timeLeft = 60;
+            break;
+        }
+        
+        updateTimerDisplay();
+      }
+      
+      // Place hidden items randomly
+      function placeItems() {
+        const gameRect = gameArea.getBoundingClientRect();
+        const gameWidth = gameRect.width;
+        const gameHeight = gameRect.height;
+        
+        for (let i = 0; i < totalItems; i++) {
+          const item = document.createElement('div');
+          item.className = 'hidden-item';
+          
+          // Random position within game area (with padding)
+          const maxX = gameWidth - itemSize - 20;
+          const maxY = gameHeight - itemSize - 20;
+          const randomX = Math.floor(Math.random() * maxX) + 10;
+          const randomY = Math.floor(Math.random() * maxY) + 10;
+          
+          item.style.left = `${randomX}px`;
+          item.style.top = `${randomY}px`;
+          item.style.width = `${itemSize}px`;
+          item.style.height = `${itemSize}px`;
+          
+          // Add click event
+          item.addEventListener('click', () => {
+            if (!item.classList.contains('found')) {
+              item.classList.add('found');
+              score++;
+              updateScore();
+              
+              // Update found items display
+              foundItems[score - 1].classList.add('active');
+              
+              // Add visual feedback
+              item.style.transform = 'scale(1.5)';
+              item.style.opacity = '0';
+              
+              // Play sound (optional)
+              playSound('pop');
+              
+              // Remove item after animation
+              setTimeout(() => {
+                item.remove();
+              }, 300);
+              
+              // Check if all items found
+              if (score === totalItems) {
+                clearInterval(gameTimer);
+                showWinModal();
+              }
+            }
+          });
+          
+          gameArea.appendChild(item);
+        }
+      }
+      
+      // Update score display
+      function updateScore() {
+        scoreText.textContent = `${score}/${totalItems}`;
+        const progress = (score / totalItems) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+            // Timer functions
+            function startTimer() {
+        gameTimer = setInterval(() => {
+          timeLeft--;
+          updateTimerDisplay();
+          
+          if (timeLeft <= 0) {
+            clearInterval(gameTimer);
+            if (score < totalItems) {
+              showLoseModal();
+            }
+          }
+        }, 1000);
+      }
+      
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        // Change color when time is running low
+        if (timeLeft <= 10) {
+          timerDisplay.style.color = 'var(--accent)';
+          timerDisplay.style.animation = 'pulse 0.5s infinite alternate';
+        } else {
+          timerDisplay.style.color = 'var(--secondary)';
+          timerDisplay.style.animation = 'none';
+        }
+      }
+      
+      // Modal functions
+      function showWinModal() {
+        // Calculate final time
+        const totalSeconds = (difficulty === 'easy' ? 120 : difficulty === 'medium' ? 90 : 60) - timeLeft;
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        finalTime.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        // Show confetti
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        
+        winModal.style.display = 'flex';
+        playSound('win');
+      }
+      
+      function showLoseModal() {
+        finalScore.textContent = score;
+        loseModal.style.display = 'flex';
+        playSound('lose');
+      }
+      
+      // Sound effects (using Web Audio API)
+      function playSound(type) {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        if (type === 'pop') {
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.1);
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+        } else if (type === 'win') {
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C
+          oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E
+          oscillator.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2); // G
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        } else if (type === 'lose') {
+          oscillator.type = 'sine';
+          oscillator.frequency.setValueAtTime(392, audioCtx.currentTime); // G
+          oscillator.frequency.setValueAtTime(349.23, audioCtx.currentTime + 0.1); // F
+          oscillator.frequency.setValueAtTime(293.66, audioCtx.currentTime + 0.2); // D
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        }
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.3);
+      }
+      
+      // Event listeners
+      closeModal.addEventListener('click', () => {
+        winModal.style.display = 'none';
+        resetGame();
+      });
+      
+      tryAgainBtn.addEventListener('click', () => {
+        loseModal.style.display = 'none';
+        resetGame();
+        initGame();
+      });
+      
+      restartBtn.addEventListener('click', () => {
+        resetGame();
+        initGame();
+      });
+      
+      difficultyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          setDifficulty(button.dataset.difficulty);
+          initGame();
+        });
+      });
+      
+      // Initialize with easy difficulty
+      setDifficulty('easy');
+      initGame();
+    });
+  </script>
 </body>
 </html>
