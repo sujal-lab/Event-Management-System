@@ -1393,7 +1393,7 @@ align-items: stretch;
     </head>
     <body>
         <header>
-            <div class="logo"><img src="../Event-Management-System/frontend images/eventify logo.png" alt="Logo"></div>
+            <div class="logo"><img src="frontend images/eventify logo.png" alt="Logo"></div>
             <input type="text" class="search-bar" placeholder="Search events..." id="searchInput">
         <ul class="nav-links">
             <li><a href="../html files/Events.html">Events</a></li>
@@ -1420,57 +1420,76 @@ align-items: stretch;
     </section>
       
     <footer>
-    <div style="display: flex; justify-content: center; align-items: flex-start; min-height: 50vh; flex-wrap: wrap; gap: 20px; padding: 20px;">
-        <!-- FAQ Content Section -->
-        <div class="faq-content" style="flex: 1; min-width: 300px;">
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">What makes Eventify different from other event management systems?</div>
-                <div class="faq-answer">
-                    <p>Eventify is designed to offer a seamless and modern event management experience with dynamic content loading, an intuitive user interface, and vibrant dark theme options. Its unique Single Page Application (SPA) approach allows users to navigate through event details without reloading the page.</p>
-                </div>
-            </div>
+        <div style="padding: 20px;">
+            <h2 class="faq-heading" style="text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
+            <div style="display: flex; justify-content: center; align-items: flex-start; min-height: 50vh; flex-wrap: wrap; gap: 20px;">
+                <!-- FAQ Content Section -->
+                <div class="faq-content" style="flex: 1; min-width: 300px;">
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">What makes Eventify different from other event management systems?</div>
+                        <div class="faq-answer">
+                            <p>Eventify is designed to offer a seamless and modern event management experience with dynamic content loading, an intuitive user interface, and vibrant dark theme options. Its unique Single Page Application (SPA) approach allows users to navigate through event details without reloading the page.</p>
+                        </div>
+                    </div>
     
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I manage multiple events at once on Eventify?</div>
-                <div class="faq-answer">
-                    <p>Yes, Eventify allows users to manage multiple events simultaneously. The platform provides a clear, organized dashboard to handle bookings, attendees, and schedules for each event.</p>
-                </div>
-            </div>
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I manage multiple events at once on Eventify?</div>
+                        <div class="faq-answer">
+                            <p>Yes, Eventify allows users to manage multiple events simultaneously. The platform provides a clear, organized dashboard to handle bookings, attendees, and schedules for each event.</p>
+                        </div>
+                    </div>
     
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">How can I customize my event details?</div>
-                <div class="faq-answer">
-                    <p>Event organizers can easily customize event details, including descriptions, dates, locations, and ticket types. The platform provides an easy-to-use interface for modifications to ensure a personalized experience for both organizers and attendees.</p>
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">How can I customize my event details?</div>
+                        <div class="faq-answer">
+                            <p>Event organizers can easily customize event details, including descriptions, dates, locations, and ticket types. The platform provides an easy-to-use interface for modifications to ensure a personalized experience for both organizers and attendees.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Second FAQ Section -->
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I track attendee participation in real time?</div>
+                        <div class="faq-answer">
+                            <p>Yes! Eventify provides real-time tracking of attendee registration and participation. Organizers can view live updates on ticket sales, attendance rates, and more through the Attendee Dashboard.</p>
+                        </div>
+                    </div>
+    
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I offer early-bird discounts or promo codes?</div>
+                        <div class="faq-answer">
+                            <p>Yes! Eventify allows you to create discount codes, early-bird offers, and special promotions for your events.</p>
+                        </div>
+                    </div>
+    
+                    <div class="faq-item">
+                        <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Is Eventify suitable for both in-person and virtual events?</div>
+                        <div class="faq-answer">
+                            <p>Yes, Eventify supports both in-person and virtual events. You can set up virtual event links, live-streaming options, or in-person venue details depending on the nature of the event.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     
-        <!-- Second FAQ Section -->
-        <div style="flex: 1; min-width: 300px;">
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I track attendee participation in real time?</div>
-                <div class="faq-answer">
-                    <p>Yes! Eventify provides real-time tracking of attendee registration and participation. Organizers can view live updates on ticket sales, attendance rates, and more through the Attendee Dashboard.</p>
-                </div>
-            </div>
+        <!-- Animation Styles -->
+        <style>
+            .faq-heading {
+                opacity: 0;
+                transform: translateY(-20px);
+                animation: fadeInDown 1s ease forwards;
+            }
     
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Can I offer early-bird discounts or promo codes?</div>
-                <div class="faq-answer">
-                    <p>Yes! Eventify allows you to create discount codes, early-bird offers, and special promotions for your events.</p>
-                </div>
-            </div>
+            @keyframes fadeInDown {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </footer>
     
-            <div class="faq-item">
-                <div class="faq-question" style="margin-bottom: 10px; cursor: pointer; transition: color 0.3s ease;">Is Eventify suitable for both in-person and virtual events?</div>
-                <div class="faq-answer">
-                    <p>Yes, Eventify supports both in-person and virtual events. You can set up virtual event links, live-streaming options, or in-person venue details depending on the nature of the event.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
     
     <!-- Footer Section -->
     <footer style="wwidth: 100%; text-align: center; padding: 10px 20px; background-color: #333; color: white; margin-top: -10px;">
