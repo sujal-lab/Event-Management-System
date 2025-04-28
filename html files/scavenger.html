@@ -375,3 +375,157 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Game variables
+      let score = 0;
+      const totalItems = 5;
+      let timeLeft = 90; // 1.5 minutes in seconds
+      let gameTimer;
+      let difficulty = 'easy';
+      let itemSize, itemCount, gameDuration;
+      
+      // DOM elements
+      const gameArea = document.getElementById('gameArea');
+      const scoreText = document.getElementById('scoreText');
+      const progressBar = document.getElementById('progressBar');
+      const timerDisplay = document.querySelector('.timer-display');
+      const winModal = document.getElementById('winModal');
+      const loseModal = document.getElementById('loseModal');
+      const closeModal = document.getElementById('closeModal');
+      const tryAgainBtn = document.getElementById('tryAgainBtn');
+      const finalTime = document.getElementById('finalTime');
+      const finalScore = document.getElementById('finalScore');
+      const restartBtn = document.getElementById('restartBtn');
+      const difficultyButtons = document.querySelectorAll('.difficulty-selector button');
+      const foundItems = document.querySelectorAll('.found-item');
+      
+      // Set difficulty
+      function setDifficulty(level) {
+        difficulty = level;
+        
+        // Update active button
+        difficultyButtons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.difficulty === level) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Set game parameters based on difficulty
+        switch(level) {
+          case 'easy':
+            itemSize = 60;
+            timeLeft = 120; // 2 minutes
+            break;
+          case 'medium':
+            itemSize = 45;
+            timeLeft = 90; // 1.5 minutes
+            break;
+          case 'hard':
+            itemSize = 30;
+            timeLeft = 60; // 1 minute
+            break;
+        }
+        
+        updateTimerDisplay();
+        resetGame();
+      }
+      
+      // Initialize game
+      function initGame() {
+        resetGame();
+        placeItems();
+        startTimer();
+      }
+      
+      // Reset game state
+      function resetGame() {
+        // Clear existing items
+        gameArea.innerHTML = '';
+        score = 0;
+        updateScore();
+        
+        // Reset found items display
+        foundItems.forEach(item => item.classList.remove('active'));
+        
+        // Clear existing timer
+        clearInterval(gameTimer);
+        
+        // Set initial time based on difficulty
+        switch(difficulty) {
+          case 'easy':
+            timeLeft = 120;
+            break;
+          case 'medium':
+            timeLeft = 90;
+            break;
+          case 'hard':
+            timeLeft = 60;
+            break;
+        }
+        
+        updateTimerDisplay();
+      }
+      
+      // Place hidden items randomly
+      function placeItems() {
+        const gameRect = gameArea.getBoundingClientRect();
+        const gameWidth = gameRect.width;
+        const gameHeight = gameRect.height;
+        
+        for (let i = 0; i < totalItems; i++) {
+          const item = document.createElement('div');
+          item.className = 'hidden-item';
+          
+          // Random position within game area (with padding)
+          const maxX = gameWidth - itemSize - 20;
+          const maxY = gameHeight - itemSize - 20;
+          const randomX = Math.floor(Math.random() * maxX) + 10;
+          const randomY = Math.floor(Math.random() * maxY) + 10;
+          
+          item.style.left = `${randomX}px`;
+          item.style.top = `${randomY}px`;
+          item.style.width = `${itemSize}px`;
+          item.style.height = `${itemSize}px`;
+          
+          // Add click event
+          item.addEventListener('click', () => {
+            if (!item.classList.contains('found')) {
+              item.classList.add('found');
+              score++;
+              updateScore();
+              
+              // Update found items display
+              foundItems[score - 1].classList.add('active');
+              
+              // Add visual feedback
+              item.style.transform = 'scale(1.5)';
+              item.style.opacity = '0';
+              
+              // Play sound (optional)
+              playSound('pop');
+              
+              // Remove item after animation
+              setTimeout(() => {
+                item.remove();
+              }, 300);
+              
+              // Check if all items found
+              if (score === totalItems) {
+                clearInterval(gameTimer);
+                showWinModal();
+              }
+            }
+          });
+          
+          gameArea.appendChild(item);
+        }
+      }
+      
+      // Update score display
+      function updateScore() {
+        scoreText.textContent = `${score}/${totalItems}`;
+        const progress = (score / totalItems) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
