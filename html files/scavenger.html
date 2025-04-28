@@ -54,3 +54,149 @@
       display: flex;
       gap: 2rem;
     }
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .main-content {
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .page-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+    
+    .instructions {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    .game-container {
+      position: relative;
+      min-height: 60vh;
+      border: 2px dashed var(--primary);
+      border-radius: 10px;
+      margin: 2rem auto;
+      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      background-color: rgba(13, 13, 13, 0.7);
+    }
+    
+    .hidden-item {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffcc00"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1.06 13.54L7.4 12l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41-5.64 5.66z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      transition: transform 0.3s, opacity 0.3s;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.7));
+    }
+    
+    .hidden-item:hover {
+      transform: scale(1.2) rotate(15deg);
+    }
+    
+    .hidden-item.found {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .score-display {
+      margin: 1rem auto;
+      font-size: 1.5rem;
+      color: var(--light);
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .score-progress {
+      height: 10px;
+      width: 200px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.5s;
+    }
+    
+    .timer-display {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+      border: 1px solid var(--primary);
+      animation: modalEnter 0.5s ease-out;
+    }
