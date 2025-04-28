@@ -16,8 +16,8 @@ jobs:
         run: |
           rm -rf build
           mkdir build
-          cp -R * build/
-          cp -R .[^.]* build/ || true
+          # copy all files except build/ and .git/
+          rsync -av --exclude='build' --exclude='.git' ./ build/
 
       - name: Rewrite asset paths for GitHub Pages
         run: |
@@ -27,8 +27,8 @@ jobs:
                 -e 's|src="assets|src="/Eventify/assets|g' \
                 -e 's|href="/assets|href="/Eventify/assets|g' \
                 -e 's|src="/assets|src="/Eventify/assets|g' \
-                -e 's|href="../assets|href="/Eventify/assets|g' \
-                -e 's|src="../assets|src="/Eventify/assets|g'
+                -e 's|href="\.\./assets|href="/Eventify/assets|g' \
+                -e 's|src="\.\./assets|src="/Eventify/assets|g'
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
