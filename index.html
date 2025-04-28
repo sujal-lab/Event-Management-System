@@ -1313,6 +1313,81 @@ align-items: stretch;
   .form-full button:hover {
     background: linear-gradient(to right, #ff1a1a, #cc0000);
   }
+  .faq-item {
+            border-bottom: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .faq-question {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background-color: rgb(0, 0, 0);
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: var(--secondary-color);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px 30px;
+            max-height: 500px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-container {
+                margin: 20px auto;
+            }
+            
+            .faq-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .faq-question {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 20px;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 15px 20px;
+            }
+        }
     </style>
 
     </head>
@@ -1345,21 +1420,39 @@ align-items: stretch;
     </section>
       
     <footer>
-        <div class="faq-section" style="padding: 2rem; background-color: #1a1a1a; color: #fff;">
-            <h2 style="margin-bottom: 1rem;">Frequently Asked Questions</h2>
+        <div class="faq-content">
             <div class="faq-item">
-              <h4>How can I book an event?</h4>
-              <p>You can book an event by clicking the "Book Now" button under your preferred event.</p>
+                <div class="faq-question">What makes Eventify different from other event management systems</div>
+                <div class="faq-answer">
+                    <p>Eventify is designed to offer a seamless and modern event management experience with dynamic content loading, an intuitive user interface, and vibrant dark theme options. Its unique Single Page Application (SPA) approach allows users to navigate through event details without reloading the page.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I manage multiple events at once on Eventify?</div>
+                <div class="faq-answer">
+                    <p>Yes, Eventify allows users to manage multiple events simultaneously. The platform provides a clear, organized dashboard to handle bookings, attendees, and schedules for each event.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How can I customize my event details?</div>
+                <div class="faq-answer">
+                    <p>Event organizers can easily customize event details, including descriptions, dates, locations, and ticket types. The platform provides an easy-to-use interface for modifications to ensure a personalized experience for both organizers and attendees.</p>
+                </div>
             </div>
             <div class="faq-item">
-              <h4>Can I cancel or reschedule my booking?</h4>
-              <p>Yes, you can manage your bookings through your account dashboard after logging in.</p>
+                <div class="faq-question">Can I track attendee participation in real time?</div>
+                <div class="faq-answer">
+                    <p>EYes! Eventify provides real-time tracking of attendee registration and participation. Organizers can view live updates on ticket sales, attendance rates, and more through the Attendee Dashboard.</p>
+                </div>
             </div>
             <div class="faq-item">
-              <h4>Do I need to create an account?</h4>
-              <p>Yes, logging in helps us manage your bookings and provide better service.</p>
+                <div class="faq-question">Is Eventify suitable for both in-person and virtual events?</div>
+                <div class="faq-answer">
+                    <p>Yes, Eventify supports both in-person and virtual events. You can set up virtual event links, live-streaming options, or in-person venue details depending on the nature of the event.</p>
+                </div>
             </div>
-          </div>
         <p>&copy; 2025 Eventify. All Rights Reserved.</p>
     </footer>
     
@@ -1800,7 +1893,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 }
-
+document.addEventListener('DOMContentLoaded', function() {
+            // Toggle FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+ // Search functionality
+ const searchInput = document.getElementById('faq-search');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = '';
+                        // Auto-expand if matches search
+                        if (searchTerm.length > 0) {
+                            item.classList.add('active');
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Auto-expand first item on page load
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('active');
+            }
+        });
+   
 </script>
 </body>
 </html>
