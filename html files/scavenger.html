@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventify - Scavenger Hunt</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #990000;
+      --secondary: #ffcc00;
+      --dark: #0d0d0d;
+      --light: #ffffff;
+      --accent: #ff4d4d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(13, 13, 13, 0.9);
+      border-bottom: 2px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 60px;
+      transition: transform 0.3s;
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
