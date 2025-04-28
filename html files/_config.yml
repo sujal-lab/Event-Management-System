@@ -1,5 +1,0 @@
-title: Eventify
-description: Event Management System
-exclude:
-  - node_modules
-  - Backend/node_modules

@@ -1,0 +1,11 @@
+title: Eventify
+description: Event Management System
+exclude:
+  - node_modules
+  - Backend/node_modules
+  - Backend/**/node_modules
+  - Backend/**/*.md
+  - Backend/**/*.markdown
+  - Backend/**/*.txt
+  - Backend/**/README.md
+  - Backend/**
