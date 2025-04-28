@@ -25,16 +25,22 @@ jobs:
           # copy all files except build/ and .git/
           rsync -av --exclude='build' --exclude='.git' ./ build/
 
-      - name: Rewrite asset paths for GitHub Pages
+      - name: Rewrite asset & page paths for GitHub Pages
         run: |
           find build -type f -name "*.html" -print0 \
             | xargs -0 sed -i \
+                # assets
                 -e 's|href="assets|href="/Eventify/assets|g' \
                 -e 's|src="assets|src="/Eventify/assets|g' \
                 -e 's|href="/assets|href="/Eventify/assets|g' \
                 -e 's|src="/assets|src="/Eventify/assets|g' \
-                -e 's|href="\../assets|href="/Eventify/assets|g' \
-                -e 's|src="\../assets|src="/Eventify/assets|g'
+                -e 's|href="\.\./assets|href="/Eventify/assets|g' \
+                -e 's|src="\.\./assets|src="/Eventify/assets|g' \
+                # inter-page links
+                -e 's|href="html-files/|href="/Eventify/html-files/|g' \
+                -e 's|href="\.\./html-files/|href="/Eventify/html-files/|g' \
+                # fix encoded spaces
+                -e 's|about%20us\.html|about-us.html|g'
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
