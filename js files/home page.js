@@ -178,10 +178,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             case 'user':
             case 'attendee':
-                window.location.href = 'attendee.html';
+                window.location.href= 'html files/attendee.html';
                 break;
             default:
-                window.location.href = 'dashboard.html';
+                window.location.href = '../html files/attendee.html';
                 console.warn('Unknown role "${role}", redirecting to default dashboard');
                 break;
         }
